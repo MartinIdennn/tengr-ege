@@ -8,45 +8,44 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>">
 </head>
 <body>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#F7F3EA; --surface:#FFFDF7; --surface-2:#EFE8D8;
-  --ink:#141A26; --ink-2:#4A4F5C; --ink-3:#8B8F9A;
-  --line:#E5DDCA; --line-2:#CEC4AB;
-  --ai:#2B4F9C; --ai-ink:#2B4F9C; --ai-soft:#E6EBF6;
-  --karekusa:#C2A05C; --karekusa-ink:#8A6C33; --karekusa-soft:#F1E7CF;
-  --akane:#A73429; --akane-ink:#A73429; --akane-soft:#F3E0DD;
-  --tetsukon:#16233C; --tetsukon-2:#1D2E4E;
-  --sky:linear-gradient(180deg,#9CC2E7 0%,#C9D5E4 34%,#EAE6DB 68%,#EFE3CE 100%);
-  --dusk:linear-gradient(168deg,#0D1729 0%,#16233C 48%,#28477F 100%);
+  --bg:#F5F3EE; --surface:#FDFCF8; --surface-2:#EBE8DE;
+  --ink:#1C221E; --ink-2:#4E554F; --ink-3:#8B9089;
+  --line:#E1DDD1; --line-2:#C8C3B4;
+  --ai:#23473A; --ai-ink:#23473A; --ai-soft:#E4EAE3;
+  --karekusa:#A98A50; --karekusa-ink:#7F663A; --karekusa-soft:#EFE9D9;
+  --akane:#722F37; --akane-ink:#722F37; --akane-soft:#F0E2E1;
+  --tetsukon:#1B332B; --tetsukon-2:#234238;
+  --sky:linear-gradient(180deg,#B8CDBB 0%,#D3DDCC 36%,#E9E7D9 70%,#F1EBDC 100%);
+  --dusk:linear-gradient(168deg,#122420 0%,#1B332B 50%,#2E5747 100%);
   --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --sans:"Golos Text",-apple-system,"Segoe UI",Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  --shadow:0 18px 50px rgba(22,35,60,.10);
-  --shadow-lg:0 30px 80px rgba(22,35,60,.16);
+  --shadow:0 18px 50px rgba(27,51,43,.10);
+  --shadow-lg:0 30px 80px rgba(27,51,43,.16);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0E1626; --surface:#16233C; --surface-2:#1D2E4E;
-    --ink:#EFEAE0; --ink-2:#B6BDCB; --ink-3:#7C8699;
-    --line:#233450; --line-2:#37486B;
-    --ai:#8FB0E8; --ai-ink:#A6C1EF; --ai-soft:#1E3055;
-    --karekusa:#C9A468; --karekusa-ink:#D9BE85; --karekusa-soft:#28324A;
-    --akane:#D66558; --akane-ink:#E58074; --akane-soft:#3B2230;
-    --tetsukon:#16233C; --tetsukon-2:#1D2E4E;
+    --bg:#121B17; --surface:#1B2721; --surface-2:#233129;
+    --ink:#EFECE2; --ink-2:#B8C1B8; --ink-3:#7E8A80;
+    --line:#26352D; --line-2:#3B4E42;
+    --ai:#8FBCA5; --ai-ink:#A5CCB6; --ai-soft:#21362C;
+    --karekusa:#C4A566; --karekusa-ink:#D6BE8C; --karekusa-soft:#2B3A2F;
+    --akane:#C96A61; --akane-ink:#DB847B; --akane-soft:#3A2626;
+    --tetsukon:#1B2721; --tetsukon-2:#234238;
     --shadow:0 18px 50px rgba(0,0,0,.4);
     --shadow-lg:0 30px 80px rgba(0,0,0,.5);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0E1626; --surface:#16233C; --surface-2:#1D2E4E;
-  --ink:#EFEAE0; --ink-2:#B6BDCB; --ink-3:#7C8699;
-  --line:#233450; --line-2:#37486B;
-  --ai:#8FB0E8; --ai-ink:#A6C1EF; --ai-soft:#1E3055;
-  --karekusa:#C9A468; --karekusa-ink:#D9BE85; --karekusa-soft:#28324A;
-  --akane:#D66558; --akane-ink:#E58074; --akane-soft:#3B2230;
-  --tetsukon:#16233C; --tetsukon-2:#1D2E4E;
+  --bg:#121B17; --surface:#1B2721; --surface-2:#233129;
+  --ink:#EFECE2; --ink-2:#B8C1B8; --ink-3:#7E8A80;
+  --line:#26352D; --line-2:#3B4E42;
+  --ai:#8FBCA5; --ai-ink:#A5CCB6; --ai-soft:#21362C;
+  --karekusa:#C4A566; --karekusa-ink:#D6BE8C; --karekusa-soft:#2B3A2F;
+  --akane:#C96A61; --akane-ink:#DB847B; --akane-soft:#3A2626;
+  --tetsukon:#1B2721; --tetsukon-2:#234238;
   --shadow:0 18px 50px rgba(0,0,0,.4);
   --shadow-lg:0 30px 80px rgba(0,0,0,.5);
 }
@@ -63,9 +62,7 @@ h3,h4{margin:0;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
 h1{font-size:clamp(40px,6.6vw,84px)}
 h2{font-size:clamp(30px,4vw,52px)}
 h3{font-size:16px;font-weight:600}
-.label,.chip,.tag,.terminal,.hero-top,.coords,.s-code,.s-idx,.demo-badge,.pill,
-.stat b,.level-num,.p-num,.t-num,th,.teacher .role,.tl-item b,.u-when,.who,
-.task-preview,.written,pre.tr,.brand,.conf,.pts,.ring .val,.f-op{font-family:var(--mono)}
+.s-idx,.f-op{font-family:var(--serif)}
 p{margin:0}
 a{color:var(--ai-ink);text-underline-offset:3px}
 ul{margin:0}
@@ -97,8 +94,8 @@ button.btn{-webkit-appearance:none}
 .nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);
   backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;gap:20px;min-height:62px}
-.brand{font-weight:800;font-size:16px;letter-spacing:.16em;color:var(--ink);text-decoration:none;white-space:nowrap}
-.brand em{font-style:normal;color:var(--ai-ink)}
+.brand{font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:.05em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand em{font-style:italic;font-weight:600;color:var(--karekusa-ink)}
 .nav-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
 .nav-links a{color:var(--ink-2);text-decoration:none;font-size:13px;white-space:nowrap;
   padding:7px 13px;border-radius:10px;transition:background .15s,color .15s}
@@ -108,32 +105,28 @@ button.btn{-webkit-appearance:none}
 .nav .btn:hover{transform:none;box-shadow:none}
 
 /* ── hero ── */
-.hero{background:var(--dusk);color:#EFEAE0;position:relative;overflow:hidden}
-.hero::after{content:"46.3078N";position:absolute;right:-.06em;bottom:-.18em;
-  font-family:var(--mono);font-size:clamp(90px,17vw,230px);font-weight:800;letter-spacing:-.05em;
-  color:rgba(239,234,224,.04);pointer-events:none;line-height:1;white-space:nowrap}
+.hero{background:var(--dusk);color:#EFECE2;position:relative;overflow:hidden}
+.hero::after{content:"Тенгр";position:absolute;right:-.04em;bottom:-.3em;
+  font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(120px,20vw,280px);
+  letter-spacing:-.01em;color:rgba(239,236,226,.05);pointer-events:none;line-height:1;white-space:nowrap}
 .hero .wrap{padding-top:92px;padding-bottom:96px;position:relative}
 .hero-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8FA3C4;font-weight:500;margin-bottom:70px;
-  padding-bottom:20px;border-bottom:1px solid rgba(201,164,104,.35)}
-.hero .tagline{font-family:var(--mono);font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#C9A468;font-weight:700}
-.hero h1{margin:18px 0 28px;color:#F5F1E6;max-width:18ch}
-.hero h1 em{font-style:italic;font-weight:500;color:#C9A468}
-.hero .lead{max-width:46ch;color:#C3CCDD;font-size:17px;line-height:1.8}
-.hero .lead b{color:#F5F1E6;font-weight:600}
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#93A99A;font-weight:500;margin-bottom:70px;
+  padding-bottom:20px;border-bottom:1px solid rgba(196,165,102,.4)}
+.hero .tagline{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:#C4A566;font-weight:600}
+.hero h1{margin:18px 0 28px;color:#F4F2E8;max-width:18ch}
+.hero h1 em{font-style:italic;font-weight:500;color:#D6BE8C}
+.hero .lead{max-width:46ch;color:#BFCCC0;font-size:17px;line-height:1.8}
+.hero .lead b{color:#F4F2E8;font-weight:600}
 .hero-cta{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.hero .btn-ghost{background:transparent;color:#EFEAE0;border-color:rgba(239,234,224,.35)}
-.hero .btn-ghost:hover{border-color:#C9A468;color:#C9A468}
-.terminal{display:inline-flex;align-items:center;gap:10px;background:rgba(13,23,41,.6);color:#EFEAE0;
-  border:1px solid rgba(143,176,232,.25);border-radius:12px;padding:13px 20px;font-size:13px;max-width:100%;overflow-x:auto}
-.terminal .p1{color:#8FB0E8}
-.terminal .cursor{display:inline-block;width:8px;height:16px;background:#C9A468;vertical-align:-3px;animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.stats{display:flex;flex-wrap:wrap;gap:0;margin-top:76px;border-top:1px solid rgba(239,234,224,.16)}
+.hero .btn-akane{background:#8A3A43;border-color:#8A3A43}
+.hero .btn-ghost{background:transparent;color:#EFECE2;border-color:rgba(239,236,226,.35)}
+.hero .btn-ghost:hover{border-color:#D6BE8C;color:#D6BE8C}
+.stats{display:flex;flex-wrap:wrap;gap:0;margin-top:76px;border-top:1px solid rgba(239,236,226,.16)}
 .stat{flex:1 1 150px;padding:22px 26px 0 0;display:grid;gap:3px}
-.stat+.stat{padding-left:26px;border-left:1px solid rgba(239,234,224,.16)}
-.stat b{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.02em;color:#F5F1E6}
-.stat span{font-size:12px;color:#8FA3C4;line-height:1.5}
+.stat+.stat{padding-left:26px;border-left:1px solid rgba(239,236,226,.16)}
+.stat b{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:0;color:#F4F2E8}
+.stat span{font-size:12px;color:#93A99A;line-height:1.5}
 
 /* ── formula ── */
 .formula{display:grid;grid-template-columns:1fr 44px 1fr 44px 1.15fr;gap:18px;align-items:stretch}
@@ -149,9 +142,9 @@ button.btn{-webkit-appearance:none}
 .f-col.tengr{background:var(--tetsukon);border-color:var(--tetsukon);color:#EFEAE0;box-shadow:var(--shadow-lg)}
 .f-col.tengr:hover{transform:translateY(-3px)}
 .f-col.tengr .f-title b{color:#EFEAE0}
-.f-col.tengr .f-title span{color:#8FB0E8}
-.f-col.tengr .tag{background:#22345A;color:#C9D3E6}
-.f-col.tengr .tag.hot{background:#CDBB93;color:#17253F;font-weight:700}
+.f-col.tengr .f-title span{color:#9CC0AA}
+.f-col.tengr .tag{background:#2A463A;color:#CBD8CC}
+.f-col.tengr .tag.hot{background:#C4A566;color:#1B332B;font-weight:700}
 .formula-note{margin-top:34px;font-size:15px;color:var(--ink-2);max-width:64ch}
 .formula-note b{color:var(--ink)}
 
@@ -161,7 +154,7 @@ a.subject{position:relative;display:grid;gap:12px;align-content:end;min-height:2
   background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;
   text-decoration:none;color:var(--ink);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
 a.subject:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--ai)}
-a.subject .s-idx{position:absolute;top:14px;right:18px;font-size:44px;font-weight:800;letter-spacing:-.04em;
+a.subject .s-idx{position:absolute;top:10px;right:20px;font-size:56px;font-weight:600;font-style:italic;letter-spacing:0;
   color:var(--surface-2);line-height:1;transition:color .18s}
 a.subject:hover .s-idx{color:var(--ai-soft)}
 a.subject .s-code{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--karekusa-ink);font-weight:700}
@@ -172,7 +165,7 @@ a.subject .go{color:var(--ai-ink);font-size:13px;font-weight:700}
 /* ── steps ── */
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:step;position:relative}
 .step{position:relative;padding:30px 22px 0 0;counter-increment:step;display:grid;gap:10px;align-content:start}
-.step::before{content:"0" counter(step);font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.15em;color:var(--ai-ink)}
+.step::before{content:counter(step) ".";font-family:var(--serif);font-size:22px;font-weight:600;color:var(--karekusa-ink);line-height:1}
 .step::after{content:"";position:absolute;top:10px;left:0;right:14px;height:2px;background:var(--line)}
 .step:first-child::after{background:linear-gradient(90deg,var(--ai) 0 26px,var(--line) 26px)}
 .step b{font-weight:700;font-size:15px;letter-spacing:-.01em}
@@ -199,12 +192,12 @@ a.subject .go{color:var(--ai-ink);font-size:13px;font-weight:700}
 /* ── guarantee ── */
 .guarantee{background:var(--tetsukon);border-radius:16px;padding:clamp(32px,5vw,64px);
   display:grid;gap:18px;margin-top:72px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
-.guarantee::after{content:"90%";position:absolute;right:-.05em;bottom:-.2em;font-family:var(--mono);
-  font-size:clamp(120px,20vw,260px);font-weight:800;letter-spacing:-.05em;color:rgba(239,234,224,.045);line-height:1;pointer-events:none}
-.guarantee .label{color:#CDBB93;margin-bottom:0}
-.guarantee .label::before{background:#CDBB93}
+.guarantee::after{content:"90%";position:absolute;right:.02em;bottom:-.16em;font-family:var(--serif);
+  font-style:italic;font-size:clamp(120px,20vw,260px);font-weight:600;letter-spacing:-.02em;color:rgba(239,236,226,.05);line-height:1;pointer-events:none}
+.guarantee .label{color:#C4A566;margin-bottom:0}
+.guarantee .label::before{background:#C4A566}
 .guarantee h3{font-family:var(--serif);font-weight:600;color:#EFEAE0;font-size:clamp(26px,3.4vw,42px);letter-spacing:.005em;line-height:1.08;max-width:26ch}
-.guarantee p{color:#B6BDCB;font-size:15px;max-width:62ch}
+.guarantee p{color:#B9C6BB;font-size:15px;max-width:62ch}
 .guarantee p b{color:#EFEAE0}
 
 /* ── pricing ── */
@@ -263,16 +256,16 @@ details.block .inner>p{color:var(--ink-2);font-size:14px;max-width:80ch}
 
 /* ── subject pages ── */
 .subj-head{background:var(--sky);position:relative;overflow:hidden}
-.subj-head::after{content:attr(data-idx);position:absolute;right:-.04em;bottom:-.22em;
-  font-family:var(--mono);font-size:clamp(120px,22vw,300px);font-weight:800;letter-spacing:-.05em;
-  color:rgba(23,37,63,.06);line-height:1;pointer-events:none}
+.subj-head::after{content:attr(data-idx);position:absolute;right:.06em;bottom:-.14em;
+  font-family:var(--serif);font-size:clamp(140px,24vw,320px);font-weight:600;letter-spacing:0;
+  color:rgba(28,34,30,.07);line-height:1;pointer-events:none}
 .subj-head .wrap{padding:72px 24px 64px;display:grid;gap:16px;position:relative}
-.subj-head .label{color:#2B4F9C;margin-bottom:0}
-.subj-head .label::before{background:#2B4F9C}
+.subj-head .label{color:#3E6B52;margin-bottom:0}
+.subj-head .label::before{background:#3E6B52}
 .subj-head h1{font-size:clamp(30px,5vw,60px);color:#16181C}
 .subj-head p{color:#2E3646;max-width:56ch;font-size:15.5px}
 .subj-head .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.subj-head .chip{background:rgba(255,255,255,.72);color:#17253F}
+.subj-head .chip{background:rgba(255,255,255,.72);color:#1B332B}
 .teachers{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .teacher{display:grid;grid-template-columns:76px 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
 .teacher .ava{width:76px;height:76px;border-radius:14px;background:var(--surface-2);border:1px dashed var(--akane);
@@ -293,11 +286,11 @@ details.block .inner>p{color:var(--ink-2);font-size:14px;max-width:80ch}
 /* ── cabinet ── */
 .cab-head{background:var(--tetsukon);color:#EFEAE0}
 .cab-head .wrap{padding:48px 24px 42px;display:grid;gap:10px}
-.cab-head .label{color:#CDBB93;margin-bottom:0}
-.cab-head .label::before{background:#CDBB93}
+.cab-head .label{color:#C4A566;margin-bottom:0}
+.cab-head .label::before{background:#C4A566}
 .cab-head h1{font-size:clamp(26px,3.8vw,44px);color:#EFEAE0}
-.cab-head p{color:#B6BDCB;max-width:70ch;font-size:14px}
-.cab-head .back{color:#8FB0E8;text-decoration:none;font-size:13px}
+.cab-head p{color:#B7C4B9;max-width:70ch;font-size:14px}
+.cab-head .back{color:#9CC0AA;text-decoration:none;font-size:13px}
 .cab-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:14px}
 .panel h3{display:flex;align-items:center;gap:10px}
@@ -419,7 +412,6 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
       <a class="btn btn-akane" href="#join">Пройти диагностику</a>
       <a class="btn btn-ghost" href="#subjects">Выбрать предмет</a>
     </div>
-    <div style="margin-top:40px"><div class="terminal" role="img" aria-label="Терминал: tengr@elista — ege --predmety 4 --start oktyabr"><span><span class="p1">tengr@elista</span>:~$ ege --predmety 4 --start oktyabr <span class="cursor"></span></span></div></div>
     <div class="stats">
       <div class="stat"><b>4</b><span>предмета: русский, математика, общество, биология</span></div>
       <div class="stat"><b>8–12</b><span>человек в группе, по уровню</span></div>
@@ -479,28 +471,28 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
     </div>
     <div class="subjects">
       <a class="subject" href="#russian">
-        <span class="s-idx">01</span>
+        <span class="s-idx">I</span>
         <span class="s-code">обязательный</span>
         <h3>Русский язык</h3>
         <p>Тест до автоматизма + сочинение по критериям экспертов.</p>
         <span class="go">Программа →</span>
       </a>
       <a class="subject" href="#math">
-        <span class="s-idx">02</span>
+        <span class="s-idx">II</span>
         <span class="s-code">профиль и база</span>
         <h3>Математика</h3>
         <p>Уровни 60+ / 80+ / 90+ по проектам ФИПИ-2027.</p>
         <span class="go">Программа →</span>
       </a>
       <a class="subject" href="#social">
-        <span class="s-idx">03</span>
+        <span class="s-idx">III</span>
         <span class="s-code">самый массовый</span>
         <h3>Обществознание</h3>
         <p>Пять блоков + тренировка второй части каждую неделю.</p>
         <span class="go">Программа →</span>
       </a>
       <a class="subject" href="#bio">
-        <span class="s-idx">04</span>
+        <span class="s-idx">IV</span>
         <span class="s-code">для медиков</span>
         <h3>Биология</h3>
         <p>Камерная сильная группа. Генетика и задачи — с сентября.</p>
@@ -622,9 +614,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <footer>
   <div class="wrap">
-    <div class="coords">ТЕНГР · небо над степью · 46.3078° N 44.2558° E · Элиста</div>
+    <div class="coords">Тенгр · небо над степью · Элиста, Калмыкия</div>
     <p>Гибридная школа подготовки к ЕГЭ экосистемы Тенгр. Программы построены на официальных документах ФИПИ (демоверсии, спецификации и кодификаторы ЕГЭ-2027). Источники: fipi.ru, ege.edu.ru.</p>
-    <p class="coords" style="letter-spacing:.1em">tengr@elista:~$ делаем погоду в калмыкии</p>
+    <p class="coords" style="letter-spacing:.1em">Делаем погоду в Калмыкии</p>
   </div>
 </footer>
 
@@ -632,9 +624,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <!-- ══════════════ РУССКИЙ ЯЗЫК ══════════════ -->
 <section class="view" id="view-russian" hidden>
-  <div class="subj-head" data-idx="01">
+  <div class="subj-head" data-idx="I">
     <div class="wrap">
-      <div class="label">предмет 01 · обязательный для всех</div>
+      <div class="label">предмет I · обязательный для всех</div>
       <h1>Русский язык</h1>
       <p>Тестовая часть — до автоматизма. Сочинение — по критериям: каждый балл предсказуем, если знать, что проверяет эксперт.</p>
       <div class="meta">
@@ -699,9 +691,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <!-- ══════════════ МАТЕМАТИКА ══════════════ -->
 <section class="view" id="view-math" hidden>
-  <div class="subj-head" data-idx="02">
+  <div class="subj-head" data-idx="II">
     <div class="wrap">
-      <div class="label">предмет 02 · профиль и база</div>
+      <div class="label">предмет II · профиль и база</div>
       <h1>Математика</h1>
       <p>Самая проработанная программа школы: по проектам ФИПИ ЕГЭ-2027, расписана по неделям для каждого уровня. Профиль и база — разные группы.</p>
       <div class="meta">
@@ -973,9 +965,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <!-- ══════════════ ОБЩЕСТВОЗНАНИЕ ══════════════ -->
 <section class="view" id="view-social" hidden>
-  <div class="subj-head" data-idx="03">
+  <div class="subj-head" data-idx="III">
     <div class="wrap">
-      <div class="label">предмет 03 · самый массовый выборный</div>
+      <div class="label">предмет III · самый массовый выборный</div>
       <h1>Обществознание</h1>
       <p>Нужен на экономику, юриспруденцию и большинство гуманитарных направлений. Кажется «лёгким» — но без точных формулировок вторая часть не набирается.</p>
       <div class="meta">
@@ -1036,9 +1028,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <!-- ══════════════ БИОЛОГИЯ ══════════════ -->
 <section class="view" id="view-bio" hidden>
-  <div class="subj-head" data-idx="04">
+  <div class="subj-head" data-idx="IV">
     <div class="wrap">
-      <div class="label">предмет 04 · для будущих медиков</div>
+      <div class="label">предмет IV · для будущих медиков</div>
       <h1>Биология</h1>
       <p>Для поступающих в медицинский, на биофак и в психологию. Один из самых объёмных экзаменов — поэтому одна камерная сильная группа и плотная работа.</p>
       <div class="meta">
