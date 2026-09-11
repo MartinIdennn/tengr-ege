@@ -447,6 +447,16 @@ pre.tr{white-space:pre-wrap;font-size:13px;background:var(--surface-2);border-ra
 .wk-now{background:var(--karekusa-soft);border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--karekusa-ink)}
 @media (max-width:960px){.did-grid{grid-template-columns:1fr}.reg-row{grid-template-columns:1fr}}
 
+.tr-list{display:grid;gap:12px}
+.tr-item{display:grid;gap:12px;border-left:5px solid var(--line-2)}
+.tr-item.ok{border-left-color:var(--ai)}
+.tr-item-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.ti-n{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--karekusa-ink);min-width:1.4em}
+.tr-item-head b{font-size:14.5px}
+.tr-item-head .pill{margin-left:auto}
+.tr-item .tr-text{font-size:15.5px}
+.tr-item .tr-form input{width:160px}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:grid;gap:14px}
@@ -1441,24 +1451,9 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
           <span class="small muted" id="tr-progress">решено 0 из 114</span>
         </div>
         <div class="tr-nums" id="tr-nums" role="tablist" aria-label="Номер задания"></div>
-        <div id="tr-task">
-          <div class="tr-meta">
-            <b id="tr-subtype">—</b>
-            <span class="sub" id="tr-count"></span>
-          </div>
-          <p class="tr-text" id="tr-text"></p>
-          <form class="tr-form" id="tr-form">
-            <input type="text" id="tr-input" inputmode="decimal" placeholder="Ответ" aria-label="Ответ" autocomplete="off">
-            <button class="btn btn-akane" type="submit">Проверить</button>
-            <button class="btn btn-ghost" type="button" id="tr-next">Другая задача</button>
-          </form>
-          <div class="tr-res" id="tr-res" hidden></div>
-          <div class="tr-sol" id="tr-sol" hidden>
-            <button class="linkish" id="tr-sol-btn" type="button">показать решение</button>
-            <ol id="tr-sol-steps" hidden></ol>
-          </div>
-        </div>
+        <p class="small muted" id="tr-topic" style="margin-top:2px"></p>
       </div>
+      <div class="tr-list" id="tr-list"></div>
 
       <div class="section-head" style="margin:20px 0 4px;max-width:none">
         <h2 style="font-size:clamp(24px,3vw,36px)">Домашние задания</h2>
@@ -1956,7 +1951,6 @@ DIDACTICS.forEach(t=>{
   (bank[t.task] = bank[t.task] || []).push(t);
 });
 let trNum = 1;
-const trIdx = {};
 let trSolved = loadJSON(TR_KEY) || {};
 const trTotalTasks = Object.values(TRAIN).reduce((s,a)=>s+a.length,0);
 function solvedIn(n){ return (TRAIN[n]||[]).filter(t=>trSolved[t.id]).length; }
@@ -1982,66 +1976,69 @@ function renderTrNums(){
     trNumsEl.append(b);
   }
   document.getElementById("tr-progress").textContent = "решено "+solvedAll()+" из "+trTotalTasks;
+  document.getElementById("tr-topic").textContent =
+    "№"+trNum+" · "+(TASK_TITLES[trNum]||"")+" — "+(TRAIN[trNum]||[]).length+" задач, от простых к сложным. Решайте в любом порядке, прогресс сохраняется.";
   const tot = document.getElementById("tr-total");
   if (tot) tot.innerHTML = solvedAll()+' <small>задач решено</small>';
 }
-function currentTask(){
-  const list = TRAIN[trNum] || [];
-  if (!list.length) return null;
-  if (trIdx[trNum] == null){
-    const firstUnsolved = list.findIndex(t=>!trSolved[t.id]);
-    trIdx[trNum] = firstUnsolved >= 0 ? firstUnsolved : 0;
-  }
-  return list[trIdx[trNum] % list.length];
+function buildSolution(t){
+  const ol = el("ol"); ol.hidden = true;
+  (t.solution||[]).forEach(step=>ol.append(el("li",null,step)));
+  const li = el("li"); li.append(el("b",null,"Ответ: "+t.answer)); ol.append(li);
+  return ol;
 }
-const trRes = document.getElementById("tr-res"), trSolWrap = document.getElementById("tr-sol"),
-      trSolSteps = document.getElementById("tr-sol-steps"), trInput = document.getElementById("tr-input");
+function buildTrItem(t, i){
+  const solved = !!trSolved[t.id];
+  const c = el("div","card tr-item"+(solved?" ok":""));
+  const head = el("div","tr-item-head");
+  const pill = el("span","pill "+(solved?"ok":"none"), solved?"решено":"не решено");
+  head.append(el("span","ti-n",String(i+1)), el("b",null,t.subtype), pill);
+  c.append(head, el("p","tr-text",t.text));
+  const form = el("form","tr-form");
+  const inp = document.createElement("input");
+  inp.type = "text"; inp.inputMode = "decimal"; inp.placeholder = "Ответ";
+  inp.autocomplete = "off"; inp.setAttribute("aria-label","Ответ к задаче "+(i+1));
+  const btn = el("button","btn btn-akane","Проверить"); btn.type = "submit";
+  form.append(inp, btn);
+  const res = el("div","tr-res"); res.hidden = true;
+  const sol = el("div","tr-sol"); sol.hidden = !solved;
+  const solBtn = el("button","linkish","показать решение"); solBtn.type = "button";
+  const steps = buildSolution(t);
+  solBtn.addEventListener("click", ()=>{
+    steps.hidden = !steps.hidden;
+    solBtn.textContent = steps.hidden ? "показать решение" : "скрыть решение";
+  });
+  sol.append(solBtn, steps);
+  if (solved){
+    inp.value = t.answer; inp.disabled = true; btn.disabled = true;
+    res.hidden = false; res.className = "tr-res ok"; res.textContent = "Верно · ответ: "+t.answer;
+  }
+  form.addEventListener("submit", e=>{
+    e.preventDefault();
+    if (trSolved[t.id]) return;
+    const ok = checkAnswer(t, inp.value);
+    res.hidden = false;
+    res.className = "tr-res " + (ok ? "ok" : "bad");
+    if (ok){
+      res.textContent = "Верно · ответ: "+t.answer;
+      trSolved[t.id] = 1; saveJSON(TR_KEY, trSolved);
+      c.classList.add("ok"); pill.className = "pill ok"; pill.textContent = "решено";
+      inp.disabled = true; btn.disabled = true;
+      renderTrNums();
+    } else {
+      res.textContent = "Пока неверно — проверьте вычисления или откройте решение.";
+    }
+    sol.hidden = false;
+  });
+  c.append(form, res, sol);
+  return c;
+}
 function renderTrainer(){
   renderTrNums();
-  const t = currentTask();
-  if (!t) return;
-  document.getElementById("tr-subtype").textContent = "№"+trNum+" · "+t.subtype;
-  document.getElementById("tr-count").textContent = TASK_TITLES[trNum] || "";
-  document.getElementById("tr-text").textContent = t.text;
-  trInput.value = ""; trRes.hidden = true; trSolWrap.hidden = true; trSolSteps.hidden = true;
-  trSolSteps.textContent = "";
-  document.getElementById("tr-sol-btn").textContent = "показать решение";
+  const listEl = document.getElementById("tr-list");
+  listEl.textContent = "";
+  (TRAIN[trNum]||[]).forEach((t,i)=>listEl.append(buildTrItem(t,i)));
 }
-document.getElementById("tr-form").addEventListener("submit", e=>{
-  e.preventDefault();
-  const t = currentTask(); if (!t) return;
-  const ok = checkAnswer(t, trInput.value);
-  trRes.hidden = false;
-  trRes.className = "tr-res " + (ok ? "ok" : "bad");
-  if (ok){
-    trRes.textContent = "Верно! Ответ: " + t.answer + ".";
-    if (!trSolved[t.id]){ trSolved[t.id] = 1; saveJSON(TR_KEY, trSolved); }
-    renderTrNums();
-  } else {
-    trRes.textContent = "Пока неверно. Проверьте вычисления или посмотрите решение.";
-  }
-  trSolWrap.hidden = false;
-});
-document.getElementById("tr-sol-btn").addEventListener("click", ()=>{
-  const t = currentTask(); if (!t) return;
-  if (trSolSteps.hidden){
-    trSolSteps.textContent = "";
-    (t.solution||[]).forEach(step=>{
-      const li = document.createElement("li"); li.textContent = step; trSolSteps.append(li);
-    });
-    const li = document.createElement("li"); li.innerHTML = "<b>Ответ: "+t.answer+"</b>"; trSolSteps.append(li);
-    trSolSteps.hidden = false;
-    document.getElementById("tr-sol-btn").textContent = "скрыть решение";
-  } else {
-    trSolSteps.hidden = true;
-    document.getElementById("tr-sol-btn").textContent = "показать решение";
-  }
-});
-document.getElementById("tr-next").addEventListener("click", ()=>{
-  const list = TRAIN[trNum] || []; if (!list.length) return;
-  trIdx[trNum] = ((trIdx[trNum]||0) + 1) % list.length;
-  renderTrainer();
-});
 renderTrainer();
 
 /* ── материалы: дидактика ── */
