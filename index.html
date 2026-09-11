@@ -457,6 +457,35 @@ pre.tr{white-space:pre-wrap;font-size:13px;background:var(--surface-2);border-ra
 .tr-item .tr-text{font-size:15.5px}
 .tr-item .tr-form input{width:160px}
 
+/* ── учебное ядро: пробник, ошибки, карта тем, формулы ── */
+.task-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.task-actions .card{display:grid;gap:10px;align-content:start}
+.task-actions .card p{font-size:13.5px}
+.mock-bar{position:sticky;top:62px;z-index:5;display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  background:var(--tetsukon);color:#EFECE2;border-radius:16px;padding:14px 22px;box-shadow:var(--shadow)}
+.mock-bar b{font-family:var(--serif);font-size:26px;font-weight:600;min-width:2.9em}
+.mock-bar span{font-size:13px;color:#B9C6BB}
+.mock-bar .btn{margin-left:auto;padding:9px 18px;font-size:13px}
+.mock-bar .btn-ghost{background:transparent;color:#EFECE2;border-color:rgba(239,236,226,.35)}
+.mock-sum{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.tmap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tmap-cell{display:grid;gap:6px;background:var(--surface-2);border:1px solid transparent;border-radius:12px;
+  padding:13px 14px;cursor:pointer;font:inherit;text-align:left;transition:border-color .15s,transform .12s}
+.tmap-cell:hover{border-color:var(--ai);transform:translateY(-1px)}
+.tmap-cell .tn{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1}
+.tmap-cell .tt{font-size:11.5px;color:var(--ink-2);line-height:1.35;min-height:2.7em}
+.tmap-cell .meter{height:5px;margin:0}
+.tmap-cell .ts{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+.tmap-cell.work .ts{color:var(--karekusa-ink)}
+.tmap-cell.done .ts{color:var(--ai-ink)}
+.tmap-cell.done{background:var(--ai-soft)}
+.fc-box{display:grid;gap:14px}
+.fc-q{font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);font-weight:600;min-height:2.2em}
+.fc-a{background:var(--surface-2);border-radius:12px;padding:16px 18px;font-size:16px;line-height:1.8}
+.fc-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.fc-meta .cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--karekusa-ink)}
+@media (max-width:960px){.tmap{grid-template-columns:1fr 1fr}.task-actions{grid-template-columns:1fr}}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:grid;gap:14px}
@@ -1324,9 +1353,12 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
           <div class="meter" role="img" aria-label="Сдано 92% работ"><i style="width:92%"></i></div>
         </div>
         <div class="card">
-          <h3>Тренажёр</h3>
+          <h3>Самоподготовка</h3>
           <div class="big-num" id="tr-total">0 <small>задач решено</small></div>
-          <p>Банк №1–10: разобранные примеры, тренировка и домашние наборы.</p>
+          <div class="mini-rows">
+            <div class="row"><b id="mm-last">—</b><span>последний мини-пробник</span></div>
+            <div class="row"><b id="mist-count">0 задач</b><span>к повторению в работе над ошибками</span></div>
+          </div>
           <div><button class="linkish" data-goto-tab="tasks" type="button">открыть тренажёр →</button></div>
         </div>
         <div class="card">
@@ -1344,6 +1376,14 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
             <div class="row"><b>Родителям</b><span>отчёт каждую пятницу, три строки</span></div>
           </div>
         </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
+          <h3>Карта тем · часть 1</h3>
+          <span class="small muted">по решённым задачам тренажёра · нажмите на тему, чтобы нарешивать</span>
+        </div>
+        <div class="tmap" id="topic-map"></div>
+        <p class="small muted" style="margin-top:12px">Часть 2 — №14 и №16 уже в программе группы 80+, №17 и №15а подключаются с января. Прогресс по ним появится после пробника №2.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -1418,6 +1458,27 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
       </div>
       <p class="muted" style="max-width:70ch">По каждому номеру: разобранные примеры с полным решением, 12 тренировочных задач в тренажёре и домашний набор. Модель КИМ ЕГЭ-2027, ответы проверены.</p>
       <div class="did-grid" id="did-grid"></div>
+      <div class="card fc-box" id="fc-box">
+        <div class="fc-meta">
+          <div>
+            <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Зачёт по формулам</h3>
+            <p class="small muted" style="margin-top:4px">Зачёты в школе — ноябрь, февраль и апрель: 30 формул за 15 минут, максимум 3 ошибки. Тренируйтесь заранее.</p>
+          </div>
+          <span class="small muted" id="fc-progress"></span>
+        </div>
+        <div>
+          <span class="cat" id="fc-cat"></span>
+          <div class="fc-q" id="fc-q"></div>
+        </div>
+        <div class="fc-a" id="fc-a" hidden></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-akane" id="fc-show" type="button">Показать формулу</button>
+          <button class="btn btn-ai" id="fc-know" type="button" hidden>Знаю</button>
+          <button class="btn btn-ghost" id="fc-again" type="button" hidden>Ещё повторить</button>
+          <button class="linkish" id="fc-reset" type="button" style="margin-left:auto">сбросить прогресс</button>
+        </div>
+      </div>
+
       <div class="ov-head" style="margin:26px 0 2px"><h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Записи разборов</h3></div>
       <div class="videos">
         <div class="card video">
@@ -1445,6 +1506,26 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
     <!-- ── Задания ── -->
     <div class="cab-panel" id="cab-tasks" hidden>
+      <div class="task-actions">
+        <div class="card">
+          <h3>Мини-пробник</h3>
+          <p>10 задач — по одной на каждый номер №1–10, таймер 30 минут, разбор после завершения. Результат идёт в прогресс.</p>
+          <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">
+            <button class="btn btn-akane" id="mock-start" type="button">Начать вариант</button>
+            <span class="small muted" id="mock-hist">ещё не проходили</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Работа над ошибками</h3>
+          <p>Задачи, где вы ошиблись в тренажёре или мини-пробнике. Решите верно — задача уйдёт из списка.</p>
+          <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="mist-open" type="button">Открыть список</button>
+            <span class="small muted" id="mist-note">пока пусто — так держать</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="train-view">
       <div class="card tr-card">
         <div class="ov-head">
           <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Тренажёр · часть 1</h3>
@@ -1454,6 +1535,27 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
         <p class="small muted" id="tr-topic" style="margin-top:2px"></p>
       </div>
       <div class="tr-list" id="tr-list"></div>
+      </div>
+
+      <div id="mock-view" hidden>
+        <div class="mock-bar">
+          <b id="mock-timer">30:00</b>
+          <span id="mock-note">Мини-пробник · 10 задач · ответы проверяются после завершения</span>
+          <button class="btn btn-akane" id="mock-finish" type="button">Завершить вариант</button>
+          <button class="btn btn-ghost" id="mock-exit" type="button">Выйти</button>
+        </div>
+        <div class="card" id="mock-summary" hidden></div>
+        <div class="tr-list" id="mock-list"></div>
+      </div>
+
+      <div id="mist-view" hidden>
+        <div class="card" style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap">
+          <h3 style="font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:600">Работа над ошибками</h3>
+          <span class="small muted" id="mist-head-note"></span>
+          <button class="btn btn-ghost" id="mist-back" type="button" style="margin-left:auto;padding:9px 18px;font-size:13px">← к тренажёру</button>
+        </div>
+        <div class="tr-list" id="mist-list"></div>
+      </div>
 
       <div class="section-head" style="margin:20px 0 4px;max-width:none">
         <h2 style="font-size:clamp(24px,3vw,36px)">Домашние задания</h2>
@@ -1980,6 +2082,7 @@ function renderTrNums(){
     "№"+trNum+" · "+(TASK_TITLES[trNum]||"")+" — "+(TRAIN[trNum]||[]).length+" задач, от простых к сложным. Решайте в любом порядке, прогресс сохраняется.";
   const tot = document.getElementById("tr-total");
   if (tot) tot.innerHTML = solvedAll()+' <small>задач решено</small>';
+  if (typeof updateSelfPrep === "function" && window.__corReady) updateSelfPrep();
 }
 function buildSolution(t){
   const ol = el("ol"); ol.hidden = true;
@@ -1987,8 +2090,9 @@ function buildSolution(t){
   const li = el("li"); li.append(el("b",null,"Ответ: "+t.answer)); ol.append(li);
   return ol;
 }
-function buildTrItem(t, i){
-  const solved = !!trSolved[t.id];
+function buildTrItem(t, i, opts){
+  opts = opts || {};
+  const solved = !opts.retry && !!trSolved[t.id];
   const c = el("div","card tr-item"+(solved?" ok":""));
   const head = el("div","tr-item-head");
   const pill = el("span","pill "+(solved?"ok":"none"), solved?"решено":"не решено");
@@ -2015,18 +2119,21 @@ function buildTrItem(t, i){
   }
   form.addEventListener("submit", e=>{
     e.preventDefault();
-    if (trSolved[t.id]) return;
+    if (inp.disabled) return;
     const ok = checkAnswer(t, inp.value);
     res.hidden = false;
     res.className = "tr-res " + (ok ? "ok" : "bad");
     if (ok){
       res.textContent = "Верно · ответ: "+t.answer;
       trSolved[t.id] = 1; saveJSON(TR_KEY, trSolved);
+      delete trMistakes[t.id]; saveJSON(MIST_KEY, trMistakes);
       c.classList.add("ok"); pill.className = "pill ok"; pill.textContent = "решено";
       inp.disabled = true; btn.disabled = true;
       renderTrNums();
+      if (opts.onSolve) opts.onSolve();
     } else {
       res.textContent = "Пока неверно — проверьте вычисления или откройте решение.";
+      if (!trMistakes[t.id]){ trMistakes[t.id] = 1; saveJSON(MIST_KEY, trMistakes); renderTrNums(); }
     }
     sol.hidden = false;
   });
@@ -2072,7 +2179,253 @@ for (let n=1; n<=10; n++){
   }
   didGrid.append(card);
 }
+
+/* ── учебное ядро: ошибки, мини-пробник, карта тем, формулы ── */
+const MIST_KEY = "tengr_mistakes", MOCK_KEY = "tengr_minimock", FORM_KEY = "tengr_formulas";
+var trMistakes = loadJSON(MIST_KEY) || {};
+let mockHistory = loadJSON(MOCK_KEY) || [];
+
+/* виды вкладки «Задания» */
+const taskViews = {train: document.getElementById("train-view"), mock: document.getElementById("mock-view"), mist: document.getElementById("mist-view")};
+function showTaskView(key){
+  for (const k in taskViews) taskViews[k].hidden = (k !== key);
+  if (key !== "mock") stopMockTimer();
+}
+document.getElementById("mist-open").addEventListener("click", ()=>{ renderMistakes(); showTaskView("mist"); });
+document.getElementById("mist-back").addEventListener("click", ()=>showTaskView("train"));
+
+/* карта тем */
+const topicMapEl = document.getElementById("topic-map");
+function renderTopicMap(){
+  topicMapEl.textContent = "";
+  for (let n=1; n<=10; n++){
+    const total = (TRAIN[n]||[]).length, done = solvedIn(n);
+    const pct = total ? done/total : 0;
+    const cell = document.createElement("button");
+    cell.type = "button";
+    cell.className = "tmap-cell" + (pct >= .8 ? " done" : done > 0 ? " work" : "");
+    const st = pct >= .8 ? "освоена" : done > 0 ? "в работе" : "не начата";
+    cell.innerHTML = '<span class="tn">№'+n+'</span><span class="tt">'+(TASK_TITLES[n]||"")+'</span>'+
+      '<span class="meter"><i style="width:'+Math.round(pct*100)+'%"></i></span>'+
+      '<span class="ts">'+st+" · "+done+"/"+total+'</span>';
+    cell.addEventListener("click", ()=>{ trNum = n; renderTrainer(); showCabTab("tasks"); showTaskView("train"); window.scrollTo(0,0); });
+    topicMapEl.append(cell);
+  }
+}
+
+/* сводка самоподготовки */
+function mistakeTasks(){ return DIDACTICS.filter(t=>trMistakes[t.id]); }
+function updateSelfPrep(){
+  const mc = mistakeTasks().length;
+  document.getElementById("mist-count").textContent = mc + (mc===1 ? " задача" : mc>=2&&mc<=4 ? " задачи" : " задач");
+  document.getElementById("mist-note").textContent = mc ? mc+" задач ждут повторения" : "пока пусто — так держать";
+  const last = mockHistory[mockHistory.length-1];
+  document.getElementById("mm-last").textContent = last ? last.score+" из "+last.total+" · "+last.date : "—";
+  document.getElementById("mock-hist").textContent = mockHistory.length
+    ? "попыток: "+mockHistory.length+" · лучшая: "+Math.max.apply(null,mockHistory.map(h=>h.score))+" из 10"
+    : "ещё не проходили";
+  renderTopicMap();
+}
+
+/* работа над ошибками */
+function renderMistakes(){
+  const list = mistakeTasks();
+  const box = document.getElementById("mist-list");
+  box.textContent = "";
+  document.getElementById("mist-head-note").textContent = list.length
+    ? list.length+" задач · решите верно, и задача уйдёт из списка"
+    : "";
+  if (!list.length){
+    const done = el("div","card");
+    done.append(el("h3",null,"Здесь пусто"), el("p",null,"Ошибок к повторению нет. Появятся — соберём их сюда автоматически."));
+    box.append(done);
+    return;
+  }
+  list.forEach((t,i)=>box.append(buildTrItem(t, i, {retry:true, onSolve: ()=>{ renderMistakes(); }})));
+}
+
+/* мини-пробник */
+let mockTasks = [], mockTimerId = null, mockDeadline = 0, mockDone = false;
+const mockListEl = document.getElementById("mock-list"), mockTimerEl = document.getElementById("mock-timer");
+function stopMockTimer(){ if (mockTimerId){ clearInterval(mockTimerId); mockTimerId = null; } }
+function pickMockTasks(){
+  const out = [];
+  for (let n=1; n<=10; n++){
+    const pool = TRAIN[n]||[];
+    if (!pool.length) continue;
+    const fresh = pool.filter(t=>!trSolved[t.id]);
+    const src = fresh.length ? fresh : pool;
+    out.push(src[Math.floor(Math.random()*src.length)]);
+  }
+  return out;
+}
+function startMock(){
+  mockTasks = pickMockTasks();
+  mockDone = false;
+  mockListEl.textContent = "";
+  document.getElementById("mock-summary").hidden = true;
+  document.getElementById("mock-finish").hidden = false;
+  document.getElementById("mock-note").textContent = "Мини-пробник · 10 задач · ответы проверяются после завершения";
+  mockTasks.forEach((t,i)=>{
+    const c = el("div","card tr-item");
+    const head = el("div","tr-item-head");
+    head.append(el("span","ti-n",String(i+1)), el("b",null,"№"+t.task+" · "+t.subtype));
+    const inp = document.createElement("input");
+    inp.type = "text"; inp.inputMode = "decimal"; inp.placeholder = "Ответ";
+    inp.autocomplete = "off"; inp.className = "mock-inp"; inp.setAttribute("aria-label","Ответ к задаче "+(i+1));
+    const form = el("div","tr-form"); form.append(inp);
+    c.append(head, el("p","tr-text",t.text), form);
+    mockListEl.append(c);
+  });
+  mockDeadline = Date.now() + 30*60*1000;
+  stopMockTimer();
+  const tick = ()=>{
+    const left = Math.max(0, mockDeadline - Date.now());
+    const m = Math.floor(left/60000), sec = Math.floor(left%60000/1000);
+    mockTimerEl.textContent = m + ":" + String(sec).padStart(2,"0");
+    if (left <= 0) finishMock();
+  };
+  tick();
+  mockTimerId = setInterval(tick, 1000);
+  showTaskView("mock");
+  showCabTab("tasks");
+  window.scrollTo(0,0);
+}
+function finishMock(){
+  if (mockDone) return;
+  mockDone = true;
+  stopMockTimer();
+  const inputs = mockListEl.querySelectorAll(".mock-inp");
+  let score = 0;
+  mockTasks.forEach((t,i)=>{
+    const ok = checkAnswer(t, inputs[i].value);
+    if (ok){
+      score++;
+      if (!trSolved[t.id]){ trSolved[t.id] = 1; }
+      delete trMistakes[t.id];
+    } else {
+      trMistakes[t.id] = 1;
+    }
+    const c = inputs[i].closest(".tr-item");
+    c.classList.add(ok ? "ok" : "bad");
+    inputs[i].disabled = true;
+    const res = el("div","tr-res "+(ok?"ok":"bad"),
+      ok ? "Верно · ответ: "+t.answer
+         : (normAns(inputs[i].value) ? "Неверно" : "Без ответа")+" · правильный ответ: "+t.answer+" · задача добавлена в работу над ошибками");
+    const sol = el("div","tr-sol");
+    const sb = el("button","linkish","показать решение"); sb.type = "button";
+    const steps = buildSolution(t);
+    sb.addEventListener("click", ()=>{ steps.hidden = !steps.hidden; sb.textContent = steps.hidden ? "показать решение" : "скрыть решение"; });
+    sol.append(sb, steps);
+    c.append(res, sol);
+  });
+  saveJSON(TR_KEY, trSolved);
+  saveJSON(MIST_KEY, trMistakes);
+  const d = new Date();
+  mockHistory.push({date: String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0"), score, total: mockTasks.length});
+  saveJSON(MOCK_KEY, mockHistory);
+  document.getElementById("mock-finish").hidden = true;
+  mockTimerEl.textContent = "—";
+  document.getElementById("mock-note").textContent = "Вариант завершён";
+  const sum = document.getElementById("mock-summary");
+  sum.hidden = false; sum.textContent = "";
+  const wrap = el("div","mock-sum");
+  const big = el("div","big-num", String(score));
+  big.append(el("small",null," из "+mockTasks.length));
+  const txt = el("div");
+  txt.append(el("h3",null, score >= 8 ? "Отличный результат" : score >= 5 ? "Хорошая база — разберите ошибки" : "Разберите ошибки и попробуйте снова"),
+    el("p","small muted","Неверные задачи уже в работе над ошибками. Результат сохранён в прогресс."));
+  const again = el("button","btn btn-ghost","Пройти ещё раз"); again.type = "button";
+  again.addEventListener("click", startMock);
+  wrap.append(big, txt, again);
+  sum.append(wrap);
+  renderTrNums();
+  sum.scrollIntoView({behavior:"smooth", block:"start"});
+}
+document.getElementById("mock-start").addEventListener("click", startMock);
+document.getElementById("mock-finish").addEventListener("click", finishMock);
+document.getElementById("mock-exit").addEventListener("click", ()=>{ stopMockTimer(); showTaskView("train"); });
+
+/* зачёт по формулам */
+const FORMULAS = [
+["Алгебра","Квадрат суммы и разности","(a ± b)² = a² ± 2ab + b²"],
+["Алгебра","Разность квадратов","a² − b² = (a − b)(a + b)"],
+["Алгебра","Сумма и разность кубов","a³ ± b³ = (a ± b)(a² ∓ ab + b²)"],
+["Алгебра","Дискриминант и корни квадратного уравнения","D = b² − 4ac;  x = (−b ± √D) / 2a"],
+["Алгебра","Теорема Виета","x₁ + x₂ = −b/a;  x₁ · x₂ = c/a"],
+["Алгебра","Арифметическая прогрессия: n-й член и сумма","aₙ = a₁ + d(n − 1);  Sₙ = (a₁ + aₙ) · n / 2"],
+["Алгебра","Геометрическая прогрессия: n-й член и сумма","bₙ = b₁ · qⁿ⁻¹;  Sₙ = b₁(qⁿ − 1) / (q − 1)"],
+["Степени и корни","Свойства степеней","aᵐ · aⁿ = aᵐ⁺ⁿ;  aᵐ / aⁿ = aᵐ⁻ⁿ;  (aᵐ)ⁿ = aᵐⁿ;  a⁻ⁿ = 1/aⁿ"],
+["Степени и корни","Степень с дробным показателем","a^(m/n) = ⁿ√(aᵐ),  a > 0"],
+["Логарифмы","Определение логарифма и ОДЗ","logₐb = c ⇔ aᶜ = b;  a > 0, a ≠ 1, b > 0"],
+["Логарифмы","Три базовых равенства","logₐ1 = 0;  logₐa = 1;  a^(logₐb) = b"],
+["Логарифмы","Логарифм произведения, частного, степени","logₐ(xy) = logₐx + logₐy;  logₐ(x/y) = logₐx − logₐy;  logₐxᵖ = p·logₐx"],
+["Логарифмы","Переход к новому основанию","logₐb = log_c b / log_c a"],
+["Тригонометрия","Основное тождество и следствия","sin²x + cos²x = 1;  tg x = sin x / cos x;  1 + tg²x = 1/cos²x"],
+["Тригонометрия","Табличные значения sin и cos для 30°, 45°, 60°","sin: 1/2, √2/2, √3/2;  cos: √3/2, √2/2, 1/2"],
+["Тригонометрия","Синус двойного угла","sin 2x = 2 sin x · cos x"],
+["Тригонометрия","Косинус двойного угла — три формы","cos 2x = cos²x − sin²x = 2cos²x − 1 = 1 − 2sin²x"],
+["Тригонометрия","Формулы сложения","sin(α ± β) = sin α cos β ± cos α sin β;  cos(α ± β) = cos α cos β ∓ sin α sin β"],
+["Тригонометрия","Общие решения sin x = a, cos x = a, tg x = a","x = (−1)ⁿ arcsin a + πn;  x = ± arccos a + 2πn;  x = arctg a + πn"],
+["Производная","Таблица производных","(xⁿ)′ = n·xⁿ⁻¹;  (eˣ)′ = eˣ;  (ln x)′ = 1/x;  (sin x)′ = cos x;  (cos x)′ = −sin x"],
+["Производная","Правила дифференцирования","(uv)′ = u′v + uv′;  (u/v)′ = (u′v − uv′)/v²;  (f(g(x)))′ = f′(g(x)) · g′(x)"],
+["Производная","Уравнение касательной","y = f(x₀) + f′(x₀)(x − x₀)"],
+["Производная","Формула Ньютона — Лейбница","∫ₐᵇ f(x) dx = F(b) − F(a)"],
+["Планиметрия","Площадь треугольника — три формулы","S = ½·a·h = ½·a·b·sin γ = √(p(p−a)(p−b)(p−c))"],
+["Планиметрия","Теоремы синусов и косинусов","a/sin A = b/sin B = c/sin C = 2R;  c² = a² + b² − 2ab·cos C"],
+["Планиметрия","Вписанный угол","Вписанный угол равен половине центрального, опирающегося на ту же дугу; угол на диаметр — прямой"],
+["Стереометрия","Объёмы основных тел","Призма и цилиндр: V = S·h;  пирамида и конус: V = ⅓·S·h;  шар: V = 4/3·πR³, S = 4πR²"],
+["Стереометрия","Диагональ прямоугольного параллелепипеда","d² = a² + b² + c²"],
+["Вероятность","Сложение и умножение","P(A + B) = P(A) + P(B) − P(AB);  для независимых: P(AB) = P(A)·P(B)"],
+["Вероятность","Формула Бернулли","Pₙ(k) = Cₙᵏ · pᵏ · qⁿ⁻ᵏ,  q = 1 − p"],
+["Вероятность","Мат. ожидание и дисперсия","M(X) = Σ xᵢpᵢ;  D(X) = M(X²) − (M(X))²;  σ = √D"],
+["Финансовая математика","Коэффициент роста и аннуитет","k = 1 + r/100;  S·kⁿ = x·(kⁿ⁻¹ + … + k + 1);  переплата = сумма платежей − кредит"]
+];
+let fcKnown = loadJSON(FORM_KEY) || {};
+let fcIdx = 0;
+function fcQueue(){ const q=[]; FORMULAS.forEach((f,i)=>{ if(!fcKnown[i]) q.push(i); }); return q; }
+function renderFormula(reveal){
+  const q = fcQueue();
+  const known = FORMULAS.length - q.length;
+  document.getElementById("fc-progress").textContent = "знаю "+known+" из "+FORMULAS.length;
+  const showBtn = document.getElementById("fc-show"), knowBtn = document.getElementById("fc-know"),
+        againBtn = document.getElementById("fc-again"), aEl = document.getElementById("fc-a");
+  if (!q.length){
+    document.getElementById("fc-cat").textContent = "";
+    document.getElementById("fc-q").textContent = "Все формулы отмечены как «знаю». Отличная готовность к зачёту!";
+    aEl.hidden = true; showBtn.hidden = true; knowBtn.hidden = true; againBtn.hidden = true;
+    return;
+  }
+  if (fcIdx >= q.length) fcIdx = 0;
+  const f = FORMULAS[q[fcIdx]];
+  document.getElementById("fc-cat").textContent = f[0];
+  document.getElementById("fc-q").textContent = f[1];
+  aEl.textContent = f[2];
+  aEl.hidden = !reveal;
+  showBtn.hidden = !!reveal;
+  knowBtn.hidden = !reveal;
+  againBtn.hidden = !reveal;
+}
+document.getElementById("fc-show").addEventListener("click", ()=>renderFormula(true));
+document.getElementById("fc-know").addEventListener("click", ()=>{
+  const q = fcQueue(); if (!q.length) return;
+  fcKnown[q[fcIdx]] = 1; saveJSON(FORM_KEY, fcKnown);
+  renderFormula(false);
+});
+document.getElementById("fc-again").addEventListener("click", ()=>{
+  const q = fcQueue(); if (q.length) fcIdx = (fcIdx + 1) % q.length;
+  renderFormula(false);
+});
+document.getElementById("fc-reset").addEventListener("click", ()=>{
+  fcKnown = {}; fcIdx = 0;
+  try{ localStorage.removeItem(FORM_KEY); }catch(_){}
+  renderFormula(false);
+});
+renderFormula(false);
+window.__corReady = true;
+updateSelfPrep();
 initCab();
+
 </script>
 
 </body>
