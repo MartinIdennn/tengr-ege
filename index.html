@@ -400,6 +400,53 @@ pre.tr{white-space:pre-wrap;font-size:13px;background:var(--surface-2);border-ra
   .hw-row .st{justify-items:start;text-align:left}
 }
 
+
+/* ── ЛК: регистрация, предметы, тренажёр ── */
+.reg-wrap{max-width:600px;margin:0 auto;display:grid;gap:16px}
+.reg-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;display:grid;gap:18px}
+.reg-card h2{font-size:clamp(24px,3vw,34px)}
+.reg-field{display:grid;gap:6px}
+.reg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.subj-choice{display:flex;gap:8px;flex-wrap:wrap}
+.subj-choice .tag{padding:8px 16px}
+.subj-choice .on{background:var(--ai);color:var(--bg);font-weight:600}
+:root[data-theme="dark"] .subj-choice .on{color:#12211B}
+.subj-choice .off{opacity:.65}
+.subj-pick{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.sp{font:inherit;font-size:13px;font-weight:600;padding:8px 18px;border-radius:12px;border:1px solid rgba(239,236,226,.28);background:transparent;color:#CBDACD}
+.sp.active{background:#C4A566;border-color:#C4A566;color:#1B332B;font-weight:700}
+.sp.soon{opacity:.55;font-weight:500}
+.cab-logout{color:#9CC0AA;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+.tr-nums{display:flex;gap:8px;flex-wrap:wrap}
+.tr-num{font:inherit;font-size:14px;font-weight:600;min-width:44px;padding:9px 0;border-radius:12px;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);cursor:pointer;text-align:center}
+.tr-num:hover{border-color:var(--ai);color:var(--ai-ink)}
+.tr-num.active{background:var(--ai);border-color:var(--ai);color:var(--bg);font-weight:700}
+:root[data-theme="dark"] .tr-num.active{color:#12211B}
+.tr-num .done{display:block;font-size:10px;font-weight:500;opacity:.75}
+.tr-card{display:grid;gap:16px}
+.tr-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.tr-meta .sub{font-size:13px;color:var(--ink-3)}
+.tr-text{font-size:16.5px;line-height:1.75;color:var(--ink);max-width:75ch}
+.tr-form{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tr-form input{width:180px;font-size:16px}
+.tr-res{border-radius:12px;padding:12px 16px;font-size:14.5px;font-weight:600}
+.tr-res.ok{background:var(--ai-soft);color:var(--ai-ink)}
+.tr-res.bad{background:var(--akane-soft);color:var(--akane-ink)}
+.tr-sol{border-top:1px solid var(--line);padding-top:14px}
+.tr-sol ol{margin:8px 0 0;padding-left:20px;display:grid;gap:6px;font-size:14.5px;color:var(--ink-2)}
+.did-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.did-card{display:grid;gap:10px;align-content:start}
+.did-card .n{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1;color:var(--karekusa-ink)}
+.did-card .counts{font-size:12.5px;color:var(--ink-3)}
+.did-card details{border-top:1px solid var(--line);padding-top:10px}
+.did-card summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ai-ink);list-style:none}
+.did-card summary::-webkit-details-marker{display:none}
+.did-card .ex{font-size:14px;color:var(--ink-2);margin-top:8px;line-height:1.7}
+.did-card .ex ol{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.wk-now{background:var(--karekusa-soft);border-radius:12px;padding:2px 10px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--karekusa-ink)}
+@media (max-width:960px){.did-grid{grid-template-columns:1fr}.reg-row{grid-template-columns:1fr}}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:grid;gap:14px}
@@ -1143,27 +1190,83 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
 <!-- ══════════════ КАБИНЕТ ══════════════ -->
 <section class="view" id="view-cabinet" hidden>
+
+  <!-- регистрация -->
+  <div id="cab-reg" hidden>
+    <div class="cab-head">
+      <div class="wrap">
+        <a class="back" href="#home">← на сайт школы</a>
+        <div class="label" style="margin-top:14px">личный кабинет</div>
+        <h1>Создайте кабинет ученика</h1>
+        <p>Минута на регистрацию — и у вас программа, материалы, тренажёр и проверка домашних работ. Демо-версия: данные хранятся только в этом браузере и никуда не отправляются.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding-top:44px;padding-bottom:90px">
+      <div class="reg-wrap">
+        <form class="reg-card" id="reg-form">
+          <h2>Регистрация</h2>
+          <div class="reg-field">
+            <label for="reg-name">Имя ученика</label>
+            <input type="text" id="reg-name" placeholder="Как к вам обращаться" autocomplete="off">
+          </div>
+          <div class="reg-row">
+            <div class="reg-field">
+              <label for="reg-grade">Класс</label>
+              <select id="reg-grade"><option value="11">11 класс</option><option value="10">10 класс</option></select>
+            </div>
+            <div class="reg-field">
+              <label for="reg-goal">Цель по баллам</label>
+              <select id="reg-goal"><option>60+</option><option selected>80+</option><option>90+</option></select>
+            </div>
+          </div>
+          <div class="reg-field">
+            <label>Предмет</label>
+            <div class="subj-choice">
+              <span class="tag on">Математика · профиль</span>
+              <span class="tag off">Русский — второй волной</span>
+              <span class="tag off">Общество — второй волной</span>
+              <span class="tag off">Биология — второй волной</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <button class="btn btn-akane" type="submit">Создать кабинет</button>
+            <button class="btn btn-ghost" type="button" id="reg-demo">Посмотреть демо-кабинет</button>
+          </div>
+          <p class="small muted">Точную группу определит бесплатная входная диагностика — кабинет напомнит о ней после старта занятий.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- кабинет -->
+  <div id="cab-dash" hidden>
   <div class="cab-head">
     <div class="wrap">
       <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline">
         <a class="back" href="#home">← на сайт школы</a>
-        <span class="demo-badge">демо-данные</span>
+        <span style="display:flex;gap:16px;align-items:baseline"><span class="demo-badge">демо-данные</span><button class="cab-logout" id="cab-logout" type="button">выйти</button></span>
       </div>
       <div class="label" style="margin-top:14px">личный кабинет ученика</div>
-      <h1>Добрый день, Алдар</h1>
-      <p>Математика · группа 80+ · ведущий учитель <span class="placeholder">Имя Фамилия</span> · цель на июнь — 75+</p>
+      <h1 id="cab-greet">Добрый день</h1>
+      <p><span id="cab-sub-grade">11 класс</span> · группа 80+ · цель — <span id="cab-sub-goal">80+</span> · ведущий учитель <span class="placeholder">Имя Фамилия</span></p>
+      <div class="subj-pick" aria-label="Предметы">
+        <button class="sp active" type="button">Математика</button>
+        <span class="sp soon">Русский · скоро</span>
+        <span class="sp soon">Общество · скоро</span>
+        <span class="sp soon">Биология · скоро</span>
+      </div>
       <nav class="cab-tabs" id="cab-tabs" aria-label="Разделы кабинета">
-        <button class="cab-tab active" data-tab="overview" type="button">Обзор</button>
-        <button class="cab-tab" data-tab="homework" type="button">Домашние задания</button>
-        <button class="cab-tab" data-tab="mocks" type="button">Пробники</button>
-        <button class="cab-tab" data-tab="videos" type="button">Записи разборов</button>
+        <button class="cab-tab active" data-tab="progress" type="button">Прогресс</button>
+        <button class="cab-tab" data-tab="program" type="button">Программа</button>
+        <button class="cab-tab" data-tab="materials" type="button">Материалы</button>
+        <button class="cab-tab" data-tab="tasks" type="button">Задания</button>
       </nav>
     </div>
   </div>
   <div class="wrap" style="padding-top:34px;padding-bottom:84px">
 
-    <!-- ── Обзор ── -->
-    <div class="cab-panel" id="cab-overview">
+    <!-- ── Прогресс ── -->
+    <div class="cab-panel" id="cab-progress">
       <div class="ov-grid">
         <div class="card ov-forecast">
           <div class="ov-head">
@@ -1211,16 +1314,17 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
           <div class="meter" role="img" aria-label="Сдано 92% работ"><i style="width:92%"></i></div>
         </div>
         <div class="card">
+          <h3>Тренажёр</h3>
+          <div class="big-num" id="tr-total">0 <small>задач решено</small></div>
+          <p>Банк №1–10: разобранные примеры, тренировка и домашние наборы.</p>
+          <div><button class="linkish" data-goto-tab="tasks" type="button">открыть тренажёр →</button></div>
+        </div>
+        <div class="card">
           <h3>Ближайшие занятия</h3>
           <div class="mini-rows">
             <div class="row"><b>Чт · 18:30</b><span>Разбор с учителем — производная и касательная (№9)</span></div>
             <div class="row"><b>Сб · 15:00</b><span>Тренировка с семинаристом — практикум по №9</span></div>
           </div>
-        </div>
-        <div class="card">
-          <h3>Текущее задание</h3>
-          <p><b style="color:var(--ink)">№9 · Производная и касательная</b><br>16 задач и мини-тест на повторение. Сдать до четверга.</p>
-          <div><button class="btn btn-akane" id="go-hw" type="button">Сдать фото решения</button></div>
         </div>
         <div class="card">
           <h3>Связь</h3>
@@ -1231,10 +1335,134 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
           </div>
         </div>
       </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Пробник</th><th>Дата</th><th>Часть 1</th><th>Первичные</th><th>Тестовый</th><th>Комментарий</th></tr></thead>
+          <tbody>
+            <tr><td><b>№1 · входной</b></td><td>15 сен</td><td>8 из 13</td><td>11</td><td><b>48</b></td><td>Стартовая точка. Зачислен в группу 80+</td></tr>
+            <tr><td><b>Тематический</b></td><td>20 окт</td><td>10 из 13</td><td>13</td><td><b>54</b></td><td>+6 — закрыты №7 и №8, ошибка в №11</td></tr>
+            <tr><td><b>Тематический</b></td><td>24 ноя</td><td>11 из 13</td><td>15</td><td><b>61</b></td><td>+7 — уверенно №1–10; №14а частично</td></tr>
+            <tr><td><b>№2 · полный</b></td><td>14–20 дек</td><td>—</td><td>цель 16+</td><td>—</td><td>Полный формат по времени и бланкам</td></tr>
+            <tr><td><b>№3 · полный</b></td><td>8–14 фев</td><td>—</td><td>—</td><td>—</td><td>После него — решение о переводе в 90+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Что подтянуть к пробнику №2</h3>
+        <div class="tags" style="margin-top:8px">
+          <span class="tag">Текстовые задачи · №11</span>
+          <span class="tag">Отбор корней · №14б</span>
+          <span class="tag">Финансовые задачи · №13</span>
+        </div>
+        <p style="margin-top:10px">План на две недели уже в текущих домашних заданиях — по 4–5 задач этих типов в каждом.</p>
+      </div>
     </div>
 
-    <!-- ── Домашние задания ── -->
-    <div class="cab-panel" id="cab-homework" hidden>
+    <!-- ── Программа ── -->
+    <div class="cab-panel" id="cab-program" hidden>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Ваш уровень: группа 80+</h3>
+          <p style="margin-top:6px"><b style="color:var(--ink)">Цель: 17–19 первичных → 80–84 тестовых.</b></p>
+          <ul>
+            <li>Часть 1 полностью, без ошибок</li>
+            <li>№14 и №16 целиком</li>
+            <li>№17 или №15 (пункт а)</li>
+            <li>Знакомство с №18а и №19</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Готовность к пробникам</h3>
+          <div class="mini-rows">
+            <div class="row"><b>№2 · дек</b><span>часть 1 целиком (12+) и №14а — цель 16+ первичных</span></div>
+            <div class="row"><b>№3 · фев</b><span>+ №14 и №16 целиком — 16+ первичных</span></div>
+            <div class="row"><b>№4 · апр</b><span>+ №17 или №15а — 18+ первичных</span></div>
+            <div class="row"><b>№5 · май</b><span>генеральный: 17–19 первичных</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
+          <h3>Ближайшие недели · группа 80+</h3>
+          <span class="small muted">полный план на год — на странице <a href="#math">Математика</a></span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item hot"><b>неделя 13 · сейчас <span class="wk-now">текущая</span></b><p>Финансовые задачи: аннуитет (№13) · тригонометрические уравнения — пункт а (№14а)</p></div>
+          <div class="tl-item"><b>неделя 14 · 14–20 дек</b><p>Пробник №2 — полный вариант по времени и бланкам, разбор на втором занятии</p></div>
+          <div class="tl-item"><b>неделя 15</b><p>Отбор корней на окружности и отрезке (№14б)</p></div>
+          <div class="tl-item"><b>неделя 16</b><p>Неравенства: рациональные и показательные (№16)</p></div>
+          <div class="tl-item"><b>недели 17–19</b><p>Логарифмические неравенства и рационализация (№16) · моделирование (№17) · стереометрия (№15а)</p></div>
+        </div>
+      </div>
+      <div class="hw-note">
+        <span aria-hidden="true">→</span>
+        <p><b>Как читать программу:</b> каждую неделю — разбор с учителем и тренировка с семинаристом. Темы недели сразу попадают в домашнее задание и тренажёр.</p>
+      </div>
+    </div>
+
+    <!-- ── Материалы ── -->
+    <div class="cab-panel" id="cab-materials" hidden>
+      <div class="ov-head" style="margin-bottom:2px">
+        <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Дидактика · задания №1–10</h3>
+        <a class="btn btn-ghost" href="https://martinidennn.github.io/tengr-ege/didaktika_matematika_1-10.docx" download>Скачать сборник (docx)</a>
+      </div>
+      <p class="muted" style="max-width:70ch">По каждому номеру: разобранные примеры с полным решением, 12 тренировочных задач в тренажёре и домашний набор. Модель КИМ ЕГЭ-2027, ответы проверены.</p>
+      <div class="did-grid" id="did-grid"></div>
+      <div class="ov-head" style="margin:26px 0 2px"><h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Записи разборов</h3></div>
+      <div class="videos">
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 13 · Производная: касательная и график</b>
+          <span class="vmeta">разбор с учителем · 52 мин · 8 дек</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 12 · Финансовые задачи: аннуитет</b>
+          <span class="vmeta">разбор с учителем · 47 мин · 1 дек</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 11 · Интеграл и первообразная</b>
+          <span class="vmeta">разбор с учителем · 49 мин · 24 ноя</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb soon"><span>запись появится после разбора в четверг</span></div>
+          <b>Неделя 14 · Пробник №2: стратегия</b>
+          <span class="vmeta">четверг · 18:30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Задания ── -->
+    <div class="cab-panel" id="cab-tasks" hidden>
+      <div class="card tr-card">
+        <div class="ov-head">
+          <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Тренажёр · часть 1</h3>
+          <span class="small muted" id="tr-progress">решено 0 из 114</span>
+        </div>
+        <div class="tr-nums" id="tr-nums" role="tablist" aria-label="Номер задания"></div>
+        <div id="tr-task">
+          <div class="tr-meta">
+            <b id="tr-subtype">—</b>
+            <span class="sub" id="tr-count"></span>
+          </div>
+          <p class="tr-text" id="tr-text"></p>
+          <form class="tr-form" id="tr-form">
+            <input type="text" id="tr-input" inputmode="decimal" placeholder="Ответ" aria-label="Ответ" autocomplete="off">
+            <button class="btn btn-akane" type="submit">Проверить</button>
+            <button class="btn btn-ghost" type="button" id="tr-next">Другая задача</button>
+          </form>
+          <div class="tr-res" id="tr-res" hidden></div>
+          <div class="tr-sol" id="tr-sol" hidden>
+            <button class="linkish" id="tr-sol-btn" type="button">показать решение</button>
+            <ol id="tr-sol-steps" hidden></ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin:20px 0 4px;max-width:none">
+        <h2 style="font-size:clamp(24px,3vw,36px)">Домашние задания</h2>
+      </div>
       <div class="card hw-list">
         <div class="hw-row">
           <span class="d">до чт</span>
@@ -1258,7 +1486,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
         </div>
       </div>
 
-      <div class="section-head" style="margin:26px 0 6px;max-width:none">
+      <div class="section-head" style="margin:20px 0 6px;max-width:none">
         <h2 style="font-size:clamp(24px,3vw,36px)">Сдать работу</h2>
         <p>Сфотографируйте решение в тетради и загрузите фото — разбор придёт сюда. Первый запуск спросит разрешение на проверку через Claude.</p>
       </div>
@@ -1294,61 +1522,11 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
       </div>
       <div class="review" id="review" hidden></div>
     </div>
-
-    <!-- ── Пробники ── -->
-    <div class="cab-panel" id="cab-mocks" hidden>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Пробник</th><th>Дата</th><th>Часть 1</th><th>Первичные</th><th>Тестовый</th><th>Комментарий</th></tr></thead>
-          <tbody>
-            <tr><td><b>№1 · входной</b></td><td>15 сен</td><td>8 из 13</td><td>11</td><td><b>48</b></td><td>Стартовая точка. Зачислен в группу 80+</td></tr>
-            <tr><td><b>Тематический</b></td><td>20 окт</td><td>10 из 13</td><td>13</td><td><b>54</b></td><td>+6 — закрыты №7 и №8, ошибка в №11</td></tr>
-            <tr><td><b>Тематический</b></td><td>24 ноя</td><td>11 из 13</td><td>15</td><td><b>61</b></td><td>+7 — уверенно №1–10; №14а частично</td></tr>
-            <tr><td><b>№2 · полный</b></td><td>14–20 дек</td><td>—</td><td>цель 16+</td><td>—</td><td>Полный формат по времени и бланкам</td></tr>
-            <tr><td><b>№3 · полный</b></td><td>8–14 фев</td><td>—</td><td>—</td><td>—</td><td>После него — решение о переводе в 90+</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card">
-        <h3>Что подтянуть к пробнику №2</h3>
-        <div class="tags" style="margin-top:8px">
-          <span class="tag">Текстовые задачи · №11</span>
-          <span class="tag">Отбор корней · №14б</span>
-          <span class="tag">Финансовые задачи · №13</span>
-        </div>
-        <p style="margin-top:10px">План на две недели уже в текущих домашних заданиях — по 4–5 задач этих типов в каждом.</p>
-      </div>
-    </div>
-
-    <!-- ── Записи разборов ── -->
-    <div class="cab-panel" id="cab-videos" hidden>
-      <div class="videos">
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 13 · Производная: касательная и график</b>
-          <span class="vmeta">разбор с учителем · 52 мин · 8 дек</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 12 · Финансовые задачи: аннуитет</b>
-          <span class="vmeta">разбор с учителем · 47 мин · 1 дек</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 11 · Интеграл и первообразная</b>
-          <span class="vmeta">разбор с учителем · 49 мин · 24 ноя</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb soon"><span>запись появится после разбора в четверг</span></div>
-          <b>Неделя 14 · Пробник №2: стратегия</b>
-          <span class="vmeta">четверг · 18:30</span>
-        </div>
-      </div>
-      <p class="small muted">Пропустили занятие — посмотрите запись и напишите вопросы в чат группы: семинарист разберёт их на тренировке.</p>
-    </div>
+  </div>
   </div>
 </section>
 
+<script id="didactics-data" type="application/json">[{"id":"1.П1","task":1,"set":"example","subtype":"Прямоугольный треугольник: sin, cos, tg","text":"В треугольнике ABC угол C равен 90°, BC = 3, AB = 5. Найдите cos A.","answer":"0,8","answer_forms":["0,8","0.8","4/5"],"solution":["В прямоугольном треугольнике cos A — это отношение прилежащего катета к гипотенузе.","По теореме Пифагора AC = √(AB² − BC²) = √(5² − 3²) = 4.","cos A = AC/AB = 4/5 = 0,8."]},{"id":"1.П2","task":1,"set":"example","subtype":"Площадь треугольника через две стороны и угол","text":"В треугольнике ABC AB = 14, BC = 7, угол B равен 150°. Найдите площадь треугольника ABC.","answer":"24,5","answer_forms":["24,5","24.5","49/2"],"solution":["Площадь треугольника: S = ½ · AB · BC · sin B.","sin 150° = 0,5.","S = ½ · 14 · 7 · 0,5 = 24,5."]},{"id":"1.П3","task":1,"set":"example","subtype":"Равнобедренный треугольник, углы","text":"В треугольнике ABC AC = BC, угол A равен 70°. Найдите угол C. Ответ дайте в градусах.","answer":"40","answer_forms":["40"],"solution":["Треугольник равнобедренный, углы при основании AB равны: ∠A = ∠B = 70°.","Сумма углов треугольника 180°, поэтому ∠C = 180° − 2 · 70° = 40°."]},{"id":"1.Т1","task":1,"set":"train","subtype":"Трапеция: средняя линия","text":"Основания трапеции равны 10 и 18. Найдите длину средней линии трапеции.","answer":"14","answer_forms":["14"],"solution":["Средняя линия трапеции равна полусумме оснований.","m = (10 + 18)/2 = 14."]},{"id":"1.Т2","task":1,"set":"train","subtype":"Окружность: угол, опирающийся на диаметр","text":"AB — диаметр окружности, C — точка на окружности, угол ABC равен 60°. Найдите угол BAC. Ответ дайте в градусах.","answer":"30","answer_forms":["30"],"solution":["Угол ACB опирается на диаметр, значит, он прямой: ∠ACB = 90°.","∠BAC = 180° − 90° − 60° = 30°."]},{"id":"1.Т3","task":1,"set":"train","subtype":"Параллелограмм: площадь через стороны и угол","text":"Стороны параллелограмма равны 12 и 5, а угол между ними равен 30°. Найдите площадь параллелограмма.","answer":"30","answer_forms":["30"],"solution":["Площадь параллелограмма: S = a · b · sin α.","sin 30° = 0,5, поэтому S = 12 · 5 · 0,5 = 30."]},{"id":"1.Т4","task":1,"set":"train","subtype":"Прямоугольный треугольник: sin, cos, tg","text":"В треугольнике ABC угол C равен 90°, BC = 12, AB = 20. Найдите tg A.","answer":"0,75","answer_forms":["0,75","0.75","3/4"],"solution":["В прямоугольном треугольнике tg A — это отношение противолежащего катета к прилежащему.","По теореме Пифагора AC = √(AB² − BC²) = √(20² − 12²) = 16.","tg A = BC/AC = 12/16 = 0,75."]},{"id":"1.Т5","task":1,"set":"train","subtype":"Площадь треугольника через две стороны и угол","text":"В треугольнике ABC AB = 4, BC = 7, угол B равен 150°. Найдите площадь треугольника ABC.","answer":"7","answer_forms":["7"],"solution":["Площадь треугольника: S = ½ · AB · BC · sin B.","sin 150° = 0,5.","S = ½ · 4 · 7 · 0,5 = 7."]},{"id":"1.Т6","task":1,"set":"train","subtype":"Равнобедренный треугольник, углы","text":"В треугольнике ABC AC = BC, угол A равен 70°. Найдите внешний угол при вершине C. Ответ дайте в градусах.","answer":"140","answer_forms":["140"],"solution":["Углы при основании равны: ∠A = ∠B = 70°.","Внешний угол равен сумме двух внутренних, не смежных с ним: 70° + 70° = 140°."]},{"id":"1.Т7","task":1,"set":"train","subtype":"Трапеция: площадь","text":"Основания трапеции равны 12 и 20, высота равна 7. Найдите площадь трапеции.","answer":"112","answer_forms":["112"],"solution":["Площадь трапеции: S = (a + b)/2 · h.","S = (12 + 20)/2 · 7 = 112."]},{"id":"1.Т8","task":1,"set":"train","subtype":"Окружность: вписанный и центральный углы","text":"Вписанный угол окружности равен 35°. Найдите центральный угол, опирающийся на ту же дугу. Ответ дайте в градусах.","answer":"70","answer_forms":["70"],"solution":["Центральный угол в два раза больше вписанного, опирающегося на ту же дугу.","35° · 2 = 70°."]},{"id":"1.Т9","task":1,"set":"train","subtype":"Ромб: площадь через диагонали","text":"Диагонали ромба равны 16 и 11. Найдите площадь ромба.","answer":"88","answer_forms":["88"],"solution":["Площадь ромба равна половине произведения диагоналей.","S = 16 · 11 / 2 = 88."]},{"id":"1.Т10","task":1,"set":"train","subtype":"Прямоугольный треугольник: sin, cos, tg","text":"В треугольнике ABC угол C равен 90°, BC = 7, AB = 25. Найдите cos A.","answer":"0,96","answer_forms":["0,96","0.96","24/25"],"solution":["В прямоугольном треугольнике cos A — это отношение прилежащего катета к гипотенузе.","По теореме Пифагора AC = √(AB² − BC²) = √(25² − 7²) = 24.","cos A = AC/AB = 24/25 = 0,96."]},{"id":"1.Т11","task":1,"set":"train","subtype":"Площадь треугольника через две стороны и угол","text":"В треугольнике ABC AB = 14, BC = 13, угол B равен 150°. Найдите площадь треугольника ABC.","answer":"45,5","answer_forms":["45,5","45.5","91/2"],"solution":["Площадь треугольника: S = ½ · AB · BC · sin B.","sin 150° = 0,5.","S = ½ · 14 · 13 · 0,5 = 45,5."]},{"id":"1.Т12","task":1,"set":"train","subtype":"Равнобедренный треугольник, углы","text":"В треугольнике ABC AC = BC, угол A равен 40°. Найдите внешний угол при вершине C. Ответ дайте в градусах.","answer":"80","answer_forms":["80"],"solution":["Углы при основании равны: ∠A = ∠B = 40°.","Внешний угол равен сумме двух внутренних, не смежных с ним: 40° + 40° = 80°."]},{"id":"1.Д1","task":1,"set":"homework","subtype":"Трапеция: площадь","text":"Основания трапеции равны 6 и 8, высота равна 3. Найдите площадь трапеции.","answer":"21","answer_forms":["21"],"solution":["Площадь трапеции: S = (a + b)/2 · h.","S = (6 + 8)/2 · 3 = 21."]},{"id":"1.Д2","task":1,"set":"homework","subtype":"Окружность: вписанный и центральный углы","text":"Вписанный угол окружности равен 70°. Найдите центральный угол, опирающийся на ту же дугу. Ответ дайте в градусах.","answer":"140","answer_forms":["140"],"solution":["Центральный угол в два раза больше вписанного, опирающегося на ту же дугу.","70° · 2 = 140°."]},{"id":"1.Д3","task":1,"set":"homework","subtype":"Ромб: площадь через диагонали","text":"Диагонали ромба равны 6 и 9. Найдите площадь ромба.","answer":"27","answer_forms":["27"],"solution":["Площадь ромба равна половине произведения диагоналей.","S = 6 · 9 / 2 = 27."]},{"id":"1.Д4","task":1,"set":"homework","subtype":"Прямоугольный треугольник: sin, cos, tg","text":"В треугольнике ABC угол C равен 90°, BC = 16, AB = 20. Найдите cos A.","answer":"0,6","answer_forms":["0,6","0.6","3/5"],"solution":["В прямоугольном треугольнике cos A — это отношение прилежащего катета к гипотенузе.","По теореме Пифагора AC = √(AB² − BC²) = √(20² − 16²) = 12.","cos A = AC/AB = 12/20 = 0,6."]},{"id":"1.Д5","task":1,"set":"homework","subtype":"Площадь треугольника через две стороны и угол","text":"В треугольнике ABC AB = 8, BC = 5, угол B равен 30°. Найдите площадь треугольника ABC.","answer":"10","answer_forms":["10"],"solution":["Площадь треугольника: S = ½ · AB · BC · sin B.","sin 30° = 0,5.","S = ½ · 8 · 5 · 0,5 = 10."]},{"id":"1.Д6","task":1,"set":"homework","subtype":"Равнобедренный треугольник, углы","text":"В треугольнике ABC AC = BC, угол A равен 75°. Найдите угол C. Ответ дайте в градусах.","answer":"30","answer_forms":["30"],"solution":["Треугольник равнобедренный, углы при основании AB равны: ∠A = ∠B = 75°.","Сумма углов треугольника 180°, поэтому ∠C = 180° − 2 · 75° = 30°."]},{"id":"2.П1","task":2,"set":"example","subtype":"Длина вектора по координатам точек","text":"Даны точки A(−2; 5) и B(10; 0). Найдите длину вектора AB.","answer":"13","answer_forms":["13"],"solution":["Координаты вектора AB: (10 − (−2); 0 − (5)) = (12; −5).","|AB| = √((12)² + (−5)²) = √(144 + 25) = √169 = 13."]},{"id":"2.П2","task":2,"set":"example","subtype":"Скалярное произведение","text":"Даны векторы a(0; −3) и b(2; −2). Найдите скалярное произведение a · b.","answer":"6","answer_forms":["6"],"solution":["Скалярное произведение в координатах: a · b = x₁x₂ + y₁y₂.","a · b = 0 · (2) + (−3) · (−2) = 0 + (6) = 6."]},{"id":"2.П3","task":2,"set":"example","subtype":"Линейная комбинация: сумма координат","text":"Даны векторы a(−5; 3) и b(−3; 1). Найдите сумму координат вектора c = 2a − b.","answer":"−2","answer_forms":["-2","−2"],"solution":["c = 2·(−5; 3) − 1·(−3; 1) = (−7; 5).","Сумма координат: −7 + (5) = −2."]},{"id":"2.Т1","task":2,"set":"train","subtype":"Косинус угла между векторами","text":"Даны векторы a(0; 3) и b(3; 4). Найдите косинус угла между ними.","answer":"0,8","answer_forms":["0,8","0.8","4/5"],"solution":["cos φ = (a · b) / (|a| · |b|).","a · b = 12; |a| = √9 = 3; |b| = √25 = 5.","cos φ = 12 / (3 · 5) = 0,8."]},{"id":"2.Т2","task":2,"set":"train","subtype":"Четвёртая вершина параллелограмма","text":"Три вершины параллелограмма ABCD имеют координаты A(2; 3), B(7; 3), C(7; 7). Найдите сумму координат вершины D.","answer":"9","answer_forms":["9"],"solution":["В параллелограмме AD = BC, значит, D = A + (C − B).","D = (2 + (7 − 7); 3 + (7 − 3)) = (2; 7).","Сумма координат: 9."]},{"id":"2.Т3","task":2,"set":"train","subtype":"Длина вектора по координатам точек","text":"Даны точки A(4; −3) и B(12; 3). Найдите длину вектора AB.","answer":"10","answer_forms":["10"],"solution":["Координаты вектора AB: (12 − (4); 3 − (−3)) = (8; 6).","|AB| = √((8)² + (6)²) = √(64 + 36) = √100 = 10."]},{"id":"2.Т4","task":2,"set":"train","subtype":"Скалярное произведение","text":"Даны векторы a(−4; 4) и b(4; −3). Найдите скалярное произведение a · b.","answer":"−28","answer_forms":["-28","−28"],"solution":["Скалярное произведение в координатах: a · b = x₁x₂ + y₁y₂.","a · b = −4 · (4) + (4) · (−3) = −16 + (−12) = −28."]},{"id":"2.Т5","task":2,"set":"train","subtype":"Линейная комбинация: сумма координат","text":"Даны векторы a(3; −5) и b(0; −6). Найдите сумму координат вектора c = 3a − b.","answer":"0","answer_forms":["0"],"solution":["c = 3·(3; −5) − 1·(0; −6) = (9; −9).","Сумма координат: 9 + (−9) = 0."]},{"id":"2.Т6","task":2,"set":"train","subtype":"Косинус угла между векторами","text":"Даны векторы a(0; 2) и b(−4; 3). Найдите косинус угла между ними.","answer":"0,6","answer_forms":["0,6","0.6","3/5"],"solution":["cos φ = (a · b) / (|a| · |b|).","a · b = 6; |a| = √4 = 2; |b| = √25 = 5.","cos φ = 6 / (2 · 5) = 0,6."]},{"id":"2.Т7","task":2,"set":"train","subtype":"Четвёртая вершина параллелограмма","text":"Три вершины параллелограмма ABCD имеют координаты A(−2; 3), B(2; 0), C(2; 1). Найдите сумму координат вершины D.","answer":"2","answer_forms":["2"],"solution":["В параллелограмме AD = BC, значит, D = A + (C − B).","D = (−2 + (2 − 2); 3 + (1 − 0)) = (−2; 4).","Сумма координат: 2."]},{"id":"2.Т8","task":2,"set":"train","subtype":"Длина вектора по координатам точек","text":"Даны точки A(−4; 2) и B(−10; 10). Найдите длину вектора AB.","answer":"10","answer_forms":["10"],"solution":["Координаты вектора AB: (−10 − (−4); 10 − (2)) = (−6; 8).","|AB| = √((−6)² + (8)²) = √(36 + 64) = √100 = 10."]},{"id":"2.Т9","task":2,"set":"train","subtype":"Скалярное произведение","text":"Даны векторы a(1; −4) и b(−4; 3). Найдите скалярное произведение a · b.","answer":"−16","answer_forms":["-16","−16"],"solution":["Скалярное произведение в координатах: a · b = x₁x₂ + y₁y₂.","a · b = 1 · (−4) + (−4) · (3) = −4 + (−12) = −16."]},{"id":"2.Т10","task":2,"set":"train","subtype":"Линейная комбинация: длина","text":"Даны векторы a(1; 0) и b(1; 4). Найдите длину вектора c = 2a − 2b.","answer":"8","answer_forms":["8"],"solution":["c = 2·(1; 0) − 2·(1; 4) = (0; −8).","|c| = √((0)² + (−8)²) = √64 = 8."]},{"id":"2.Т11","task":2,"set":"train","subtype":"Косинус угла между векторами","text":"Даны векторы a(0; 5) и b(−4; −3). Найдите косинус угла между ними.","answer":"−0,6","answer_forms":["-0,6","-0.6","-3/5","−0,6"],"solution":["cos φ = (a · b) / (|a| · |b|).","a · b = −15; |a| = √25 = 5; |b| = √25 = 5.","cos φ = −15 / (5 · 5) = −0,6."]},{"id":"2.Т12","task":2,"set":"train","subtype":"Четвёртая вершина параллелограмма","text":"Три вершины параллелограмма ABCD имеют координаты A(4; −4), B(8; −4), C(9; 0). Найдите сумму координат вершины D.","answer":"5","answer_forms":["5"],"solution":["В параллелограмме AD = BC, значит, D = A + (C − B).","D = (4 + (9 − 8); −4 + (0 − −4)) = (5; 0).","Сумма координат: 5."]},{"id":"2.Д1","task":2,"set":"homework","subtype":"Длина вектора по координатам точек","text":"Даны точки A(1; −1) и B(−11; 8). Найдите длину вектора AB.","answer":"15","answer_forms":["15"],"solution":["Координаты вектора AB: (−11 − (1); 8 − (−1)) = (−12; 9).","|AB| = √((−12)² + (9)²) = √(144 + 81) = √225 = 15."]},{"id":"2.Д2","task":2,"set":"homework","subtype":"Скалярное произведение","text":"Даны векторы a(−3; −1) и b(2; −5). Найдите скалярное произведение a · b.","answer":"−1","answer_forms":["-1","−1"],"solution":["Скалярное произведение в координатах: a · b = x₁x₂ + y₁y₂.","a · b = −3 · (2) + (−1) · (−5) = −6 + (5) = −1."]},{"id":"2.Д3","task":2,"set":"homework","subtype":"Линейная комбинация: сумма координат","text":"Даны векторы a(3; 1) и b(3; −2). Найдите сумму координат вектора c = 3a − b.","answer":"11","answer_forms":["11"],"solution":["c = 3·(3; 1) − 1·(3; −2) = (6; 5).","Сумма координат: 6 + (5) = 11."]},{"id":"2.Д4","task":2,"set":"homework","subtype":"Косинус угла между векторами","text":"Даны векторы a(−4; −3) и b(−2; 0). Найдите косинус угла между ними.","answer":"0,8","answer_forms":["0,8","0.8","4/5"],"solution":["cos φ = (a · b) / (|a| · |b|).","a · b = 8; |a| = √25 = 5; |b| = √4 = 2.","cos φ = 8 / (5 · 2) = 0,8."]},{"id":"2.Д5","task":2,"set":"homework","subtype":"Четвёртая вершина параллелограмма","text":"Три вершины параллелограмма ABCD имеют координаты A(4; −1), B(6; −1), C(8; 1). Найдите сумму координат вершины D.","answer":"7","answer_forms":["7"],"solution":["В параллелограмме AD = BC, значит, D = A + (C − B).","D = (4 + (8 − 6); −1 + (1 − −1)) = (6; 1).","Сумма координат: 7."]},{"id":"2.Д6","task":2,"set":"homework","subtype":"Длина вектора по координатам точек","text":"Даны точки A(−5; −3) и B(3; −18). Найдите длину вектора AB.","answer":"17","answer_forms":["17"],"solution":["Координаты вектора AB: (3 − (−5); −18 − (−3)) = (8; −15).","|AB| = √((8)² + (−15)²) = √(64 + 225) = √289 = 17."]},{"id":"3.П1","task":3,"set":"example","subtype":"Параллелепипед: площадь поверхности","text":"Рёбра прямоугольного параллелепипеда, выходящие из одной вершины, равны 6, 6, 7. Найдите площадь поверхности параллелепипеда.","answer":"240","answer_forms":["240"],"solution":["S = 2(ab + bc + ac).","S = 2(6·6 + 6·7 + 6·7) = 2 · 120 = 240."]},{"id":"3.П2","task":3,"set":"example","subtype":"Куб: изменение площади поверхности","text":"Ребро куба увеличили в 3 раза. Во сколько раз увеличилась площадь поверхности куба?","answer":"9","answer_forms":["9"],"solution":["Площадь поверхности S = 6a², растёт в k² раз.","3² = 9."]},{"id":"3.П3","task":3,"set":"example","subtype":"Цилиндр: объём","text":"Радиус основания цилиндра равен 6, высота равна 5. Найдите объём цилиндра. В ответе укажите V/π.","answer":"180","answer_forms":["180"],"solution":["V = πR²h.","V = π · 6² · 5 = 180π, значит, V/π = 180."]},{"id":"3.Т1","task":3,"set":"train","subtype":"Конус: образующая","text":"Радиус основания конуса равен 6, высота равна 8. Найдите образующую конуса.","answer":"10","answer_forms":["10"],"solution":["Образующая, высота и радиус образуют прямоугольный треугольник: l² = R² + h².","l = √(6² + 8²) = √100 = 10."]},{"id":"3.Т2","task":3,"set":"train","subtype":"Пирамида: объём","text":"Основание пирамиды — квадрат со стороной 3, высота пирамиды равна 6. Найдите объём пирамиды.","answer":"18","answer_forms":["18"],"solution":["V = ⅓ · S_осн · h.","S_осн = 3² = 9; V = ⅓ · 9 · 6 = 18."]},{"id":"3.Т3","task":3,"set":"train","subtype":"Шар: изменение объёма","text":"Радиус шара увеличили в 4 раза. Во сколько раз увеличился объём шара?","answer":"64","answer_forms":["64"],"solution":["V = 4/3 πR³, объём растёт в k³ раз.","4³ = 64."]},{"id":"3.Т4","task":3,"set":"train","subtype":"Призма: объём","text":"Основание прямой призмы — прямоугольный треугольник с катетами 5 и 12. Боковое ребро равно 10. Найдите объём призмы.","answer":"300","answer_forms":["300"],"solution":["V = S_осн · h.","S_осн = ½ · 5 · 12 = 30; V = 30 · 10 = 300."]},{"id":"3.Т5","task":3,"set":"train","subtype":"Параллелепипед: диагональ","text":"Найдите диагональ прямоугольного параллелепипеда, рёбра которого равны 4, 4 и 7.","answer":"9","answer_forms":["9"],"solution":["Квадрат диагонали параллелепипеда равен сумме квадратов трёх его измерений: d² = a² + b² + c².","d = √(4² + 4² + 7²) = √81 = 9."]},{"id":"3.Т6","task":3,"set":"train","subtype":"Куб: изменение площади поверхности","text":"Ребро куба увеличили в 2 раза. Во сколько раз увеличилась площадь поверхности куба?","answer":"4","answer_forms":["4"],"solution":["Площадь поверхности S = 6a², растёт в k² раз.","2² = 4."]},{"id":"3.Т7","task":3,"set":"train","subtype":"Цилиндр: объём детали по подъёму воды","text":"В цилиндрический сосуд налили 120 см³ воды, уровень воды достиг 15 см. В воду полностью погрузили деталь, и уровень поднялся на 3 см. Найдите объём детали. Ответ дайте в кубических сантиметрах.","answer":"24","answer_forms":["24"],"solution":["Площадь основания сосуда S = V₀/h₀ = 120/15 = 8 см².","Объём детали равен объёму вытесненной воды: V = S · Δh = 8 · 3 = 24 см³."]},{"id":"3.Т8","task":3,"set":"train","subtype":"Конус: объём","text":"Радиус основания конуса равен 9, высота равна 12. Найдите объём конуса. В ответе укажите V/π.","answer":"324","answer_forms":["324"],"solution":["V = ⅓πR²h.","V = ⅓ · π · 9² · 12 = 324π, V/π = 324."]},{"id":"3.Т9","task":3,"set":"train","subtype":"Пирамида: объём","text":"Основание пирамиды — квадрат со стороной 3, высота пирамиды равна 4. Найдите объём пирамиды.","answer":"12","answer_forms":["12"],"solution":["V = ⅓ · S_осн · h.","S_осн = 3² = 9; V = ⅓ · 9 · 4 = 12."]},{"id":"3.Т10","task":3,"set":"train","subtype":"Шар: объём","text":"Радиус шара равен 6. Найдите объём шара. В ответе укажите V/π.","answer":"288","answer_forms":["288"],"solution":["V = 4/3 πR³.","V = 4/3 · π · 6³ = 288π, V/π = 288."]},{"id":"3.Т11","task":3,"set":"train","subtype":"Призма: боковая поверхность","text":"Основание прямой призмы — прямоугольный треугольник с катетами 9 и 12. Боковое ребро равно 6. Найдите площадь боковой поверхности призмы.","answer":"216","answer_forms":["216"],"solution":["S_бок = P_осн · h.","Гипотенуза = √(9² + 12²) = 15; P = 9 + 12 + 15 = 36; S = 36 · 6 = 216."]},{"id":"3.Т12","task":3,"set":"train","subtype":"Параллелепипед: диагональ","text":"Найдите диагональ прямоугольного параллелепипеда, рёбра которого равны 2, 6 и 9.","answer":"11","answer_forms":["11"],"solution":["Квадрат диагонали параллелепипеда равен сумме квадратов трёх его измерений: d² = a² + b² + c².","d = √(2² + 6² + 9²) = √121 = 11."]},{"id":"3.Д1","task":3,"set":"homework","subtype":"Куб: изменение объёма","text":"Ребро куба увеличили в 3 раза. Во сколько раз увеличился объём куба?","answer":"27","answer_forms":["27"],"solution":["Объём куба V = a³, поэтому при увеличении ребра в k раз объём растёт в k³ раз.","3³ = 27."]},{"id":"3.Д2","task":3,"set":"homework","subtype":"Цилиндр: боковая поверхность","text":"Радиус основания цилиндра равен 3, высота равна 9. Найдите площадь боковой поверхности цилиндра. В ответе укажите S/π.","answer":"54","answer_forms":["54"],"solution":["S_бок = 2πRh.","S = 2π · 3 · 9 = 54π, S/π = 54."]},{"id":"3.Д3","task":3,"set":"homework","subtype":"Конус: образующая","text":"Радиус основания конуса равен 8, высота равна 15. Найдите образующую конуса.","answer":"17","answer_forms":["17"],"solution":["Образующая, высота и радиус образуют прямоугольный треугольник: l² = R² + h².","l = √(8² + 15²) = √289 = 17."]},{"id":"3.Д4","task":3,"set":"homework","subtype":"Пирамида: объём","text":"Основание пирамиды — квадрат со стороной 5, высота пирамиды равна 6. Найдите объём пирамиды.","answer":"50","answer_forms":["50"],"solution":["V = ⅓ · S_осн · h.","S_осн = 5² = 25; V = ⅓ · 25 · 6 = 50."]},{"id":"3.Д5","task":3,"set":"homework","subtype":"Шар: объём","text":"Радиус шара равен 12. Найдите объём шара. В ответе укажите V/π.","answer":"2304","answer_forms":["2304"],"solution":["V = 4/3 πR³.","V = 4/3 · π · 12³ = 2304π, V/π = 2304."]},{"id":"3.Д6","task":3,"set":"homework","subtype":"Призма: боковая поверхность","text":"Основание прямой призмы — прямоугольный треугольник с катетами 5 и 12. Боковое ребро равно 6. Найдите площадь боковой поверхности призмы.","answer":"180","answer_forms":["180"],"solution":["S_бок = P_осн · h.","Гипотенуза = √(5² + 12²) = 13; P = 5 + 12 + 13 = 30; S = 30 · 6 = 180."]},{"id":"4.П1","task":4,"set":"example","subtype":"Классическая вероятность","text":"В сборнике билетов по математике всего 40 билетов, в 21 из них встречается вопрос по теме «Тригонометрия». Найдите вероятность того, что в случайно выбранном на экзамене билете школьнику не достанется вопрос по теме «Тригонометрия».","answer":"0,475","answer_forms":["0,475","0.475","19/40"],"solution":["P = (число благоприятных исходов) / (число всех исходов).","Благоприятных исходов: 19 из 40.","P = 19/40 = 0,475."]},{"id":"4.П2","task":4,"set":"example","subtype":"Классическая вероятность: жребий","text":"В соревнованиях по прыжкам в воду участвуют 15 спортсменов: 3 из России, 2 из Китая и 10 из Германии. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из России.","answer":"0,2","answer_forms":["0,2","0.2","1/5"],"solution":["Всего исходов 15, благоприятных 3.","P = 3/15 = 0,2."]},{"id":"4.П3","task":4,"set":"example","subtype":"Монеты: перебор исходов","text":"Симметричную монету бросают 2 раза. Найдите вероятность того, что орёл выпадет ровно 1 раз.","answer":"0,5","answer_forms":["0,5","0.5","1/2"],"solution":["Всего исходов 2^2 = 4.","Исходов с ровно 1 орлами: C(2, 1) = 2.","P = 2/4 = 0,5."]},{"id":"4.Т1","task":4,"set":"train","subtype":"Разность вероятностей вложенных событий","text":"Вероятность того, что новый пылесос прослужит больше года, равна 0,97. Вероятность того, что прослужит больше двух лет, равна 0,92. Найдите вероятность того, что новый пылесос прослужит меньше двух лет, но больше года.","answer":"0,05","answer_forms":["0,05","0.05","1/20"],"solution":["Событие «больше года» = «от года до двух лет» + «больше двух лет» (несовместны).","P = 0,97 − 0,92 = 0,05."]},{"id":"4.Т2","task":4,"set":"train","subtype":"Две кости","text":"Две игральные кости бросили один раз. Найдите вероятность того, что произведение выпавших очков чётное.","answer":"0,75","answer_forms":["0,75","0.75","3/4"],"solution":["Всего 36 исходов. Произведение нечётное, только если обе кости нечётные: 3 · 3 = 9 исходов.","P(чётное) = 1 − 9/36 = 27/36 = 0,75."]},{"id":"4.Т3","task":4,"set":"train","subtype":"Классическая вероятность","text":"В сборнике билетов по физике всего 60 билетов, в 45 из них встречается вопрос по теме «Оптика». Найдите вероятность того, что в случайно выбранном на экзамене билете школьнику достанется вопрос по теме «Оптика».","answer":"0,75","answer_forms":["0,75","0.75","3/4"],"solution":["P = (число благоприятных исходов) / (число всех исходов).","Благоприятных исходов: 45 из 60.","P = 45/60 = 0,75."]},{"id":"4.Т4","task":4,"set":"train","subtype":"Классическая вероятность: жребий","text":"В соревнованиях по прыжкам в воду участвуют 16 спортсменов: 4 из России, 2 из Китая и 10 из Германии. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из России.","answer":"0,25","answer_forms":["0,25","0.25","1/4"],"solution":["Всего исходов 16, благоприятных 4.","P = 4/16 = 0,25."]},{"id":"4.Т5","task":4,"set":"train","subtype":"Монеты: перебор исходов","text":"Симметричную монету бросают 3 раза. Найдите вероятность того, что орёл выпадет ровно 1 раз.","answer":"0,375","answer_forms":["0,375","0.375","3/8"],"solution":["Всего исходов 2^3 = 8.","Исходов с ровно 1 орлами: C(3, 1) = 3.","P = 3/8 = 0,375."]},{"id":"4.Т6","task":4,"set":"train","subtype":"Разность вероятностей вложенных событий","text":"Вероятность того, что новый пылесос прослужит больше года, равна 0,9. Вероятность того, что прослужит больше двух лет, равна 0,82. Найдите вероятность того, что новый пылесос прослужит меньше двух лет, но больше года.","answer":"0,08","answer_forms":["0,08","0.08","2/25"],"solution":["Событие «больше года» = «от года до двух лет» + «больше двух лет» (несовместны).","P = 0,9 − 0,82 = 0,08."]},{"id":"4.Т7","task":4,"set":"train","subtype":"Игральная кость","text":"Игральную кость бросили один раз. Найдите вероятность того, что выпало чётное число очков.","answer":"0,5","answer_forms":["0,5","0.5","1/2"],"solution":["Благоприятных исходов 3 (2, 4, 6) из 6.","P = 3/6 = 0,5."]},{"id":"4.Т8","task":4,"set":"train","subtype":"Классическая вероятность","text":"В сборнике билетов по математике всего 80 билетов, в 62 из них встречается вопрос по теме «Неравенства». Найдите вероятность того, что в случайно выбранном на экзамене билете школьнику достанется вопрос по теме «Неравенства».","answer":"0,775","answer_forms":["0,775","0.775","31/40"],"solution":["P = (число благоприятных исходов) / (число всех исходов).","Благоприятных исходов: 62 из 80.","P = 62/80 = 0,775."]},{"id":"4.Т9","task":4,"set":"train","subtype":"Классическая вероятность: жребий","text":"В соревнованиях по прыжкам в воду участвуют 10 спортсменов: 6 из России, 2 из Китая и 2 из Германии. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из Китая.","answer":"0,2","answer_forms":["0,2","0.2","1/5"],"solution":["Всего исходов 10, благоприятных 2.","P = 2/10 = 0,2."]},{"id":"4.Т10","task":4,"set":"train","subtype":"Монеты: перебор исходов","text":"Симметричную монету бросают 3 раза. Найдите вероятность того, что орёл выпадет ровно 3 раза.","answer":"0,125","answer_forms":["0,125","0.125","1/8"],"solution":["Всего исходов 2^3 = 8.","Исходов с ровно 3 орлами: C(3, 3) = 1.","P = 1/8 = 0,125."]},{"id":"4.Т11","task":4,"set":"train","subtype":"Разность вероятностей вложенных событий","text":"Вероятность того, что новый пылесос прослужит больше года, равна 0,93. Вероятность того, что прослужит больше двух лет, равна 0,84. Найдите вероятность того, что новый пылесос прослужит меньше двух лет, но больше года.","answer":"0,09","answer_forms":["0,09","0.09","9/100"],"solution":["Событие «больше года» = «от года до двух лет» + «больше двух лет» (несовместны).","P = 0,93 − 0,84 = 0,09."]},{"id":"4.Т12","task":4,"set":"train","subtype":"Игральная кость","text":"Игральную кость бросили один раз. Найдите вероятность того, что выпало больше 3 очков.","answer":"0,5","answer_forms":["0,5","0.5","1/2"],"solution":["Благоприятных исходов: 3 (4, 5, 6) из 6.","P = 3/6 = 0,5."]},{"id":"4.Д1","task":4,"set":"homework","subtype":"Классическая вероятность","text":"В сборнике билетов по математике всего 50 билетов, в 40 из них встречается вопрос по теме «Неравенства». Найдите вероятность того, что в случайно выбранном на экзамене билете школьнику не достанется вопрос по теме «Неравенства».","answer":"0,2","answer_forms":["0,2","0.2","1/5"],"solution":["P = (число благоприятных исходов) / (число всех исходов).","Благоприятных исходов: 10 из 50.","P = 10/50 = 0,2."]},{"id":"4.Д2","task":4,"set":"homework","subtype":"Классическая вероятность: жребий","text":"В соревнованиях по прыжкам в воду участвуют 24 спортсменов: 6 из России, 8 из Китая и 10 из Германии. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из России.","answer":"0,25","answer_forms":["0,25","0.25","1/4"],"solution":["Всего исходов 24, благоприятных 6.","P = 6/24 = 0,25."]},{"id":"4.Д3","task":4,"set":"homework","subtype":"Разность вероятностей вложенных событий","text":"Вероятность того, что новый пылесос прослужит больше года, равна 0,96. Вероятность того, что прослужит больше двух лет, равна 0,87. Найдите вероятность того, что новый пылесос прослужит меньше двух лет, но больше года.","answer":"0,09","answer_forms":["0,09","0.09","9/100"],"solution":["Событие «больше года» = «от года до двух лет» + «больше двух лет» (несовместны).","P = 0,96 − 0,87 = 0,09."]},{"id":"4.Д4","task":4,"set":"homework","subtype":"Классическая вероятность","text":"В сборнике билетов по биологии всего 40 билетов, в 21 из них встречается вопрос по теме «Ботаника». Найдите вероятность того, что в случайно выбранном на экзамене билете школьнику достанется вопрос по теме «Ботаника».","answer":"0,525","answer_forms":["0,525","0.525","21/40"],"solution":["P = (число благоприятных исходов) / (число всех исходов).","Благоприятных исходов: 21 из 40.","P = 21/40 = 0,525."]},{"id":"4.Д5","task":4,"set":"homework","subtype":"Классическая вероятность: жребий","text":"В соревнованиях по прыжкам в воду участвуют 10 спортсменов: 4 из России, 4 из Китая и 2 из Германии. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из Германии.","answer":"0,2","answer_forms":["0,2","0.2","1/5"],"solution":["Всего исходов 10, благоприятных 2.","P = 2/10 = 0,2."]},{"id":"4.Д6","task":4,"set":"homework","subtype":"Монеты: перебор исходов","text":"Симметричную монету бросают 2 раза. Найдите вероятность того, что орёл выпадет ровно 0 раз.","answer":"0,25","answer_forms":["0,25","0.25","1/4"],"solution":["Всего исходов 2^2 = 4.","Исходов с ровно 0 орлами: C(2, 0) = 1.","P = 1/4 = 0,25."]},{"id":"5.П1","task":5,"set":"example","subtype":"Независимые события: произведение","text":"Стрелок стреляет по одному разу в каждую из 4 мишеней. Вероятность попадания при каждом выстреле равна 0,6. Найдите вероятность того, что стрелок попадёт в первые три мишени и не попадёт в последнюю.","answer":"0,0864","answer_forms":["0,0864","0.0864","54/625"],"solution":["Выстрелы независимы, вероятности перемножаются.","P = 0,6^3 · 0,4^1 = 0,0864."]},{"id":"5.П2","task":5,"set":"example","subtype":"Независимые события: оба исправны","text":"В здании два лифта, работающих независимо друг от друга. Вероятность того, что каждый из них сломается в течение года, равна 0,12. Найдите вероятность того, что в течение года оба будут исправны.","answer":"0,7744","answer_forms":["0,7744","0.7744","484/625"],"solution":["Вероятность исправности одного: 1 − 0,12 = 0,88.","События независимы: P = 0,88² = 0,7744."]},{"id":"5.П3","task":5,"set":"example","subtype":"Формула полной вероятности","text":"Две фабрики выпускают одинаковые стёкла для автомобильных фар. Первая фабрика выпускает 60% стёкол, вторая — 40%. Первая фабрика выпускает 5% бракованных стёкол, вторая — 2%. Найдите вероятность того, что случайно купленное в магазине стекло окажется бракованным.","answer":"0,038","answer_forms":["0,038","0.038","19/500"],"solution":["Формула полной вероятности: P = P(1-я) · P(брак | 1-я) + P(2-я) · P(брак | 2-я).","P = 0,6 · 0,05 + 0,4 · 0,02 = 0,03 + 0,008 = 0,038."]},{"id":"5.Т1","task":5,"set":"train","subtype":"Произведение вероятностей","text":"Вероятность того, что шахматист выиграет партию белыми, равна 0,52, чёрными — 0,45. Он играет две партии: первую белыми, вторую чёрными. Найдите вероятность того, что он выиграет обе партии.","answer":"0,234","answer_forms":["0,234","0.234","117/500"],"solution":["Партии независимы: P = P(белыми) · P(чёрными).","P = 0,52 · 0,45 = 0,234."]},{"id":"5.Т2","task":5,"set":"train","subtype":"Независимые события: две батарейки","text":"Вероятность того, что батарейка бракованная, равна 0,08. Покупатель выбирает случайную упаковку, в которой две батарейки. Найдите вероятность того, что обе батарейки окажутся исправными.","answer":"0,8464","answer_forms":["0,8464","0.8464","529/625"],"solution":["Исправна с вероятностью 1 − 0,08 = 0,92.","P = 0,92² = 0,8464."]},{"id":"5.Т3","task":5,"set":"train","subtype":"Схема Бернулли","text":"Биатлонист 3 раза стреляет по мишеням. Вероятность попадания при одном выстреле равна 0,5. Найдите вероятность того, что биатлонист попадёт ровно 2 раза.","answer":"0,375","answer_forms":["0,375","0.375","3/8"],"solution":["Формула Бернулли: P = C(n, k) · pᵏ · (1 − p)ⁿ⁻ᵏ.","P = C(3, 2) · 0,5^2 · 0,5^1 = 3 · 0,25 · 0,5 = 0,375."]},{"id":"5.Т4","task":5,"set":"train","subtype":"Независимые события: произведение","text":"Стрелок стреляет по одному разу в каждую из 4 мишеней. Вероятность попадания при каждом выстреле равна 0,7. Найдите вероятность того, что стрелок попадёт в первые три мишени и не попадёт в последнюю.","answer":"0,1029","answer_forms":["0,1029","0.1029","1029/10000"],"solution":["Выстрелы независимы, вероятности перемножаются.","P = 0,7^3 · 0,3^1 = 0,1029."]},{"id":"5.Т5","task":5,"set":"train","subtype":"Хотя бы один: через противоположное событие","text":"В здании два автомата с кофе, работающих независимо друг от друга. Вероятность того, что каждый из них сломается в течение года, равна 0,02. Найдите вероятность того, что в течение года хотя бы один будет исправен.","answer":"0,9996","answer_forms":["0,9996","0.9996","2499/2500"],"solution":["Противоположное событие: оба сломаются, P = 0,02² = 0,0004.","P(хотя бы один исправен) = 1 − 0,0004 = 0,9996."]},{"id":"5.Т6","task":5,"set":"train","subtype":"Формула полной вероятности","text":"Две фабрики выпускают одинаковые стёкла для автомобильных фар. Первая фабрика выпускает 40% стёкол, вторая — 60%. Первая фабрика выпускает 3% бракованных стёкол, вторая — 6%. Найдите вероятность того, что случайно купленное в магазине стекло окажется бракованным.","answer":"0,048","answer_forms":["0,048","0.048","6/125"],"solution":["Формула полной вероятности: P = P(1-я) · P(брак | 1-я) + P(2-я) · P(брак | 2-я).","P = 0,4 · 0,03 + 0,6 · 0,06 = 0,012 + 0,036 = 0,048."]},{"id":"5.Т7","task":5,"set":"train","subtype":"Произведение вероятностей","text":"Вероятность того, что шахматист выиграет партию белыми, равна 0,52, чёрными — 0,3. Он играет две партии: первую белыми, вторую чёрными. Найдите вероятность того, что он выиграет обе партии.","answer":"0,156","answer_forms":["0,156","0.156","39/250"],"solution":["Партии независимы: P = P(белыми) · P(чёрными).","P = 0,52 · 0,3 = 0,156."]},{"id":"5.Т8","task":5,"set":"train","subtype":"Независимые события: две батарейки","text":"Вероятность того, что батарейка бракованная, равна 0,03. Покупатель выбирает случайную упаковку, в которой две батарейки. Найдите вероятность того, что обе батарейки окажутся исправными.","answer":"0,9409","answer_forms":["0,9409","0.9409","9409/10000"],"solution":["Исправна с вероятностью 1 − 0,03 = 0,97.","P = 0,97² = 0,9409."]},{"id":"5.Т9","task":5,"set":"train","subtype":"Независимые события: произведение","text":"Стрелок стреляет по одному разу в каждую из 4 мишеней. Вероятность попадания при каждом выстреле равна 0,7. Найдите вероятность того, что стрелок попадёт в две первые мишени и не попадёт в две последние.","answer":"0,0441","answer_forms":["0,0441","0.0441","441/10000"],"solution":["Выстрелы независимы, вероятности перемножаются.","P = 0,7^2 · 0,3^2 = 0,0441."]},{"id":"5.Т10","task":5,"set":"train","subtype":"Независимые события: оба исправны","text":"В здании два кондиционера, работающих независимо друг от друга. Вероятность того, что каждый из них сломается в течение года, равна 0,1. Найдите вероятность того, что в течение года оба будут исправны.","answer":"0,81","answer_forms":["0,81","0.81","81/100"],"solution":["Вероятность исправности одного: 1 − 0,1 = 0,9.","События независимы: P = 0,9² = 0,81."]},{"id":"5.Т11","task":5,"set":"train","subtype":"Формула полной вероятности","text":"Две фабрики выпускают одинаковые стёкла для автомобильных фар. Первая фабрика выпускает 30% стёкол, вторая — 70%. Первая фабрика выпускает 3% бракованных стёкол, вторая — 2%. Найдите вероятность того, что случайно купленное в магазине стекло окажется бракованным.","answer":"0,023","answer_forms":["0,023","0.023","23/1000"],"solution":["Формула полной вероятности: P = P(1-я) · P(брак | 1-я) + P(2-я) · P(брак | 2-я).","P = 0,3 · 0,03 + 0,7 · 0,02 = 0,009 + 0,014 = 0,023."]},{"id":"5.Т12","task":5,"set":"train","subtype":"Сложение и умножение вероятностей","text":"Вероятность того, что шахматист выиграет партию белыми, равна 0,6, чёрными — 0,3. Он играет две партии: белыми и чёрными. Найдите вероятность того, что он выиграет ровно одну партию.","answer":"0,54","answer_forms":["0,54","0.54","27/50"],"solution":["Ровно одна победа: (выиграл белыми и проиграл чёрными) или (проиграл белыми и выиграл чёрными).","P = 0,6 · 0,7 + 0,4 · 0,3 = 0,42 + 0,12 = 0,54."]},{"id":"5.Д1","task":5,"set":"homework","subtype":"Хотя бы один: через противоположное событие","text":"В здании два лифта, работающих независимо друг от друга. Вероятность того, что каждый из них сломается в течение года, равна 0,12. Найдите вероятность того, что в течение года хотя бы один будет исправен.","answer":"0,9856","answer_forms":["0,9856","0.9856","616/625"],"solution":["Противоположное событие: оба сломаются, P = 0,12² = 0,0144.","P(хотя бы один исправен) = 1 − 0,0144 = 0,9856."]},{"id":"5.Д2","task":5,"set":"homework","subtype":"Формула полной вероятности","text":"Две фабрики выпускают одинаковые стёкла для автомобильных фар. Первая фабрика выпускает 45% стёкол, вторая — 55%. Первая фабрика выпускает 4% бракованных стёкол, вторая — 8%. Найдите вероятность того, что случайно купленное в магазине стекло окажется бракованным.","answer":"0,062","answer_forms":["0,062","0.062","31/500"],"solution":["Формула полной вероятности: P = P(1-я) · P(брак | 1-я) + P(2-я) · P(брак | 2-я).","P = 0,45 · 0,04 + 0,55 · 0,08 = 0,018 + 0,044 = 0,062."]},{"id":"5.Д3","task":5,"set":"homework","subtype":"Произведение вероятностей","text":"Вероятность того, что шахматист выиграет партию белыми, равна 0,55, чёрными — 0,35. Он играет две партии: первую белыми, вторую чёрными. Найдите вероятность того, что он выиграет обе партии.","answer":"0,1925","answer_forms":["0,1925","0.1925","77/400"],"solution":["Партии независимы: P = P(белыми) · P(чёрными).","P = 0,55 · 0,35 = 0,1925."]},{"id":"5.Д4","task":5,"set":"homework","subtype":"Независимые события: две батарейки","text":"Вероятность того, что батарейка бракованная, равна 0,05. Покупатель выбирает случайную упаковку, в которой две батарейки. Найдите вероятность того, что обе батарейки окажутся исправными.","answer":"0,9025","answer_forms":["0,9025","0.9025","361/400"],"solution":["Исправна с вероятностью 1 − 0,05 = 0,95.","P = 0,95² = 0,9025."]},{"id":"5.Д5","task":5,"set":"homework","subtype":"Схема Бернулли","text":"Биатлонист 3 раза стреляет по мишеням. Вероятность попадания при одном выстреле равна 0,2. Найдите вероятность того, что биатлонист попадёт ровно 2 раза.","answer":"0,096","answer_forms":["0,096","0.096","12/125"],"solution":["Формула Бернулли: P = C(n, k) · pᵏ · (1 − p)ⁿ⁻ᵏ.","P = C(3, 2) · 0,2^2 · 0,8^1 = 3 · 0,04 · 0,8 = 0,096."]},{"id":"5.Д6","task":5,"set":"homework","subtype":"Независимые события: оба исправны","text":"В здании два автомата с кофе, работающих независимо друг от друга. Вероятность того, что каждый из них сломается в течение года, равна 0,1. Найдите вероятность того, что в течение года оба будут исправны.","answer":"0,81","answer_forms":["0,81","0.81","81/100"],"solution":["Вероятность исправности одного: 1 − 0,1 = 0,9.","События независимы: P = 0,9² = 0,81."]},{"id":"6.П1","task":6,"set":"example","subtype":"Математическое ожидание выигрыша","text":"Организаторы лотереи выпустили 1000 билетов. Выигрыши распределены так: 5 билетов — по 1000 руб.; 20 билетов — по 200 руб.; 100 билетов — по 50 руб.; остальные билеты без выигрыша. Найдите математическое ожидание выигрыша на один билет. Ответ дайте в рублях.","answer":"14","answer_forms":["14"],"solution":["M(X) = Σ xᵢ · pᵢ, где pᵢ = (число билетов с выигрышем xᵢ)/N.","Проще: M(X) = (сумма всех выигрышей) / N.","Сумма выигрышей: 1000·5 + 200·20 + 50·100 = 14000 руб.; M(X) = 14000/1000 = 14 руб."]},{"id":"6.П2","task":6,"set":"example","subtype":"Математическое ожидание по таблице","text":"Случайная величина X принимает значения 2, 3, 5, 10. Известно, что P(X = 2) = 0,1, P(X = 3) = 0,1, P(X = 5) = 0,1. Найдите математическое ожидание X.","answer":"8","answer_forms":["8"],"solution":["Сначала P(X = 10) = 1 − (0,1 + 0,1 + 0,1) = 0,7.","M(X) = Σ xᵢ pᵢ.","M(X) = 2·0,1 + 3·0,1 + 5·0,1 + 10·0,7 = 8."]},{"id":"6.П3","task":6,"set":"example","subtype":"Дисперсия по распределению","text":"Случайная величина X задана распределением: P(X = 1) = 0,5, P(X = 3) = 0,2, P(X = 6) = 0,3. Найдите дисперсию X.","answer":"4,69","answer_forms":["4,69","4.69","469/100"],"solution":["M(X) = 1·0,5 + 3·0,2 + 6·0,3 = 2,9.","M(X²) = 1·0,5 + 9·0,2 + 36·0,3 = 13,1.","D(X) = M(X²) − (M(X))² = 13,1 − 8,41 = 4,69."]},{"id":"6.Т1","task":6,"set":"train","subtype":"Мат. ожидание прибыли","text":"Страховой полис стоит 1500 рублей. При наступлении страхового случая (вероятность за год 0,02) компания выплачивает 50000 рублей. Найдите математическое ожидание прибыли компании с одного полиса. Ответ дайте в рублях.","answer":"500","answer_forms":["500"],"solution":["Прибыль = 1500 − X, где X — выплата; M(X) = 50000 · 0,02 = 1000.","M(прибыли) = 1500 − 1000 = 500 руб."]},{"id":"6.Т2","task":6,"set":"train","subtype":"Мат. ожидание числа орлов","text":"Симметричную монету бросают 4 раза. Случайная величина X — число выпавших орлов. Найдите математическое ожидание X.","answer":"2","answer_forms":["2"],"solution":["Распределение: P(X = 0) = 0,0625, P(X = 1) = 0,25, P(X = 2) = 0,375, P(X = 3) = 0,25, P(X = 4) = 0,0625.","M(X) = 0·0,0625 + 1·0,25 + 2·0,375 + 3·0,25 + 4·0,0625 = 2.","Проверка: для n бросков M(X) = n/2."]},{"id":"6.Т3","task":6,"set":"train","subtype":"Свойства мат. ожидания","text":"Случайная величина X имеет математическое ожидание M(X) = 4. Найдите математическое ожидание величины Y = 2X + 1.","answer":"9","answer_forms":["9"],"solution":["M(aX + b) = a·M(X) + b.","M(Y) = 2 · 4 + 1 = 9."]},{"id":"6.Т4","task":6,"set":"train","subtype":"Математическое ожидание выигрыша","text":"Организаторы лотереи выпустили 5000 билетов. Выигрыши распределены так: 2 билета — по 1000 руб.; 20 билетов — по 200 руб.; 500 билетов — по 20 руб.; остальные билеты без выигрыша. Найдите математическое ожидание выигрыша на один билет. Ответ дайте в рублях.","answer":"3,2","answer_forms":["16/5","3,2","3.2"],"solution":["M(X) = Σ xᵢ · pᵢ, где pᵢ = (число билетов с выигрышем xᵢ)/N.","Проще: M(X) = (сумма всех выигрышей) / N.","Сумма выигрышей: 1000·2 + 200·20 + 20·500 = 16000 руб.; M(X) = 16000/5000 = 3,2 руб."]},{"id":"6.Т5","task":6,"set":"train","subtype":"Математическое ожидание по таблице","text":"Случайная величина X принимает значения 3, 4, 5, 10. Известно, что P(X = 3) = 0,1, P(X = 4) = 0,3, P(X = 5) = 0,2. Найдите математическое ожидание X.","answer":"6,5","answer_forms":["13/2","6,5","6.5"],"solution":["Сначала P(X = 10) = 1 − (0,1 + 0,3 + 0,2) = 0,4.","M(X) = Σ xᵢ pᵢ.","M(X) = 3·0,1 + 4·0,3 + 5·0,2 + 10·0,4 = 6,5."]},{"id":"6.Т6","task":6,"set":"train","subtype":"Дисперсия по распределению","text":"Случайная величина X задана распределением: P(X = 2) = 0,5, P(X = 4) = 0,2, P(X = 8) = 0,3. Найдите дисперсию X.","answer":"6,76","answer_forms":["169/25","6,76","6.76"],"solution":["M(X) = 2·0,5 + 4·0,2 + 8·0,3 = 4,2.","M(X²) = 4·0,5 + 16·0,2 + 64·0,3 = 24,4.","D(X) = M(X²) − (M(X))² = 24,4 − 17,64 = 6,76."]},{"id":"6.Т7","task":6,"set":"train","subtype":"Мат. ожидание прибыли","text":"Страховой полис стоит 2000 рублей. При наступлении страхового случая (вероятность за год 0,02) компания выплачивает 20000 рублей. Найдите математическое ожидание прибыли компании с одного полиса. Ответ дайте в рублях.","answer":"1600","answer_forms":["1600"],"solution":["Прибыль = 2000 − X, где X — выплата; M(X) = 20000 · 0,02 = 400.","M(прибыли) = 2000 − 400 = 1600 руб."]},{"id":"6.Т8","task":6,"set":"train","subtype":"Мат. ожидание числа орлов","text":"Симметричную монету бросают 2 раза. Случайная величина X — число выпавших орлов. Найдите математическое ожидание X.","answer":"1","answer_forms":["1"],"solution":["Распределение: P(X = 0) = 0,25, P(X = 1) = 0,5, P(X = 2) = 0,25.","M(X) = 0·0,25 + 1·0,5 + 2·0,25 = 1.","Проверка: для n бросков M(X) = n/2."]},{"id":"6.Т9","task":6,"set":"train","subtype":"Свойства дисперсии","text":"Случайная величина X имеет дисперсию D(X) = 1. Найдите дисперсию величины Y = 5X + 1.","answer":"25","answer_forms":["25"],"solution":["D(aX + b) = a²·D(X) (сдвиг на b дисперсию не меняет).","D(Y) = 5² · 1 = 25."]},{"id":"6.Т10","task":6,"set":"train","subtype":"Математическое ожидание выигрыша","text":"Организаторы лотереи выпустили 5000 билетов. Выигрыши распределены так: 1 билет — по 500 руб.; 10 билетов — по 100 руб.; 500 билетов — по 10 руб.; остальные билеты без выигрыша. Найдите математическое ожидание выигрыша на один билет. Ответ дайте в рублях.","answer":"1,3","answer_forms":["1,3","1.3","13/10"],"solution":["M(X) = Σ xᵢ · pᵢ, где pᵢ = (число билетов с выигрышем xᵢ)/N.","Проще: M(X) = (сумма всех выигрышей) / N.","Сумма выигрышей: 500·1 + 100·10 + 10·500 = 6500 руб.; M(X) = 6500/5000 = 1,3 руб."]},{"id":"6.Т11","task":6,"set":"train","subtype":"Распределение: сумма вероятностей равна 1","text":"Случайная величина X принимает значения 2, 3, 5, 10. Известно, что P(X = 2) = 0,3, P(X = 3) = 0,3, P(X = 5) = 0,2. Найдите P(X = 10).","answer":"0,2","answer_forms":["0,2","0.2","1/5"],"solution":["Сумма всех вероятностей распределения равна 1.","P(X = 10) = 1 − (0,3 + 0,3 + 0,2) = 0,2."]},{"id":"6.Т12","task":6,"set":"train","subtype":"Дисперсия по распределению","text":"Случайная величина X задана распределением: P(X = 1) = 0,3, P(X = 4) = 0,5, P(X = 8) = 0,2. Найдите дисперсию X.","answer":"5,89","answer_forms":["5,89","5.89","589/100"],"solution":["M(X) = 1·0,3 + 4·0,5 + 8·0,2 = 3,9.","M(X²) = 1·0,3 + 16·0,5 + 64·0,2 = 21,1.","D(X) = M(X²) − (M(X))² = 21,1 − 15,21 = 5,89."]},{"id":"6.Д1","task":6,"set":"homework","subtype":"Мат. ожидание выплаты","text":"Страховая компания выплачивает 100000 рублей при наступлении страхового случая, вероятность которого за год равна 0,02. Найдите математическое ожидание выплаты по одному договору за год. Ответ дайте в рублях.","answer":"2000","answer_forms":["2000"],"solution":["Выплата X принимает значения 100000 (с вероятностью 0,02) и 0 (с вероятностью 0,98).","M(X) = 100000 · 0,02 + 0 · 0,98 = 2000 руб."]},{"id":"6.Д2","task":6,"set":"homework","subtype":"Свойства дисперсии","text":"Случайная величина X имеет дисперсию D(X) = 1. Найдите дисперсию величины Y = 3X + 4.","answer":"9","answer_forms":["9"],"solution":["D(aX + b) = a²·D(X) (сдвиг на b дисперсию не меняет).","D(Y) = 3² · 1 = 9."]},{"id":"6.Д3","task":6,"set":"homework","subtype":"Математическое ожидание выигрыша","text":"Организаторы лотереи выпустили 1000 билетов. Выигрыши распределены так: 5 билетов — по 500 руб.; 10 билетов — по 100 руб.; 500 билетов — по 50 руб.; остальные билеты без выигрыша. Найдите математическое ожидание выигрыша на один билет. Ответ дайте в рублях.","answer":"28,5","answer_forms":["28,5","28.5","57/2"],"solution":["M(X) = Σ xᵢ · pᵢ, где pᵢ = (число билетов с выигрышем xᵢ)/N.","Проще: M(X) = (сумма всех выигрышей) / N.","Сумма выигрышей: 500·5 + 100·10 + 50·500 = 28500 руб.; M(X) = 28500/1000 = 28,5 руб."]},{"id":"6.Д4","task":6,"set":"homework","subtype":"Распределение: сумма вероятностей равна 1","text":"Случайная величина X принимает значения 0, 3, 4, 5. Известно, что P(X = 0) = 0,2, P(X = 3) = 0,1, P(X = 4) = 0,2. Найдите P(X = 5).","answer":"0,5","answer_forms":["0,5","0.5","1/2"],"solution":["Сумма всех вероятностей распределения равна 1.","P(X = 5) = 1 − (0,2 + 0,1 + 0,2) = 0,5."]},{"id":"6.Д5","task":6,"set":"homework","subtype":"Дисперсия по распределению","text":"Случайная величина X задана распределением: P(X = 2) = 0,3, P(X = 3) = 0,2, P(X = 8) = 0,5. Найдите дисперсию X.","answer":"7,96","answer_forms":["199/25","7,96","7.96"],"solution":["M(X) = 2·0,3 + 3·0,2 + 8·0,5 = 5,2.","M(X²) = 4·0,3 + 9·0,2 + 64·0,5 = 35.","D(X) = M(X²) − (M(X))² = 35 − 27,04 = 7,96."]},{"id":"6.Д6","task":6,"set":"homework","subtype":"Мат. ожидание выплаты","text":"Страховая компания выплачивает 100000 рублей при наступлении страхового случая, вероятность которого за год равна 0,01. Найдите математическое ожидание выплаты по одному договору за год. Ответ дайте в рублях.","answer":"1000","answer_forms":["1000"],"solution":["Выплата X принимает значения 100000 (с вероятностью 0,01) и 0 (с вероятностью 0,99).","M(X) = 100000 · 0,01 + 0 · 0,99 = 1000 руб."]},{"id":"7.П1","task":7,"set":"example","subtype":"Показательное уравнение","text":"Найдите корень уравнения 2^(x − 1) = 16.","answer":"5","answer_forms":["5"],"solution":["16 = 2^4, значит, показатели равны: x − 1 = 4.","x = 5."]},{"id":"7.П2","task":7,"set":"example","subtype":"Показательное уравнение с дробным основанием","text":"Найдите корень уравнения (1/3)^(x + 4) = 27.","answer":"−7","answer_forms":["-7","−7"],"solution":["(1/3)^(x + 4) = 3^(−(x + 4)), а 27 = 3^3.","−(x + 4) = 3, откуда x = −7."]},{"id":"7.П3","task":7,"set":"example","subtype":"Логарифмическое уравнение","text":"Найдите корень уравнения log_2(x + 6) = 2.","answer":"−2","answer_forms":["-2","−2"],"solution":["По определению логарифма: x + 6 = 2^2 = 4.","x = −2. Проверка ОДЗ: −2 + 6 = 4 > 0."]},{"id":"7.Т1","task":7,"set":"train","subtype":"Иррациональное уравнение","text":"Найдите корень уравнения √(x + 5) = 5.","answer":"20","answer_forms":["20"],"solution":["Возводим обе части в квадрат: x + 5 = 25.","x = 20. Проверка: подкоренное выражение 25 ≥ 0."]},{"id":"7.Т2","task":7,"set":"train","subtype":"Иррациональное уравнение с проверкой","text":"Найдите корень уравнения √(3x + 18) = x.","answer":"6","answer_forms":["6"],"solution":["При x ≥ 0 возводим в квадрат: 3x + 18 = x², то есть x² − 3x − 18 = 0.","Корни: 6 и −3. Отрицательный корень не подходит (x ≥ 0).","Ответ: 6."]},{"id":"7.Т3","task":7,"set":"train","subtype":"Квадратное уравнение: выбор корня","text":"Найдите корень уравнения x² + 6x + 5 = 0. Если уравнение имеет более одного корня, в ответе укажите больший из них.","answer":"−1","answer_forms":["-1","−1"],"solution":["D = 6² − 4·5 = 16, √D = 4.","Корни: −5 и −1.","Больший корень: −1."]},{"id":"7.Т4","task":7,"set":"train","subtype":"Дробно-рациональное уравнение","text":"Найдите корень уравнения (x − 5) / (x − 6) = 3.","answer":"6,5","answer_forms":["13/2","6,5","6.5"],"solution":["ОДЗ: x ≠ 6. Умножаем на знаменатель: x − 5 = 3(x − 6).","x − 3x = −18 − (−5), откуда x = 6,5."]},{"id":"7.Т5","task":7,"set":"train","subtype":"Тригонометрическое уравнение: отбор корня","text":"Найдите корень уравнения cos(π(x + 2)/4) = 0. В ответе запишите наименьший положительный корень.","answer":"4","answer_forms":["4"],"solution":["Общее решение: π(x + 2)/4 = π/2 + πk, k ∈ ℤ.","Умножаем на 4/π и выражаем x: x = 0 + 4k.","Перебираем k = …, −1, 0, 1, …: корни −12, −8, −4, 0, 4, 8, 12.","Наименьший положительный корень: 4."]},{"id":"7.Т6","task":7,"set":"train","subtype":"Показательное уравнение","text":"Найдите корень уравнения 3^(x + 5) = 81.","answer":"−1","answer_forms":["-1","−1"],"solution":["81 = 3^4, значит, показатели равны: x + 5 = 4.","x = −1."]},{"id":"7.Т7","task":7,"set":"train","subtype":"Показательное уравнение с дробным основанием","text":"Найдите корень уравнения (1/5)^(x − 2) = 125.","answer":"−1","answer_forms":["-1","−1"],"solution":["(1/5)^(x − 2) = 5^(−(x − 2)), а 125 = 5^3.","−(x − 2) = 3, откуда x = −1."]},{"id":"7.Т8","task":7,"set":"train","subtype":"Логарифмическое уравнение","text":"Найдите корень уравнения log_3(x + 8) = 3.","answer":"19","answer_forms":["19"],"solution":["По определению логарифма: x + 8 = 3^3 = 27.","x = 19. Проверка ОДЗ: 19 + 8 = 27 > 0."]},{"id":"7.Т9","task":7,"set":"train","subtype":"Иррациональное уравнение","text":"Найдите корень уравнения √(x − 9) = 7.","answer":"58","answer_forms":["58"],"solution":["Возводим обе части в квадрат: x − 9 = 49.","x = 58. Проверка: подкоренное выражение 49 ≥ 0."]},{"id":"7.Т10","task":7,"set":"train","subtype":"Иррациональное уравнение с проверкой","text":"Найдите корень уравнения √(2x + 3) = x.","answer":"3","answer_forms":["3"],"solution":["При x ≥ 0 возводим в квадрат: 2x + 3 = x², то есть x² − 2x − 3 = 0.","Корни: 3 и −1. Отрицательный корень не подходит (x ≥ 0).","Ответ: 3."]},{"id":"7.Т11","task":7,"set":"train","subtype":"Квадратное уравнение: выбор корня","text":"Найдите корень уравнения x² − 9x + 14 = 0. Если уравнение имеет более одного корня, в ответе укажите меньший из них.","answer":"2","answer_forms":["2"],"solution":["D = −9² − 4·14 = 25, √D = 5.","Корни: 2 и 7.","Меньший корень: 2."]},{"id":"7.Т12","task":7,"set":"train","subtype":"Дробно-рациональное уравнение","text":"Найдите корень уравнения (x − 2) / (x − 5) = 2.","answer":"8","answer_forms":["8"],"solution":["ОДЗ: x ≠ 5. Умножаем на знаменатель: x − 2 = 2(x − 5).","x − 2x = −10 − (−2), откуда x = 8."]},{"id":"7.Д1","task":7,"set":"homework","subtype":"Тригонометрическое уравнение: отбор корня","text":"Найдите корень уравнения cos(π(x + 3)/4) = 0. В ответе запишите наибольший отрицательный корень.","answer":"−1","answer_forms":["-1","−1"],"solution":["Общее решение: π(x + 3)/4 = π/2 + πk, k ∈ ℤ.","Умножаем на 4/π и выражаем x: x = −1 + 4k.","Перебираем k = …, −1, 0, 1, …: корни −9, −5, −1, 3, 7, 11.","Наибольший отрицательный корень: −1."]},{"id":"7.Д2","task":7,"set":"homework","subtype":"Показательное уравнение","text":"Найдите корень уравнения 3^(x + 0) = 9.","answer":"2","answer_forms":["2"],"solution":["9 = 3^2, значит, показатели равны: x + 0 = 2.","x = 2."]},{"id":"7.Д3","task":7,"set":"homework","subtype":"Показательное уравнение с дробным основанием","text":"Найдите корень уравнения (1/5)^(x + 5) = 5.","answer":"−6","answer_forms":["-6","−6"],"solution":["(1/5)^(x + 5) = 5^(−(x + 5)), а 5 = 5^1.","−(x + 5) = 1, откуда x = −6."]},{"id":"7.Д4","task":7,"set":"homework","subtype":"Логарифмическое уравнение","text":"Найдите корень уравнения log_4(x − 4) = 1.","answer":"8","answer_forms":["8"],"solution":["По определению логарифма: x − 4 = 4^1 = 4.","x = 8. Проверка ОДЗ: 8 − 4 = 4 > 0."]},{"id":"7.Д5","task":7,"set":"homework","subtype":"Иррациональное уравнение","text":"Найдите корень уравнения √(x + 4) = 4.","answer":"12","answer_forms":["12"],"solution":["Возводим обе части в квадрат: x + 4 = 16.","x = 12. Проверка: подкоренное выражение 16 ≥ 0."]},{"id":"7.Д6","task":7,"set":"homework","subtype":"Иррациональное уравнение с проверкой","text":"Найдите корень уравнения √(3x + 10) = x.","answer":"5","answer_forms":["5"],"solution":["При x ≥ 0 возводим в квадрат: 3x + 10 = x², то есть x² − 3x − 10 = 0.","Корни: 5 и −2. Отрицательный корень не подходит (x ≥ 0).","Ответ: 5."]},{"id":"8.П1","task":8,"set":"example","subtype":"Степени с дробными показателями","text":"Найдите значение выражения 7^(2/3) · 7^(4/3).","answer":"49","answer_forms":["49"],"solution":["При умножении степеней с одинаковым основанием показатели складываются.","2/3 + 4/3 = 2; 7^2 = 49."]},{"id":"8.П2","task":8,"set":"example","subtype":"Арифметические корни","text":"Найдите значение выражения 5√3 · √27.","answer":"45","answer_forms":["45"],"solution":["Произведение корней равно корню из произведения.","√3 · √27 = √81 = 9; ответ 5 · 9 = 45."]},{"id":"8.П3","task":8,"set":"example","subtype":"Свойства логарифмов: разность","text":"Найдите значение выражения log_5 35 − log_5 7.","answer":"1","answer_forms":["1"],"solution":["Разность логарифмов равна логарифму частного.","log_5(35/7) = log_5 5 = 1."]},{"id":"8.Т1","task":8,"set":"train","subtype":"Тригонометрия: формулы приведения","text":"Найдите значение выражения 12·tg 225°.","answer":"12","answer_forms":["12"],"solution":["Приводим к острому углу: tg 225° = 1 (четверть определяет знак).","12 · (1) = 12."]},{"id":"8.Т2","task":8,"set":"train","subtype":"Формулы сокращённого умножения","text":"Найдите значение выражения (3,5 + 2,5)² − (3,5 − 2,5)².","answer":"35","answer_forms":["35"],"solution":["(a + b)² − (a − b)² = 4ab.","4 · 3,5 · 2,5 = 35."]},{"id":"8.Т3","task":8,"set":"train","subtype":"Степени с дробными показателями","text":"Найдите значение выражения 2^(2/3) · 2^(1/3).","answer":"2","answer_forms":["2"],"solution":["При умножении степеней с одинаковым основанием показатели складываются.","2/3 + 1/3 = 1; 2^1 = 2."]},{"id":"8.Т4","task":8,"set":"train","subtype":"Арифметические корни","text":"Найдите значение выражения 5√5 · √45.","answer":"75","answer_forms":["75"],"solution":["Произведение корней равно корню из произведения.","√5 · √45 = √225 = 15; ответ 5 · 15 = 75."]},{"id":"8.Т5","task":8,"set":"train","subtype":"Свойства логарифмов: разность","text":"Найдите значение выражения log_3 33 − log_3 11.","answer":"1","answer_forms":["1"],"solution":["Разность логарифмов равна логарифму частного.","log_3(33/11) = log_3 3 = 1."]},{"id":"8.Т6","task":8,"set":"train","subtype":"Тригонометрия: синус двойного угла (как в демоверсии)","text":"Найдите значение выражения 7·sin 68° / (sin 34°·cos 34°).","answer":"14","answer_forms":["14"],"solution":["sin 68° = 2 sin 34° cos 34°.","7 · 2 sin 34° cos 34° / (sin 34° cos 34°) = 14."]},{"id":"8.Т7","task":8,"set":"train","subtype":"Формулы сокращённого умножения","text":"Найдите значение выражения (0,2 + 0,8)² − (0,2 − 0,8)².","answer":"0,64","answer_forms":["0,64","0.64","16/25"],"solution":["(a + b)² − (a − b)² = 4ab.","4 · 0,2 · 0,8 = 0,64."]},{"id":"8.Т8","task":8,"set":"train","subtype":"Степени с дробными показателями","text":"Найдите значение выражения 7^(3/2) · 7^(5/2).","answer":"2401","answer_forms":["2401"],"solution":["При умножении степеней с одинаковым основанием показатели складываются.","3/2 + 5/2 = 4; 7^4 = 2401."]},{"id":"8.Т9","task":8,"set":"train","subtype":"Кубические корни","text":"Найдите значение выражения ∛4 · ∛16.","answer":"4","answer_forms":["4"],"solution":["∛4 · ∛16 = ∛64 = 4."]},{"id":"8.Т10","task":8,"set":"train","subtype":"Основное логарифмическое тождество","text":"Найдите значение выражения 3^(log_3 9).","answer":"9","answer_forms":["9"],"solution":["Основное логарифмическое тождество: a^(log_a b) = b.","3^(log_3 9) = 9; ответ 1 · 9 = 9."]},{"id":"8.Т11","task":8,"set":"train","subtype":"Тригонометрия: синус двойного угла","text":"Найдите значение выражения 12·sin 15°·cos 15°.","answer":"3","answer_forms":["3"],"solution":["2 sin α cos α = sin 2α.","12·sin 15°·cos 15° = 6·sin 30° = 6·0,5 = 3."]},{"id":"8.Т12","task":8,"set":"train","subtype":"Формулы сокращённого умножения","text":"Найдите значение выражения (1,25 + 0,75)² − (1,25 − 0,75)².","answer":"3,75","answer_forms":["15/4","3,75","3.75"],"solution":["(a + b)² − (a − b)² = 4ab.","4 · 1,25 · 0,75 = 3,75."]},{"id":"8.Д1","task":8,"set":"homework","subtype":"Степени с дробными показателями","text":"Найдите значение выражения 3^(5/2) · 3^(5/2).","answer":"243","answer_forms":["243"],"solution":["При умножении степеней с одинаковым основанием показатели складываются.","5/2 + 5/2 = 5; 3^5 = 243."]},{"id":"8.Д2","task":8,"set":"homework","subtype":"Арифметические корни","text":"Найдите значение выражения 3√3 · √12.","answer":"18","answer_forms":["18"],"solution":["Произведение корней равно корню из произведения.","√3 · √12 = √36 = 6; ответ 3 · 6 = 18."]},{"id":"8.Д3","task":8,"set":"homework","subtype":"Свойства логарифмов: разность","text":"Найдите значение выражения log_3 15 − log_3 5.","answer":"1","answer_forms":["1"],"solution":["Разность логарифмов равна логарифму частного.","log_3(15/5) = log_3 3 = 1."]},{"id":"8.Д4","task":8,"set":"homework","subtype":"Тригонометрия: основное тождество","text":"Найдите значение выражения 3·cos² 58° + 3·sin² 58° − 1.","answer":"2","answer_forms":["2"],"solution":["Выносим общий множитель: 3(cos² 58° + sin² 58°) = 3 · 1 = 3.","3 − 1 = 2."]},{"id":"8.Д5","task":8,"set":"homework","subtype":"Разность квадратов","text":"Найдите значение выражения (7/6)² − (5/6)², делённое на (7/6 − 5/6).","answer":"2","answer_forms":["2"],"solution":["(p² − q²)/(p − q) = p + q.","7/6 + 5/6 = 2."]},{"id":"8.Д6","task":8,"set":"homework","subtype":"Степени с дробными показателями","text":"Найдите значение выражения 3^(2/3) · 3^(1/3).","answer":"3","answer_forms":["3"],"solution":["При умножении степеней с одинаковым основанием показатели складываются.","2/3 + 1/3 = 1; 3^1 = 3."]},{"id":"9.П1","task":9,"set":"example","subtype":"Физический смысл производной","text":"Материальная точка движется прямолинейно по закону x(t) = t^3/4 − t^2 + 5t + 6 (x — в метрах, t — в секундах). Найдите её скорость в момент времени t = 6 с. Ответ дайте в м/с.","answer":"20","answer_forms":["20"],"solution":["Скорость — производная координаты по времени: v(t) = x′(t).","v(t) = 3t^2/4 − 2t + 5.","v(6) = 20 м/с."]},{"id":"9.П2","task":9,"set":"example","subtype":"Касательная, параллельная прямой","text":"Прямая y = 6x − 1 параллельна касательной к графику функции y = −x^2 + x + 2. Найдите абсциссу точки касания.","answer":"−2,5","answer_forms":["-2,5","-2.5","-5/2","−2,5"],"solution":["Угловой коэффициент касательной равен производной в точке касания; у параллельных прямых коэффициенты равны.","y′ = −2x + 1; решаем −2x + 1 = 6.","x₀ = −2,5."]},{"id":"9.П3","task":9,"set":"example","subtype":"Наибольшее/наименьшее значение на отрезке","text":"Найдите наименьшее значение функции y = x^3 − 12x − 3 на отрезке [−3; 3].","answer":"−19","answer_forms":["-19","−19"],"solution":["y′ = 3x² − 12 = 3(x − 2)(x + 2); критические точки x = ±2.","Сравниваем значения функции на концах отрезка и в критических точках, попавших в отрезок:","y(−3) = 6; y(−2) = 13; y(2) = −19; y(3) = −12.","Наименьшее значение: −19."]},{"id":"9.Т1","task":9,"set":"train","subtype":"Угловой коэффициент касательной","text":"Найдите угловой коэффициент касательной к графику функции y = 2x^2 − 3x + 3 в точке с абсциссой x₀ = 3.","answer":"9","answer_forms":["9"],"solution":["Угловой коэффициент касательной k = f′(x₀).","f′(x) = 4x − 3; f′(3) = 9."]},{"id":"9.Т2","task":9,"set":"train","subtype":"Первообразная и площадь","text":"Функция F(x) = x^3 + 2x − 1 — одна из первообразных функции f(x). Найдите площадь фигуры, ограниченной графиком f(x), осью Ox и прямыми x = 1, x = 3 (f(x) > 0 на этом отрезке).","answer":"30","answer_forms":["30"],"solution":["Площадь равна F(b) − F(a) (формула Ньютона–Лейбница).","F(3) = 32, F(1) = 2; S = 32 − (2) = 30."]},{"id":"9.Т5","task":9,"set":"train","subtype":"Физический смысл производной","text":"Материальная точка движется прямолинейно по закону x(t) = t^3/6 + 4t^2 + 4t + 5 (x — в метрах, t — в секундах). Найдите её скорость в момент времени t = 8 с. Ответ дайте в м/с.","answer":"100","answer_forms":["100"],"solution":["Скорость — производная координаты по времени: v(t) = x′(t).","v(t) = t^2/2 + 8t + 4.","v(8) = 100 м/с."]},{"id":"9.Т6","task":9,"set":"train","subtype":"Касательная, параллельная прямой","text":"Прямая y = 2x + 1 параллельна касательной к графику функции y = −x^2 − 2x + 1. Найдите абсциссу точки касания.","answer":"−2","answer_forms":["-2","−2"],"solution":["Угловой коэффициент касательной равен производной в точке касания; у параллельных прямых коэффициенты равны.","y′ = −2x − 2; решаем −2x − 2 = 2.","x₀ = −2."]},{"id":"9.Т7","task":9,"set":"train","subtype":"Наибольшее/наименьшее значение на отрезке","text":"Найдите наибольшее значение функции y = x^3 − 12x + 5 на отрезке [−3; 3].","answer":"21","answer_forms":["21"],"solution":["y′ = 3x² − 12 = 3(x − 2)(x + 2); критические точки x = ±2.","Сравниваем значения функции на концах отрезка и в критических точках, попавших в отрезок:","y(−3) = 14; y(−2) = 21; y(2) = −11; y(3) = −4.","Наибольшее значение: 21."]},{"id":"9.Т8","task":9,"set":"train","subtype":"Угловой коэффициент касательной","text":"Найдите угловой коэффициент касательной к графику функции y = 2x^2 − 3x − 3 в точке с абсциссой x₀ = 1.","answer":"1","answer_forms":["1"],"solution":["Угловой коэффициент касательной k = f′(x₀).","f′(x) = 4x − 3; f′(1) = 1."]},{"id":"9.Т9","task":9,"set":"train","subtype":"Первообразная и площадь","text":"Функция F(x) = x^3 + 2x — одна из первообразных функции f(x). Найдите площадь фигуры, ограниченной графиком f(x), осью Ox и прямыми x = 2, x = 4 (f(x) > 0 на этом отрезке).","answer":"60","answer_forms":["60"],"solution":["Площадь равна F(b) − F(a) (формула Ньютона–Лейбница).","F(4) = 72, F(2) = 12; S = 72 − (12) = 60."]},{"id":"9.Т12","task":9,"set":"train","subtype":"Физический смысл производной","text":"Материальная точка движется прямолинейно по закону x(t) = t^3/6 + 3t + 4 (x — в метрах, t — в секундах). Найдите её скорость в момент времени t = 6 с. Ответ дайте в м/с.","answer":"21","answer_forms":["21"],"solution":["Скорость — производная координаты по времени: v(t) = x′(t).","v(t) = t^2/2 + 3.","v(6) = 21 м/с."]},{"id":"9.Д1","task":9,"set":"homework","subtype":"Касательная, параллельная прямой","text":"Прямая y = 4x + 2 параллельна касательной к графику функции y = x^2 − 5. Найдите абсциссу точки касания.","answer":"2","answer_forms":["2"],"solution":["Угловой коэффициент касательной равен производной в точке касания; у параллельных прямых коэффициенты равны.","y′ = 2x; решаем 2x = 4.","x₀ = 2."]},{"id":"9.Д2","task":9,"set":"homework","subtype":"Наибольшее/наименьшее значение на отрезке","text":"Найдите наибольшее значение функции y = x^3 − 12x на отрезке [−3; 3].","answer":"16","answer_forms":["16"],"solution":["y′ = 3x² − 12 = 3(x − 2)(x + 2); критические точки x = ±2.","Сравниваем значения функции на концах отрезка и в критических точках, попавших в отрезок:","y(−3) = 9; y(−2) = 16; y(2) = −16; y(3) = −9.","Наибольшее значение: 16."]},{"id":"9.Д3","task":9,"set":"homework","subtype":"Угловой коэффициент касательной","text":"Найдите угловой коэффициент касательной к графику функции y = 2x^2 − 3x + 1 в точке с абсциссой x₀ = 0.","answer":"−3","answer_forms":["-3","−3"],"solution":["Угловой коэффициент касательной k = f′(x₀).","f′(x) = 4x − 3; f′(0) = −3."]},{"id":"9.Д4","task":9,"set":"homework","subtype":"Первообразная и площадь","text":"Функция F(x) = x^3/3 + x^2 + 2x + 4 — одна из первообразных функции f(x). Найдите площадь фигуры, ограниченной графиком f(x), осью Ox и прямыми x = 0, x = 3 (f(x) > 0 на этом отрезке).","answer":"24","answer_forms":["24"],"solution":["Площадь равна F(b) − F(a) (формула Ньютона–Лейбница).","F(3) = 28, F(0) = 4; S = 28 − (4) = 24."]},{"id":"10.П1","task":10,"set":"example","subtype":"Линейная зависимость","text":"Температуру нагревателя (в градусах) в зависимости от времени t (в минутах) описывает формула T(t) = 1400 + 75t. Через сколько минут после включения температура достигнет 2000 градусов?","answer":"8","answer_forms":["8"],"solution":["1400 + 75t = 2000.","75t = 600; t = 8 мин."]},{"id":"10.П2","task":10,"set":"example","subtype":"Квадратичная зависимость","text":"Камень брошен вертикально вверх. Пока камень не упал, высота, на которой он находится, описывается формулой h(t) = 25t − 5t² (h — в метрах, t — в секундах). Сколько секунд камень будет находиться на высоте не менее 20 метров?","answer":"3","answer_forms":["3"],"solution":["Решаем 25t − 5t² ≥ 20, то есть 5t² − 25t + 20 ≤ 0.","Корни: t₁ = 1, t₂ = 4.","На высоте не менее 20 м камень находится от t₁ до t₂, то есть 3 с."]},{"id":"10.П3","task":10,"set":"example","subtype":"Формула с корнем","text":"Расстояние от наблюдателя, находящегося на небольшой высоте h километров над землёй, до наблюдаемой им линии горизонта вычисляется по формуле l = √(2Rh), где R = 6400 км — радиус Земли. На какой наименьшей высоте следует находиться наблюдателю, чтобы он видел горизонт на расстоянии не менее 32 километров? Ответ дайте в метрах.","answer":"80","answer_forms":["80"],"solution":["√(2·6400·h) ≥ 32; возводим в квадрат: 12800h ≥ 1024.","h ≥ 1024/12800 = 0,08 км = 80 м."]},{"id":"10.Т1","task":10,"set":"train","subtype":"Формула с логарифмом","text":"После выключения телевизора напряжение на конденсаторе убывает до значения U (в вольтах) за время t (в секундах), определяемое выражением t = RC·log₂(U₀/U), где U₀ = 32 В — начальное напряжение, R = 4 Ом, C = 2 Ф. За сколько секунд напряжение уменьшится до 4 В?","answer":"24","answer_forms":["24"],"solution":["U₀/U = 32/4 = 8 = 2^3, значит, log₂(U₀/U) = 3.","t = 4·2·3 = 24 с."]},{"id":"10.Т2","task":10,"set":"train","subtype":"Формула с тригонометрией","text":"Дальность полёта снаряда L = v²·sin(2α)/g (L — в метрах, v = 20 м/с, g = 10 м/с², α — угол бросания в градусах). При каком наименьшем значении угла α дальность полёта будет не меньше 20 метров? Ответ дайте в градусах.","answer":"15","answer_forms":["15"],"solution":["20²·sin(2α)/10 ≥ 20; sin(2α) ≥ 0,5.","Наименьший угол: 2α = 30°, α = 15°."]},{"id":"10.Т3","task":10,"set":"train","subtype":"Дробно-рациональная формула","text":"Формула тонкой линзы: 1/d + 1/f = 1/F, где F = 15 см — фокусное расстояние, d — расстояние от линзы до предмета, f — от линзы до изображения. Предмет находится на расстоянии d = 60 см. На каком расстоянии от линзы получится изображение? Ответ дайте в сантиметрах.","answer":"20","answer_forms":["20"],"solution":["1/f = 1/15 − 1/60 = (60 − 15)/(15·60) = 45/900.","f = 900/45 = 20 см."]},{"id":"10.Т4","task":10,"set":"train","subtype":"Линейная зависимость","text":"Температуру нагревателя (в градусах) в зависимости от времени t (в минутах) описывает формула T(t) = 1400 + 60t. Через сколько минут после включения температура достигнет 1760 градусов?","answer":"6","answer_forms":["6"],"solution":["1400 + 60t = 1760.","60t = 360; t = 6 мин."]},{"id":"10.Т5","task":10,"set":"train","subtype":"Квадратичная зависимость","text":"Камень брошен вертикально вверх. Пока камень не упал, высота, на которой он находится, описывается формулой h(t) = 25t − 5t² (h — в метрах, t — в секундах). Сколько секунд камень будет находиться на высоте не менее 30 метров?","answer":"1","answer_forms":["1"],"solution":["Решаем 25t − 5t² ≥ 30, то есть 5t² − 25t + 30 ≤ 0.","Корни: t₁ = 2, t₂ = 3.","На высоте не менее 30 м камень находится от t₁ до t₂, то есть 1 с."]},{"id":"10.Т6","task":10,"set":"train","subtype":"Формула с корнем","text":"Расстояние от наблюдателя, находящегося на небольшой высоте h километров над землёй, до наблюдаемой им линии горизонта вычисляется по формуле l = √(2Rh), где R = 6400 км — радиус Земли. На какой наименьшей высоте следует находиться наблюдателю, чтобы он видел горизонт на расстоянии не менее 8 километров? Ответ дайте в метрах.","answer":"5","answer_forms":["5"],"solution":["√(2·6400·h) ≥ 8; возводим в квадрат: 12800h ≥ 64.","h ≥ 64/12800 = 0,005 км = 5 м."]},{"id":"10.Т7","task":10,"set":"train","subtype":"Формула с логарифмом","text":"После выключения телевизора напряжение на конденсаторе убывает до значения U (в вольтах) за время t (в секундах), определяемое выражением t = RC·log₂(U₀/U), где U₀ = 32 В — начальное напряжение, R = 2 Ом, C = 5 Ф. За сколько секунд напряжение уменьшится до 4 В?","answer":"30","answer_forms":["30"],"solution":["U₀/U = 32/4 = 8 = 2^3, значит, log₂(U₀/U) = 3.","t = 2·5·3 = 30 с."]},{"id":"10.Т8","task":10,"set":"train","subtype":"Дробно-рациональная формула","text":"Формула тонкой линзы: 1/d + 1/f = 1/F, где F = 10 см — фокусное расстояние, d — расстояние от линзы до предмета, f — от линзы до изображения. Предмет находится на расстоянии d = 20 см. На каком расстоянии от линзы получится изображение? Ответ дайте в сантиметрах.","answer":"20","answer_forms":["20"],"solution":["1/f = 1/10 − 1/20 = (20 − 10)/(10·20) = 10/200.","f = 200/10 = 20 см."]},{"id":"10.Т9","task":10,"set":"train","subtype":"Линейная зависимость","text":"Температуру нагревателя (в градусах) в зависимости от времени t (в минутах) описывает формула T(t) = 1500 + 75t. Через сколько минут после включения температура достигнет 1800 градусов?","answer":"4","answer_forms":["4"],"solution":["1500 + 75t = 1800.","75t = 300; t = 4 мин."]},{"id":"10.Т10","task":10,"set":"train","subtype":"Квадратичная зависимость","text":"Камень брошен вертикально вверх. Пока камень не упал, высота, на которой он находится, описывается формулой h(t) = 30t − 5t² (h — в метрах, t — в секундах). Через сколько секунд после броска камень впервые окажется на высоте 45 метров?","answer":"3","answer_forms":["3"],"solution":["Решаем 30t − 5t² = 45, то есть 5t² − 30t + 45 = 0.","Корни: t₁ = 3, t₂ = 3.","Впервые — в момент t₁ = 3 с."]},{"id":"10.Т11","task":10,"set":"train","subtype":"Формула с корнем","text":"Расстояние от наблюдателя, находящегося на небольшой высоте h километров над землёй, до наблюдаемой им линии горизонта вычисляется по формуле l = √(2Rh), где R = 6400 км — радиус Земли. На какой наименьшей высоте следует находиться наблюдателю, чтобы он видел горизонт на расстоянии не менее 16 километров? Ответ дайте в метрах.","answer":"20","answer_forms":["20"],"solution":["√(2·6400·h) ≥ 16; возводим в квадрат: 12800h ≥ 256.","h ≥ 256/12800 = 0,02 км = 20 м."]},{"id":"10.Т12","task":10,"set":"train","subtype":"Формула с логарифмом","text":"После выключения телевизора напряжение на конденсаторе убывает до значения U (в вольтах) за время t (в секундах), определяемое выражением t = RC·log₂(U₀/U), где U₀ = 64 В — начальное напряжение, R = 4 Ом, C = 10 Ф. За сколько секунд напряжение уменьшится до 8 В?","answer":"120","answer_forms":["120"],"solution":["U₀/U = 64/8 = 8 = 2^3, значит, log₂(U₀/U) = 3.","t = 4·10·3 = 120 с."]},{"id":"10.Д1","task":10,"set":"homework","subtype":"Формула с тригонометрией","text":"Дальность полёта снаряда L = v²·sin(2α)/g (L — в метрах, v = 30 м/с, g = 10 м/с², α — угол бросания в градусах). При каком наименьшем значении угла α дальность полёта будет не меньше 45 метров? Ответ дайте в градусах.","answer":"15","answer_forms":["15"],"solution":["30²·sin(2α)/10 ≥ 45; sin(2α) ≥ 0,5.","Наименьший угол: 2α = 30°, α = 15°."]},{"id":"10.Д2","task":10,"set":"homework","subtype":"Дробно-рациональная формула","text":"Формула тонкой линзы: 1/d + 1/f = 1/F, где F = 12 см — фокусное расстояние, d — расстояние от линзы до предмета, f — от линзы до изображения. Предмет находится на расстоянии d = 20 см. На каком расстоянии от линзы получится изображение? Ответ дайте в сантиметрах.","answer":"30","answer_forms":["30"],"solution":["1/f = 1/12 − 1/20 = (20 − 12)/(12·20) = 8/240.","f = 240/8 = 30 см."]},{"id":"10.Д3","task":10,"set":"homework","subtype":"Линейная зависимость","text":"Температуру нагревателя (в градусах) в зависимости от времени t (в минутах) описывает формула T(t) = 1400 + 75t. Через сколько минут после включения температура достигнет 1850 градусов?","answer":"6","answer_forms":["6"],"solution":["1400 + 75t = 1850.","75t = 450; t = 6 мин."]},{"id":"10.Д4","task":10,"set":"homework","subtype":"Формула с логарифмом","text":"После выключения телевизора напряжение на конденсаторе убывает до значения U (в вольтах) за время t (в секундах), определяемое выражением t = RC·log₂(U₀/U), где U₀ = 32 В — начальное напряжение, R = 2 Ом, C = 2 Ф. За сколько секунд напряжение уменьшится до 2 В?","answer":"16","answer_forms":["16"],"solution":["U₀/U = 32/2 = 16 = 2^4, значит, log₂(U₀/U) = 4.","t = 2·2·4 = 16 с."]},{"id":"10.Д5","task":10,"set":"homework","subtype":"Формула с тригонометрией","text":"Дальность полёта снаряда L = v²·sin(2α)/g (L — в метрах, v = 10 м/с, g = 10 м/с², α — угол бросания в градусах). При каком наименьшем значении угла α дальность полёта будет не меньше 5 метров? Ответ дайте в градусах.","answer":"15","answer_forms":["15"],"solution":["10²·sin(2α)/10 ≥ 5; sin(2α) ≥ 0,5.","Наименьший угол: 2α = 30°, α = 15°."]},{"id":"10.Д6","task":10,"set":"homework","subtype":"Дробно-рациональная формула","text":"Формула тонкой линзы: 1/d + 1/f = 1/F, где F = 15 см — фокусное расстояние, d — расстояние от линзы до предмета, f — от линзы до изображения. Предмет находится на расстоянии d = 40 см. На каком расстоянии от линзы получится изображение? Ответ дайте в сантиметрах.","answer":"24","answer_forms":["24"],"solution":["1/f = 1/15 − 1/40 = (40 − 15)/(15·40) = 25/600.","f = 600/25 = 24 см."]}]</script>
 <script>
 "use strict";
 /* ── роутер вкладок ── */
@@ -1712,12 +1890,47 @@ function renderReview(r, cond, isDemo){
   box.scrollIntoView({behavior:"smooth", block:"start"});
 }
 
+/* ── ЛК: регистрация ── */
+const REG_KEY = "tengr_student", TR_KEY = "tengr_trainer";
+function loadJSON(key){ try{ return JSON.parse(localStorage.getItem(key)); }catch(_){ return null; } }
+function saveJSON(key,v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(_){} }
+const regEl = document.getElementById("cab-reg");
+const dashEl = document.getElementById("cab-dash");
+function initCab(){
+  const st = loadJSON(REG_KEY);
+  regEl.hidden = !!st;
+  dashEl.hidden = !st;
+  if (st){
+    const h = new Date().getHours();
+    const g = h<5 ? "Доброй ночи" : h<12 ? "Доброе утро" : h<18 ? "Добрый день" : "Добрый вечер";
+    document.getElementById("cab-greet").textContent = g + ", " + st.name;
+    document.getElementById("cab-sub-goal").textContent = st.goal || "80+";
+    document.getElementById("cab-sub-grade").textContent = (st.grade || "11") + " класс";
+  }
+}
+document.getElementById("reg-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const nameEl = document.getElementById("reg-name");
+  const name = nameEl.value.trim();
+  if (!name){ nameEl.focus(); return; }
+  saveJSON(REG_KEY, {name, grade: document.getElementById("reg-grade").value, goal: document.getElementById("reg-goal").value});
+  initCab(); showCabTab("progress"); window.scrollTo(0,0);
+});
+document.getElementById("reg-demo").addEventListener("click", ()=>{
+  saveJSON(REG_KEY, {name:"Алдар", grade:"11", goal:"80+"});
+  initCab(); showCabTab("progress"); window.scrollTo(0,0);
+});
+document.getElementById("cab-logout").addEventListener("click", ()=>{
+  try{ localStorage.removeItem(REG_KEY); }catch(_){}
+  initCab(); window.scrollTo(0,0);
+});
+
 /* ── вкладки ЛК ── */
 const cabPanels = {
-  overview: document.getElementById("cab-overview"),
-  homework: document.getElementById("cab-homework"),
-  mocks: document.getElementById("cab-mocks"),
-  videos: document.getElementById("cab-videos")
+  progress: document.getElementById("cab-progress"),
+  program: document.getElementById("cab-program"),
+  materials: document.getElementById("cab-materials"),
+  tasks: document.getElementById("cab-tasks")
 };
 const cabTabBtns = document.querySelectorAll(".cab-tab");
 function showCabTab(key){
@@ -1725,16 +1938,144 @@ function showCabTab(key){
   cabTabBtns.forEach(b=>b.classList.toggle("active", b.dataset.tab === key));
 }
 cabTabBtns.forEach(b=>b.addEventListener("click", ()=>showCabTab(b.dataset.tab)));
-document.getElementById("go-hw").addEventListener("click", ()=>{
-  showCabTab("homework");
-  document.getElementById("cab-homework").scrollIntoView({behavior:"smooth", block:"start"});
-});
+document.querySelectorAll("[data-goto-tab]").forEach(b=>b.addEventListener("click", ()=>showCabTab(b.dataset.gotoTab)));
 document.getElementById("go-hw2").addEventListener("click", ()=>{
-  document.querySelector("#cab-homework .cab-grid").scrollIntoView({behavior:"smooth", block:"start"});
+  document.querySelector("#cab-tasks .cab-grid").scrollIntoView({behavior:"smooth", block:"start"});
 });
 document.querySelectorAll("[data-open-demo]").forEach(btn=>btn.addEventListener("click", ()=>{
   renderReview(DEMO_RESULT, DEMO_TASK, true);
 }));
+
+/* ── тренажёр ── */
+const DIDACTICS = JSON.parse(document.getElementById("didactics-data").textContent);
+const TASK_TITLES = {1:"Планиметрия",2:"Векторы",3:"Стереометрия",4:"Вероятность",5:"Вероятность: сложение и умножение",
+  6:"Случайные величины",7:"Простейшие уравнения",8:"Преобразования выражений",9:"Производная и интеграл",10:"Прикладные задачи"};
+const TRAIN = {}, EXAMPLES = {};
+DIDACTICS.forEach(t=>{
+  const bank = t.set === "example" ? EXAMPLES : TRAIN;   // train + homework — в тренажёр
+  (bank[t.task] = bank[t.task] || []).push(t);
+});
+let trNum = 1;
+const trIdx = {};
+let trSolved = loadJSON(TR_KEY) || {};
+const trTotalTasks = Object.values(TRAIN).reduce((s,a)=>s+a.length,0);
+function solvedIn(n){ return (TRAIN[n]||[]).filter(t=>trSolved[t.id]).length; }
+function solvedAll(){ return Object.keys(trSolved).length; }
+function normAns(v){ return String(v).trim().toLowerCase().replace(/\s+/g,"").replace(/,/g,"."); }
+function checkAnswer(t, v){
+  const nv = normAns(v);
+  if (!nv) return false;
+  if (Array.isArray(t.answer_forms) && t.answer_forms.some(f=>normAns(f)===nv)) return true;
+  const a = parseFloat(normAns(t.answer)), b = parseFloat(nv);
+  return isFinite(a) && isFinite(b) && Math.abs(a-b) < 1e-9;
+}
+const trNumsEl = document.getElementById("tr-nums");
+function renderTrNums(){
+  trNumsEl.textContent = "";
+  for (let n=1; n<=10; n++){
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "tr-num" + (n===trNum ? " active" : "");
+    b.innerHTML = "№"+n+'<span class="done">'+solvedIn(n)+"/"+(TRAIN[n]||[]).length+"</span>";
+    b.setAttribute("aria-label", "Задание "+n+": "+(TASK_TITLES[n]||""));
+    b.addEventListener("click", ()=>{ trNum = n; renderTrainer(); });
+    trNumsEl.append(b);
+  }
+  document.getElementById("tr-progress").textContent = "решено "+solvedAll()+" из "+trTotalTasks;
+  const tot = document.getElementById("tr-total");
+  if (tot) tot.innerHTML = solvedAll()+' <small>задач решено</small>';
+}
+function currentTask(){
+  const list = TRAIN[trNum] || [];
+  if (!list.length) return null;
+  if (trIdx[trNum] == null){
+    const firstUnsolved = list.findIndex(t=>!trSolved[t.id]);
+    trIdx[trNum] = firstUnsolved >= 0 ? firstUnsolved : 0;
+  }
+  return list[trIdx[trNum] % list.length];
+}
+const trRes = document.getElementById("tr-res"), trSolWrap = document.getElementById("tr-sol"),
+      trSolSteps = document.getElementById("tr-sol-steps"), trInput = document.getElementById("tr-input");
+function renderTrainer(){
+  renderTrNums();
+  const t = currentTask();
+  if (!t) return;
+  document.getElementById("tr-subtype").textContent = "№"+trNum+" · "+t.subtype;
+  document.getElementById("tr-count").textContent = TASK_TITLES[trNum] || "";
+  document.getElementById("tr-text").textContent = t.text;
+  trInput.value = ""; trRes.hidden = true; trSolWrap.hidden = true; trSolSteps.hidden = true;
+  trSolSteps.textContent = "";
+  document.getElementById("tr-sol-btn").textContent = "показать решение";
+}
+document.getElementById("tr-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const t = currentTask(); if (!t) return;
+  const ok = checkAnswer(t, trInput.value);
+  trRes.hidden = false;
+  trRes.className = "tr-res " + (ok ? "ok" : "bad");
+  if (ok){
+    trRes.textContent = "Верно! Ответ: " + t.answer + ".";
+    if (!trSolved[t.id]){ trSolved[t.id] = 1; saveJSON(TR_KEY, trSolved); }
+    renderTrNums();
+  } else {
+    trRes.textContent = "Пока неверно. Проверьте вычисления или посмотрите решение.";
+  }
+  trSolWrap.hidden = false;
+});
+document.getElementById("tr-sol-btn").addEventListener("click", ()=>{
+  const t = currentTask(); if (!t) return;
+  if (trSolSteps.hidden){
+    trSolSteps.textContent = "";
+    (t.solution||[]).forEach(step=>{
+      const li = document.createElement("li"); li.textContent = step; trSolSteps.append(li);
+    });
+    const li = document.createElement("li"); li.innerHTML = "<b>Ответ: "+t.answer+"</b>"; trSolSteps.append(li);
+    trSolSteps.hidden = false;
+    document.getElementById("tr-sol-btn").textContent = "скрыть решение";
+  } else {
+    trSolSteps.hidden = true;
+    document.getElementById("tr-sol-btn").textContent = "показать решение";
+  }
+});
+document.getElementById("tr-next").addEventListener("click", ()=>{
+  const list = TRAIN[trNum] || []; if (!list.length) return;
+  trIdx[trNum] = ((trIdx[trNum]||0) + 1) % list.length;
+  renderTrainer();
+});
+renderTrainer();
+
+/* ── материалы: дидактика ── */
+const didGrid = document.getElementById("did-grid");
+for (let n=1; n<=10; n++){
+  const ex = (EXAMPLES[n]||[])[0];
+  const card = document.createElement("div"); card.className = "card did-card";
+  const head = document.createElement("div");
+  head.style.cssText = "display:flex;gap:14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap";
+  const left = document.createElement("div");
+  const num = document.createElement("div"); num.className = "n"; num.textContent = "№"+n;
+  const title = document.createElement("b"); title.textContent = TASK_TITLES[n]||"";
+  left.append(num, title);
+  const btn = document.createElement("button"); btn.type="button"; btn.className = "linkish"; btn.textContent = "тренироваться →";
+  btn.addEventListener("click", ()=>{ trNum = n; renderTrainer(); showCabTab("tasks"); window.scrollTo(0,0); });
+  head.append(left, btn);
+  const counts = document.createElement("div"); counts.className = "counts";
+  counts.textContent = (EXAMPLES[n]||[]).length + " разобранных примера · " + (TRAIN[n]||[]).length + " задач в тренажёре";
+  card.append(head, counts);
+  if (ex){
+    const det = document.createElement("details");
+    const sum = document.createElement("summary"); sum.textContent = "разобранный пример";
+    const exDiv = document.createElement("div"); exDiv.className = "ex";
+    const p = document.createElement("p"); p.textContent = ex.text;
+    const ol = document.createElement("ol");
+    (ex.solution||[]).forEach(stp=>{ const li=document.createElement("li"); li.textContent=stp; ol.append(li); });
+    const ans = document.createElement("p"); ans.innerHTML = "<b>Ответ: "+ex.answer+"</b>";
+    exDiv.append(p, ol, ans);
+    det.append(sum, exDiv);
+    card.append(det);
+  }
+  didGrid.append(card);
+}
+initCab();
 </script>
 
 </body>
