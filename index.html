@@ -351,6 +351,55 @@ ul.marks.errs li::before{content:"✗";color:var(--akane-ink)}
 pre.tr{white-space:pre-wrap;font-size:13px;background:var(--surface-2);border-radius:12px;padding:14px;margin:8px 0 0;overflow-x:auto}
 .demo-badge{font-size:12px;color:var(--karekusa-ink);background:var(--karekusa-soft);border-radius:12px;padding:3px 11px;font-weight:700}
 
+
+/* ── ЛК: вкладки и дашборд ── */
+.cab-tabs{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.cab-tab{font:inherit;font-size:13.5px;font-weight:600;padding:9px 20px;border-radius:12px;
+  border:1px solid rgba(239,236,226,.28);background:transparent;color:#CBDACD;cursor:pointer;transition:all .15s}
+.cab-tab:hover{border-color:#C4A566;color:#EFECE2}
+.cab-tab.active{background:var(--bg);color:#1B332B;border-color:var(--bg);font-weight:700}
+:root[data-theme="dark"] .cab-tab.active{color:#1B332B;background:#EFECE2;border-color:#EFECE2}
+.cab-panel{display:grid;gap:16px}
+.ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ov-grid .card{display:grid;gap:10px;align-content:start}
+.ov-forecast{grid-column:span 2}
+.ov-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ov-score{display:flex;align-items:baseline;gap:16px}
+.ov-score .now{font-family:var(--serif);font-size:58px;font-weight:600;line-height:1;color:var(--ink)}
+.ov-score .arrow{color:var(--ink-3);font-size:20px}
+.ov-score .goal{font-size:14px;color:var(--karekusa-ink);font-weight:600}
+.chartwrap{overflow-x:auto}
+.chartwrap svg{display:block;width:100%;height:auto;min-width:420px}
+.big-num{font-family:var(--serif);font-size:46px;font-weight:600;line-height:1;color:var(--ink)}
+.big-num small{font-size:13px;font-family:var(--sans);color:var(--ink-3);font-weight:500;letter-spacing:0}
+.meter{height:8px;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ai)}
+.mini-rows{display:grid}
+.mini-rows .row{grid-template-columns:96px 1fr;padding:11px 0}
+.hw-list{padding:0;overflow:hidden}
+.hw-row{display:grid;grid-template-columns:96px 1fr auto;gap:16px;padding:16px 24px;border-top:1px solid var(--line);align-items:center}
+.hw-row:first-child{border-top:0}
+.hw-row .d{color:var(--ink-3);font-size:13px}
+.hw-row b{font-weight:600;font-size:14.5px;display:block}
+.hw-row .sub{font-size:13px;color:var(--ink-2)}
+.hw-row .st{display:grid;gap:6px;justify-items:end;text-align:right}
+.linkish{background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--ai-ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.video{display:grid;gap:10px;align-content:start}
+.vthumb{aspect-ratio:16/9;border-radius:12px;background:var(--tetsukon);display:grid;place-items:center;position:relative}
+.vthumb::after{content:"";width:0;height:0;border-left:18px solid rgba(239,236,226,.85);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.vthumb.soon{background:var(--surface-2)}
+.vthumb.soon::after{display:none}
+.vthumb.soon span{font-size:12px;color:var(--ink-3);padding:0 18px;text-align:center}
+.video .vmeta{font-size:12px;color:var(--ink-3)}
+@media (max-width:960px){
+  .ov-grid{grid-template-columns:1fr}
+  .ov-forecast{grid-column:auto}
+  .videos{grid-template-columns:1fr}
+  .hw-row{grid-template-columns:1fr;gap:6px}
+  .hw-row .st{justify-items:start;text-align:left}
+}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:grid;gap:14px}
@@ -1096,44 +1145,207 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 <section class="view" id="view-cabinet" hidden>
   <div class="cab-head">
     <div class="wrap">
-      <a class="back" href="#home">← на сайт школы</a>
-      <div class="label" style="margin-top:12px">кабинет ученика · demo</div>
-      <h1>Проверка домашней работы</h1>
-      <p>Выберите задание, сфотографируйте решение в тетради и загрузите фото. Проверка выполняется Claude на вашем аккаунте — первый запуск спросит разрешение.</p>
+      <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline">
+        <a class="back" href="#home">← на сайт школы</a>
+        <span class="demo-badge">демо-данные</span>
+      </div>
+      <div class="label" style="margin-top:14px">личный кабинет ученика</div>
+      <h1>Добрый день, Алдар</h1>
+      <p>Математика · группа 80+ · ведущий учитель <span class="placeholder">Имя Фамилия</span> · цель на июнь — 75+</p>
+      <nav class="cab-tabs" id="cab-tabs" aria-label="Разделы кабинета">
+        <button class="cab-tab active" data-tab="overview" type="button">Обзор</button>
+        <button class="cab-tab" data-tab="homework" type="button">Домашние задания</button>
+        <button class="cab-tab" data-tab="mocks" type="button">Пробники</button>
+        <button class="cab-tab" data-tab="videos" type="button">Записи разборов</button>
+      </nav>
     </div>
   </div>
-  <div class="wrap" style="padding-top:38px;padding-bottom:80px">
-    <div class="cab-grid">
-      <div class="panel">
-        <h3><span class="num">1</span> Задание и эталон</h3>
-        <div>
-          <label for="task-select">Задание</label>
-          <select id="task-select" style="margin-top:6px"></select>
+  <div class="wrap" style="padding-top:34px;padding-bottom:84px">
+
+    <!-- ── Обзор ── -->
+    <div class="cab-panel" id="cab-overview">
+      <div class="ov-grid">
+        <div class="card ov-forecast">
+          <div class="ov-head">
+            <h3>Прогноз балла</h3>
+            <span class="small muted">обновляется после каждого пробника</span>
+          </div>
+          <div class="ov-score"><span class="now">61</span><span class="arrow">→</span><span class="goal">цель к июню — 75</span></div>
+          <div class="chartwrap">
+            <svg viewBox="0 0 560 210" role="img" aria-label="Динамика балла: сентябрь 48, октябрь 54, ноябрь 61; цель к июню 75">
+              <g stroke="var(--line)" stroke-width="1">
+                <line x1="42" y1="30" x2="540" y2="30"/><line x1="42" y1="70" x2="540" y2="70"/>
+                <line x1="42" y1="110" x2="540" y2="110"/><line x1="42" y1="150" x2="540" y2="150"/>
+                <line x1="42" y1="190" x2="540" y2="190"/>
+              </g>
+              <g fill="var(--ink-3)" font-size="11">
+                <text x="34" y="34" text-anchor="end">80</text><text x="34" y="74" text-anchor="end">70</text>
+                <text x="34" y="114" text-anchor="end">60</text><text x="34" y="154" text-anchor="end">50</text>
+                <text x="34" y="194" text-anchor="end">40</text>
+              </g>
+              <g fill="var(--ink-2)" font-size="11" text-anchor="middle">
+                <text x="70" y="207">сен</text><text x="190" y="207">окт</text><text x="310" y="207">ноя</text>
+                <text x="415" y="207">фев</text><text x="520" y="207">июн</text>
+              </g>
+              <polyline points="70,158 190,134 310,106" fill="none" stroke="var(--ai)" stroke-width="2.5" stroke-linecap="round"/>
+              <polyline points="310,106 520,50" fill="none" stroke="var(--karekusa)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+              <g>
+                <circle cx="70" cy="158" r="5" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Входной пробник, 15 сентября: 48</title></circle>
+                <circle cx="190" cy="134" r="5" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Тематический пробник, 20 октября: 54</title></circle>
+                <circle cx="310" cy="106" r="6" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Пробник, 24 ноября: 61</title></circle>
+                <circle cx="520" cy="50" r="6" fill="var(--surface)" stroke="var(--karekusa)" stroke-width="2.5"><title>Цель на экзамене: 75</title></circle>
+              </g>
+              <g fill="var(--ink-2)" font-size="12" font-weight="600" text-anchor="middle">
+                <text x="70" y="146">48</text><text x="190" y="122">54</text>
+                <text x="310" y="92" fill="var(--ink)" font-size="13">61</text>
+              </g>
+              <text x="520" y="36" fill="var(--karekusa-ink)" font-size="12" font-weight="600" text-anchor="middle">75</text>
+            </svg>
+          </div>
+          <p class="small muted">+13 баллов с сентября. Следующий пробник — №2, полный формат, 14–20 декабря.</p>
         </div>
-        <div id="task-preview" class="task-preview"></div>
-        <div id="custom-task" hidden style="display:grid;gap:12px">
-          <div><label for="custom-cond">Условие задания</label><textarea id="custom-cond" placeholder="Например: решите уравнение …" style="margin-top:6px"></textarea></div>
-          <div><label for="custom-key">Эталонный ответ / критерии</label><textarea id="custom-key" placeholder="Правильные ответы по пунктам, баллы за каждый пункт" style="margin-top:6px"></textarea></div>
+        <div class="card">
+          <h3>Домашние работы</h3>
+          <div class="big-num">6 <small>недель подряд</small></div>
+          <p>Сдано 11 из 12 · средний результат 87%</p>
+          <div class="meter" role="img" aria-label="Сдано 92% работ"><i style="width:92%"></i></div>
         </div>
-      </div>
-      <div class="panel">
-        <h3><span class="num">2</span> Фото решения</h3>
-        <div class="drop" id="drop" role="button" tabindex="0" aria-label="Загрузить фото решения">
-          Перетащите сюда фото тетради<br><span class="small" style="color:var(--ink-3)">или нажмите, чтобы выбрать · до 5 фото · JPEG, PNG</span>
+        <div class="card">
+          <h3>Ближайшие занятия</h3>
+          <div class="mini-rows">
+            <div class="row"><b>Чт · 18:30</b><span>Разбор с учителем — производная и касательная (№9)</span></div>
+            <div class="row"><b>Сб · 15:00</b><span>Тренировка с семинаристом — практикум по №9</span></div>
+          </div>
         </div>
-        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
-        <div class="thumbs" id="thumbs"></div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="btn btn-akane" id="check-btn" disabled>Проверить работу</button>
-          <button class="btn btn-ghost" id="demo-btn" type="button">Показать пример разбора</button>
-          <button class="btn btn-ghost" id="stop-btn" type="button" hidden>Остановить</button>
+        <div class="card">
+          <h3>Текущее задание</h3>
+          <p><b style="color:var(--ink)">№9 · Производная и касательная</b><br>16 задач и мини-тест на повторение. Сдать до четверга.</p>
+          <div><button class="btn btn-akane" id="go-hw" type="button">Сдать фото решения</button></div>
         </div>
-        <div class="status" id="status" hidden><span class="spinner"></span><span id="status-text">Проверяю работу…</span></div>
-        <div class="err" id="error" hidden></div>
-        <p class="small muted" id="cap-note" hidden>В этом окне проверка через Claude недоступна — показан пример разбора. Откройте страницу в приложении Claude, чтобы проверить свою работу.</p>
+        <div class="card">
+          <h3>Связь</h3>
+          <div class="mini-rows">
+            <div class="row"><b>Чат группы</b><span>фото задачи → ответ семинариста в тот же день</span></div>
+            <div class="row"><b>Учитель</b><span>10 минут раз в месяц, по записи</span></div>
+            <div class="row"><b>Родителям</b><span>отчёт каждую пятницу, три строки</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="review" id="review" hidden></div>
+
+    <!-- ── Домашние задания ── -->
+    <div class="cab-panel" id="cab-homework" hidden>
+      <div class="card hw-list">
+        <div class="hw-row">
+          <span class="d">до чт</span>
+          <div><b>№9 · Производная и касательная</b><span class="sub">16 задач + мини-тест на повторение недели</span></div>
+          <div class="st"><span class="pill bad">ждёт сдачи</span><button class="linkish" id="go-hw2" type="button">сдать фото ↓</button></div>
+        </div>
+        <div class="hw-row">
+          <span class="d">9 дек</span>
+          <div><b>№12 · Простейшие уравнения</b><span class="sub">проверено, разбор готов</span></div>
+          <div class="st"><span class="pill part">3,5 / 4</span><button class="linkish" data-open-demo type="button">открыть разбор</button></div>
+        </div>
+        <div class="hw-row">
+          <span class="d">2 дек</span>
+          <div><b>№11 · Финансовые задачи</b><span class="sub">проверено, разбор готов</span></div>
+          <div class="st"><span class="pill ok">4 / 4</span><button class="linkish" data-open-demo type="button">открыть разбор</button></div>
+        </div>
+        <div class="hw-row">
+          <span class="d">25 ноя</span>
+          <div><b>№10 · Графики функций</b><span class="sub">на проверке — разбор будет к занятию</span></div>
+          <div class="st"><span class="pill none">на проверке</span></div>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin:26px 0 6px;max-width:none">
+        <h2 style="font-size:clamp(24px,3vw,36px)">Сдать работу</h2>
+        <p>Сфотографируйте решение в тетради и загрузите фото — разбор придёт сюда. Первый запуск спросит разрешение на проверку через Claude.</p>
+      </div>
+      <div class="cab-grid">
+        <div class="panel">
+          <h3><span class="num">1</span> Задание и эталон</h3>
+          <div>
+            <label for="task-select">Задание</label>
+            <select id="task-select" style="margin-top:6px"></select>
+          </div>
+          <div id="task-preview" class="task-preview"></div>
+          <div id="custom-task" hidden style="display:grid;gap:12px">
+            <div><label for="custom-cond">Условие задания</label><textarea id="custom-cond" placeholder="Например: решите уравнение …" style="margin-top:6px"></textarea></div>
+            <div><label for="custom-key">Эталонный ответ / критерии</label><textarea id="custom-key" placeholder="Правильные ответы по пунктам, баллы за каждый пункт" style="margin-top:6px"></textarea></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3><span class="num">2</span> Фото решения</h3>
+          <div class="drop" id="drop" role="button" tabindex="0" aria-label="Загрузить фото решения">
+            Перетащите сюда фото тетради<br><span class="small" style="color:var(--ink-3)">или нажмите, чтобы выбрать · до 5 фото · JPEG, PNG</span>
+          </div>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
+          <div class="thumbs" id="thumbs"></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <button class="btn btn-akane" id="check-btn" disabled>Проверить работу</button>
+            <button class="btn btn-ghost" id="demo-btn" type="button">Показать пример разбора</button>
+            <button class="btn btn-ghost" id="stop-btn" type="button" hidden>Остановить</button>
+          </div>
+          <div class="status" id="status" hidden><span class="spinner"></span><span id="status-text">Проверяю работу…</span></div>
+          <div class="err" id="error" hidden></div>
+          <p class="small muted" id="cap-note" hidden>В этом окне проверка через Claude недоступна — показан пример разбора. Откройте страницу в приложении Claude, чтобы проверить свою работу.</p>
+        </div>
+      </div>
+      <div class="review" id="review" hidden></div>
+    </div>
+
+    <!-- ── Пробники ── -->
+    <div class="cab-panel" id="cab-mocks" hidden>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Пробник</th><th>Дата</th><th>Часть 1</th><th>Первичные</th><th>Тестовый</th><th>Комментарий</th></tr></thead>
+          <tbody>
+            <tr><td><b>№1 · входной</b></td><td>15 сен</td><td>8 из 13</td><td>11</td><td><b>48</b></td><td>Стартовая точка. Зачислен в группу 80+</td></tr>
+            <tr><td><b>Тематический</b></td><td>20 окт</td><td>10 из 13</td><td>13</td><td><b>54</b></td><td>+6 — закрыты №7 и №8, ошибка в №11</td></tr>
+            <tr><td><b>Тематический</b></td><td>24 ноя</td><td>11 из 13</td><td>15</td><td><b>61</b></td><td>+7 — уверенно №1–10; №14а частично</td></tr>
+            <tr><td><b>№2 · полный</b></td><td>14–20 дек</td><td>—</td><td>цель 16+</td><td>—</td><td>Полный формат по времени и бланкам</td></tr>
+            <tr><td><b>№3 · полный</b></td><td>8–14 фев</td><td>—</td><td>—</td><td>—</td><td>После него — решение о переводе в 90+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Что подтянуть к пробнику №2</h3>
+        <div class="tags" style="margin-top:8px">
+          <span class="tag">Текстовые задачи · №11</span>
+          <span class="tag">Отбор корней · №14б</span>
+          <span class="tag">Финансовые задачи · №13</span>
+        </div>
+        <p style="margin-top:10px">План на две недели уже в текущих домашних заданиях — по 4–5 задач этих типов в каждом.</p>
+      </div>
+    </div>
+
+    <!-- ── Записи разборов ── -->
+    <div class="cab-panel" id="cab-videos" hidden>
+      <div class="videos">
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 13 · Производная: касательная и график</b>
+          <span class="vmeta">разбор с учителем · 52 мин · 8 дек</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 12 · Финансовые задачи: аннуитет</b>
+          <span class="vmeta">разбор с учителем · 47 мин · 1 дек</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb" aria-hidden="true"></div>
+          <b>Неделя 11 · Интеграл и первообразная</b>
+          <span class="vmeta">разбор с учителем · 49 мин · 24 ноя</span>
+        </div>
+        <div class="card video">
+          <div class="vthumb soon"><span>запись появится после разбора в четверг</span></div>
+          <b>Неделя 14 · Пробник №2: стратегия</b>
+          <span class="vmeta">четверг · 18:30</span>
+        </div>
+      </div>
+      <p class="small muted">Пропустили занятие — посмотрите запись и напишите вопросы в чат группы: семинарист разберёт их на тренировке.</p>
+    </div>
   </div>
 </section>
 
@@ -1499,6 +1711,30 @@ function renderReview(r, cond, isDemo){
   box.hidden = false;
   box.scrollIntoView({behavior:"smooth", block:"start"});
 }
+
+/* ── вкладки ЛК ── */
+const cabPanels = {
+  overview: document.getElementById("cab-overview"),
+  homework: document.getElementById("cab-homework"),
+  mocks: document.getElementById("cab-mocks"),
+  videos: document.getElementById("cab-videos")
+};
+const cabTabBtns = document.querySelectorAll(".cab-tab");
+function showCabTab(key){
+  for (const k in cabPanels) cabPanels[k].hidden = (k !== key);
+  cabTabBtns.forEach(b=>b.classList.toggle("active", b.dataset.tab === key));
+}
+cabTabBtns.forEach(b=>b.addEventListener("click", ()=>showCabTab(b.dataset.tab)));
+document.getElementById("go-hw").addEventListener("click", ()=>{
+  showCabTab("homework");
+  document.getElementById("cab-homework").scrollIntoView({behavior:"smooth", block:"start"});
+});
+document.getElementById("go-hw2").addEventListener("click", ()=>{
+  document.querySelector("#cab-homework .cab-grid").scrollIntoView({behavior:"smooth", block:"start"});
+});
+document.querySelectorAll("[data-open-demo]").forEach(btn=>btn.addEventListener("click", ()=>{
+  renderReview(DEMO_RESULT, DEMO_TASK, true);
+}));
 </script>
 
 </body>
