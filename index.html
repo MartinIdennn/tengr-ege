@@ -152,8 +152,9 @@ button.btn{-webkit-appearance:none}
 .f-col.tengr .f-title span{color:#9FB8DC}
 .f-col.tengr .tag{background:#22375C;color:#CBD5E6}
 .f-col.tengr .tag.hot{background:#9FB0C9;color:#13294B;font-weight:700}
-.formula-note{margin-top:34px;font-size:15px;color:var(--ink-2);max-width:64ch}
-.formula-note b{color:var(--ink)}
+.formula-note{margin-top:40px;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.2vw,24px);
+  line-height:1.55;color:var(--ink);border-left:3px solid var(--akane);padding-left:24px;max-width:60ch}
+.formula-note b{color:var(--akane-ink);font-weight:700}
 
 /* ── subjects ── */
 .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -493,6 +494,23 @@ pre.tr{white-space:pre-wrap;font-size:13px;background:var(--surface-2);border-ra
 .fc-meta .cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--karekusa-ink)}
 @media (max-width:960px){.tmap{grid-template-columns:1fr 1fr}.task-actions{grid-template-columns:1fr}}
 
+/* ── акценты ── */
+.band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band+.section{border-top:0}
+h2 em{font-style:italic;color:var(--akane-ink)}
+.hl{box-shadow:inset 0 -0.4em 0 rgba(140,43,61,.15);padding:0 2px}
+.hero .hl{box-shadow:inset 0 -0.4em 0 rgba(159,176,201,.3);color:#FFFFFF}
+.u-card{border-top:3px solid var(--tetsukon)}
+.price-card.featured{background:var(--tetsukon);border-color:var(--tetsukon);box-shadow:var(--shadow-lg)}
+.price-card.featured h3,.price-card.featured .p-num{color:#F2F4F8}
+.price-card.featured p{color:#B4BDCC}
+.price-card.featured .p-num small{color:#8FA0BC}
+a.subject .go{color:var(--akane-ink)}
+.step::before{color:var(--akane-ink)}
+.ov-forecast{border-top:3px solid var(--tetsukon)}
+.hw-note{background:var(--ai-soft);border-left-color:var(--ai)}
+.hw-note b{color:var(--ai-ink)}
+
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:grid;gap:14px}
@@ -549,7 +567,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
     </div>
     <div class="tagline">небо над степью</div>
     <h1>Гибридная школа подготовки к&nbsp;<em>ЕГЭ</em></h1>
-    <p class="lead">Группы до 12 человек с учителями, которых в Элисте знают по имени. <b>5 500 ₽ в месяц</b> за 8 занятий. Первое занятие — бесплатно.</p>
+    <p class="lead">Группы до 12 человек с учителями, которых в Элисте знают по имени. <b class="hl">5 500 ₽ в месяц</b> за 8 занятий. Первое занятие — <b class="hl">бесплатно</b>.</p>
     <div class="hero-cta">
       <a class="btn btn-akane" href="#join">Пройти диагностику</a>
       <a class="btn btn-ghost" href="#subjects">Выбрать предмет</a>
@@ -567,7 +585,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
   <div class="wrap">
     <div class="label">почему гибридная</div>
     <div class="section-head">
-      <h2>Лучшее из двух миров</h2>
+      <h2>Лучшее из <em>двух миров</em></h2>
     </div>
     <div class="formula">
       <div class="f-col">
@@ -604,7 +622,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
   </div>
 </section>
 
-<section class="section" id="subjects" style="padding-top:0">
+<section class="section band" id="subjects">
   <div class="wrap">
     <div class="label">предметы</div>
     <div class="section-head">
@@ -648,7 +666,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
   <div class="wrap">
     <div class="label">как устроено</div>
     <div class="section-head">
-      <h2>Путь ученика</h2>
+      <h2>Путь ученика: <em>пять шагов</em></h2>
       <p>Групповой формат честный, только если есть обвязка. У нас она встроена.</p>
     </div>
     <div class="steps">
@@ -669,7 +687,7 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
   <div class="wrap">
     <div class="label">чего нет ни у кого</div>
     <div class="section-head">
-      <h2>Три вещи только у нас</h2>
+      <h2>Три вещи — <em>только у нас</em></h2>
     </div>
     <div class="unique">
       <div class="u-card">
@@ -727,11 +745,11 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
   </div>
 </section>
 
-<section class="section" id="join" style="padding-top:0">
+<section class="section band" id="join">
   <div class="wrap">
     <div class="label">запись</div>
     <div class="section-head">
-      <h2>Начните с бесплатной диагностики</h2>
+      <h2>Начните с <em>бесплатной</em> диагностики</h2>
       <p>Онлайн-тест 30–40 минут → звонок родителю с прогнозом и группой → открытое первое занятие.</p>
     </div>
     <div class="pricing">
