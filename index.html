@@ -103,7 +103,7 @@ button.btn{-webkit-appearance:none}
 .nav .wrap{display:flex;align-items:center;gap:20px;min-height:62px}
 .brand{font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:.05em;color:var(--ink);text-decoration:none;white-space:nowrap}
 .brand em{font-style:italic;font-weight:600;color:var(--karekusa-ink)}
-.nav-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
 .nav-links a{color:var(--ink-2);text-decoration:none;font-size:13px;white-space:nowrap;
   padding:7px 13px;border-radius:6px;transition:background .15s,color .15s}
 .nav-links a:hover{color:var(--ai-ink);background:var(--surface-2)}
@@ -510,6 +510,92 @@ a.subject .go{color:var(--akane-ink)}
 .ov-forecast{border-top:3px solid var(--tetsukon)}
 .hw-note{background:var(--ai-soft);border-left-color:var(--ai)}
 .hw-note b{color:var(--ai-ink)}
+
+/* ── ЛК v2: шапка, вкладки, «Сегодня», домашка, тренировка ── */
+.cab-head .wrap.cab-wrap{padding:22px 24px 0;gap:0}
+.cab-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.cab-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cab-act{font-family:var(--sans);font-size:13px;font-weight:700;padding:7px 14px;border-radius:4px;
+  border:1px solid rgba(239,236,226,.3);background:transparent;color:#E4E9F2;cursor:pointer}
+.cab-act:hover{border-color:#9FB0C9;color:#FFFFFF}
+.cab-hello{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-top:22px}
+.cab-hello h1{font-size:clamp(24px,3.2vw,36px)}
+.cab-hello p{margin-top:4px;font-family:var(--sans)}
+.cab-hello .subj-pick{margin-top:0}
+.cab-tabs{margin-top:22px;gap:4px}
+.cab-tabs .cab-tab{border:0;border-bottom:3px solid transparent;border-radius:0;padding:12px 18px;background:transparent;color:#B7C1D2}
+.cab-tabs .cab-tab:hover{color:#FFFFFF}
+:root .cab-tabs .cab-tab.active{background:transparent;color:#FFFFFF;border-color:transparent;border-bottom-color:#FFFFFF}
+.tab-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:7px;border-radius:9px;
+  background:var(--akane);color:#FFFFFF;font-size:11px;font-weight:700;vertical-align:1px}
+.cab-body{padding-top:32px;padding-bottom:84px}
+.t-kicker{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+.t-big{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1.2;color:var(--ink)}
+.t-sub{font-size:14px;color:var(--ink-2)}
+.today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.today-grid .card{display:grid;gap:10px;align-content:start;border-top:3px solid var(--line-2)}
+.today-grid .card.primary{border-top-color:var(--akane)}
+.today-grid .card .btn{justify-self:start;margin-top:4px}
+.today-row{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.fc-strip{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fc-strip .now{font-family:var(--serif);font-size:46px;font-weight:700;line-height:1;color:var(--ink)}
+.fc-strip .to{font-family:var(--sans);color:var(--ink-3);font-size:14px}
+.fc-strip .to b{color:var(--ink);font-size:18px}
+.fc-track{position:relative;flex:1;min-width:180px;height:10px;border-radius:5px;background:var(--surface-2)}
+.fc-track i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--ai)}
+.fc-track s{position:absolute;top:-5px;width:2px;height:20px;background:var(--akane)}
+.btn-sm{padding:8px 14px;font-size:13px}
+.hw-item+.hw-item{border-top:1px solid var(--line)}
+.hw-item.open{background:var(--surface-2)}
+.hw-slot:not(:empty){padding:0 24px 22px}
+.hw-submit{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+.hw-slot .review{margin-top:14px}
+.train-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mode{display:grid;gap:6px;align-content:start;text-align:left;cursor:pointer;font:inherit;color:var(--ink);
+  border-top:3px solid var(--tetsukon);transition:transform .12s,box-shadow .12s}
+.mode:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.mode b{font-family:var(--serif);font-size:20px;font-weight:700}
+.tv-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.tv-title{font-size:clamp(24px,3vw,34px)}
+details.example summary{cursor:pointer;font-family:var(--sans);font-weight:700;color:var(--ai-ink);list-style:none}
+details.example summary::-webkit-details-marker{display:none}
+details.example summary::after{content:" +"}
+details.example[open] summary::after{content:" −"}
+details.example .ex{margin-top:12px;font-size:15px;color:var(--ink-2)}
+details.example .ex ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.reg-subj{border:0;padding:0;margin:0}
+.reg-subj legend{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:8px}
+.chk{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line-2);border-radius:4px;cursor:pointer;
+  text-transform:none;letter-spacing:0;font-size:14px;font-weight:700;color:var(--ink)}
+.chk input{accent-color:var(--ai);margin:0}
+.chk:has(input:checked){border-color:var(--ai);background:var(--ai-soft);color:var(--ai-ink)}
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.res-grid .card{display:grid;gap:10px;align-content:start}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;max-width:min(92vw,520px);
+  background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:6px;font-family:var(--sans);font-size:14px;box-shadow:var(--shadow-lg)}
+@media (max-width:960px){
+  .today-grid,.today-row,.train-modes,.res-grid{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .cab-tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;background:var(--tetsukon);
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.14);padding:0 0 env(safe-area-inset-bottom);overflow:hidden;box-sizing:border-box;width:100%}
+  .cab-tabs .cab-tab{padding:13px 2px;font-size:12px;text-align:center;border-bottom:0;border-top:3px solid transparent}
+  :root .cab-tabs .cab-tab.active{border-bottom-color:transparent;border-top-color:#FFFFFF}
+  .cab-tabs .cab-tab{white-space:nowrap;position:relative;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .tab-badge{position:absolute;top:5px;right:6px;margin:0;min-width:16px;height:16px;font-size:10px}
+  .cab-hello .subj-pick{flex:1 1 100%;width:100%;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .cab-hello .subj-pick .sp{padding:7px 13px;font-size:12.5px;white-space:nowrap}
+  .cab-hello{align-items:flex-start}
+  .cab-top .back{display:none}
+  .cab-actions{width:100%;gap:8px}
+  .cab-logout{margin-left:auto}
+  .cab-hello > div{min-width:0;max-width:100%}
+  .cab-head .wrap.cab-wrap{padding-bottom:18px}
+  .cab-hello{margin-top:14px}
+  .cab-act{padding:6px 10px;font-size:12px}
+  .cab-body{padding-top:22px;padding-bottom:120px}
+  .toast{bottom:78px}
+}
 
 /* ── footer ── */
 footer{border-top:1px solid var(--line);padding:52px 0 64px;color:var(--ink-3);font-size:13px}
@@ -1261,8 +1347,8 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
       <div class="wrap">
         <a class="back" href="#home">← на сайт школы</a>
         <div class="label" style="margin-top:14px">личный кабинет</div>
-        <h1>Создайте кабинет ученика</h1>
-        <p>Минута на регистрацию — и у вас программа, материалы, тренажёр и проверка домашних работ. Демо-версия: данные хранятся только в этом браузере и никуда не отправляются.</p>
+        <h1>Кабинет ученика</h1>
+        <p>Занятия, домашние задания, тренировка и прогноз балла в одном месте. Это демо-версия: данные хранятся только в этом браузере и никуда не отправляются.</p>
       </div>
     </div>
     <div class="wrap" style="padding-top:44px;padding-bottom:90px">
@@ -1279,24 +1365,24 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
               <select id="reg-grade"><option value="11">11 класс</option><option value="10">10 класс</option></select>
             </div>
             <div class="reg-field">
-              <label for="reg-goal">Цель по баллам</label>
+              <label for="reg-goal">Группа по уровню</label>
               <select id="reg-goal"><option>60+</option><option selected>80+</option><option>90+</option></select>
             </div>
           </div>
-          <div class="reg-field">
-            <label>Предмет</label>
+          <fieldset class="reg-field reg-subj">
+            <legend>Мои предметы</legend>
             <div class="subj-choice">
-              <span class="tag on">Математика</span>
-              <span class="tag on">Русский язык</span>
-              <span class="tag on">Обществознание</span>
-              <span class="tag off">Биология — второй волной</span>
+              <label class="chk"><input type="checkbox" name="reg-subj" value="math" checked> Математика</label>
+              <label class="chk"><input type="checkbox" name="reg-subj" value="rus" checked> Русский язык</label>
+              <label class="chk"><input type="checkbox" name="reg-subj" value="soc"> Обществознание</label>
             </div>
-          </div>
+            <p class="small muted" id="reg-subj-err" hidden>Выберите хотя бы один предмет.</p>
+          </fieldset>
           <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
             <button class="btn btn-akane" type="submit">Создать кабинет</button>
-            <button class="btn btn-ghost" type="button" id="reg-demo">Посмотреть демо-кабинет</button>
+            <button class="btn btn-ghost" type="button" id="reg-demo">Открыть демо-кабинет</button>
           </div>
-          <p class="small muted">Точную группу определит бесплатная входная диагностика — кабинет напомнит о ней после старта занятий.</p>
+          <p class="small muted">Группу определит бесплатная входная диагностика. До неё выберите уровень, который ближе к вашей цели.</p>
         </form>
       </div>
     </div>
@@ -1304,434 +1390,150 @@ footer .coords{letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
   <!-- кабинет -->
   <div id="cab-dash" hidden>
-  <div class="cab-head">
-    <div class="wrap">
-      <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline">
-        <a class="back" href="#home">← на сайт школы</a>
-        <span style="display:flex;gap:16px;align-items:baseline"><span class="demo-badge">демо-данные</span><button class="cab-logout" id="cab-logout" type="button">выйти</button></span>
-      </div>
-      <div class="label" style="margin-top:14px">личный кабинет ученика</div>
-      <h1 id="cab-greet">Добрый день</h1>
-      <p><span id="cab-sub-grade">11 класс</span> · группа 80+ · цель — <span id="cab-sub-goal">80+</span> · ведущий учитель <span class="placeholder">Имя Фамилия</span></p>
-      <div class="subj-pick" aria-label="Предметы">
-        <button class="sp active" type="button" data-subj="math">Математика</button>
-        <button class="sp" type="button" data-subj="rus">Русский язык</button>
-        <button class="sp" type="button" data-subj="soc">Обществознание</button>
-        <span class="sp soon">Биология · скоро</span>
-      </div>
-      <nav class="cab-tabs" id="cab-tabs" aria-label="Разделы кабинета">
-        <button class="cab-tab active" data-tab="progress" type="button">Прогресс</button>
-        <button class="cab-tab" data-tab="program" type="button">Программа</button>
-        <button class="cab-tab" data-tab="materials" type="button">Материалы</button>
-        <button class="cab-tab" data-tab="tasks" type="button">Задания</button>
-      </nav>
-    </div>
-  </div>
-  <div class="wrap" style="padding-top:34px;padding-bottom:84px">
-
-    <!-- ── Прогресс ── -->
-    <div class="cab-panel" id="cab-progress">
-      <div class="ov-grid">
-        <div class="card ov-forecast">
-          <div class="ov-head">
-            <h3>Прогноз балла</h3>
-            <span class="small muted">обновляется после каждого пробника</span>
-          </div>
-          <div class="ov-score"><span class="now">61</span><span class="arrow">→</span><span class="goal">цель к июню — 75</span></div>
-          <div class="chartwrap">
-            <svg viewBox="0 0 560 210" role="img" aria-label="Динамика балла: сентябрь 48, октябрь 54, ноябрь 61; цель к июню 75">
-              <g stroke="var(--line)" stroke-width="1">
-                <line x1="42" y1="30" x2="540" y2="30"/><line x1="42" y1="70" x2="540" y2="70"/>
-                <line x1="42" y1="110" x2="540" y2="110"/><line x1="42" y1="150" x2="540" y2="150"/>
-                <line x1="42" y1="190" x2="540" y2="190"/>
-              </g>
-              <g fill="var(--ink-3)" font-size="11">
-                <text x="34" y="34" text-anchor="end">80</text><text x="34" y="74" text-anchor="end">70</text>
-                <text x="34" y="114" text-anchor="end">60</text><text x="34" y="154" text-anchor="end">50</text>
-                <text x="34" y="194" text-anchor="end">40</text>
-              </g>
-              <g fill="var(--ink-2)" font-size="11" text-anchor="middle">
-                <text x="70" y="207">сен</text><text x="190" y="207">окт</text><text x="310" y="207">ноя</text>
-                <text x="415" y="207">фев</text><text x="520" y="207">июн</text>
-              </g>
-              <polyline points="70,158 190,134 310,106" fill="none" stroke="var(--ai)" stroke-width="2.5" stroke-linecap="round"/>
-              <polyline points="310,106 520,50" fill="none" stroke="var(--karekusa)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
-              <g>
-                <circle cx="70" cy="158" r="5" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Входной пробник, 15 сентября: 48</title></circle>
-                <circle cx="190" cy="134" r="5" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Тематический пробник, 20 октября: 54</title></circle>
-                <circle cx="310" cy="106" r="6" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>Пробник, 24 ноября: 61</title></circle>
-                <circle cx="520" cy="50" r="6" fill="var(--surface)" stroke="var(--karekusa)" stroke-width="2.5"><title>Цель на экзамене: 75</title></circle>
-              </g>
-              <g fill="var(--ink-2)" font-size="12" font-weight="600" text-anchor="middle">
-                <text x="70" y="146">48</text><text x="190" y="122">54</text>
-                <text x="310" y="92" fill="var(--ink)" font-size="13">61</text>
-              </g>
-              <text x="520" y="36" fill="var(--karekusa-ink)" font-size="12" font-weight="600" text-anchor="middle">75</text>
-            </svg>
-          </div>
-          <p class="small muted">+13 баллов с сентября. Следующий пробник — №2, полный формат, 14–20 декабря.</p>
-        </div>
-        <div class="card">
-          <h3>Домашние работы</h3>
-          <div class="big-num">6 <small>недель подряд</small></div>
-          <p>Сдано 11 из 12 · средний результат 87%</p>
-          <div class="meter" role="img" aria-label="Сдано 92% работ"><i style="width:92%"></i></div>
-        </div>
-        <div class="card">
-          <h3>Самоподготовка</h3>
-          <div class="big-num" id="tr-total">0 <small>задач решено</small></div>
-          <div class="mini-rows">
-            <div class="row"><b id="mm-last">—</b><span>последний мини-пробник</span></div>
-            <div class="row"><b id="mist-count">0 задач</b><span>к повторению в работе над ошибками</span></div>
-          </div>
-          <div><button class="linkish" data-goto-tab="tasks" type="button">открыть тренажёр →</button></div>
-        </div>
-        <div class="card">
-          <h3>Ближайшие занятия</h3>
-          <div class="mini-rows">
-            <div class="row"><b>Чт · 18:30</b><span>Разбор с учителем — производная и касательная (№9)</span></div>
-            <div class="row"><b>Сб · 15:00</b><span>Тренировка с семинаристом — практикум по №9</span></div>
+    <div class="cab-head">
+      <div class="wrap cab-wrap">
+        <div class="cab-top">
+          <a class="back" href="#home">← на сайт</a>
+          <div class="cab-actions">
+            <button class="cab-act" type="button" data-toast="Чат группы открывается в Telegram. В демо-версии ссылка не подключена.">Чат группы</button>
+            <button class="cab-act" type="button" data-toast="Запись к учителю: 10 минут раз в месяц. В демо-версии запись не подключена.">Записаться к учителю</button>
+            <button class="cab-logout" id="cab-logout" type="button">выйти</button>
           </div>
         </div>
-        <div class="card">
-          <h3>Связь</h3>
-          <div class="mini-rows">
-            <div class="row"><b>Чат группы</b><span>фото задачи → ответ семинариста в тот же день</span></div>
-            <div class="row"><b>Учитель</b><span>10 минут раз в месяц, по записи</span></div>
-            <div class="row"><b>Родителям</b><span>отчёт каждую пятницу, три строки</span></div>
+        <div class="cab-hello">
+          <div>
+            <h1 id="cab-greet">Добрый день</h1>
+            <p id="cab-sub"></p>
           </div>
+          <div class="subj-pick" id="subj-pick" aria-label="Предметы"></div>
         </div>
-      </div>
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
-          <h3>Карта тем · часть 1</h3>
-          <span class="small muted">по решённым задачам тренажёра · нажмите на тему, чтобы нарешивать</span>
-        </div>
-        <div class="tmap" id="topic-map"></div>
-        <p class="small muted" style="margin-top:12px">Часть 2 — №14 и №16 уже в программе группы 80+, №17 и №15а подключаются с января. Прогресс по ним появится после пробника №2.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Пробник</th><th>Дата</th><th>Часть 1</th><th>Первичные</th><th>Тестовый</th><th>Комментарий</th></tr></thead>
-          <tbody>
-            <tr><td><b>№1 · входной</b></td><td>15 сен</td><td>8 из 13</td><td>11</td><td><b>48</b></td><td>Стартовая точка. Зачислен в группу 80+</td></tr>
-            <tr><td><b>Тематический</b></td><td>20 окт</td><td>10 из 13</td><td>13</td><td><b>54</b></td><td>+6 — закрыты №7 и №8, ошибка в №11</td></tr>
-            <tr><td><b>Тематический</b></td><td>24 ноя</td><td>11 из 13</td><td>15</td><td><b>61</b></td><td>+7 — уверенно №1–10; №14а частично</td></tr>
-            <tr><td><b>№2 · полный</b></td><td>14–20 дек</td><td>—</td><td>цель 16+</td><td>—</td><td>Полный формат по времени и бланкам</td></tr>
-            <tr><td><b>№3 · полный</b></td><td>8–14 фев</td><td>—</td><td>—</td><td>—</td><td>После него — решение о переводе в 90+</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card">
-        <h3>Что подтянуть к пробнику №2</h3>
-        <div class="tags" style="margin-top:8px">
-          <span class="tag">Текстовые задачи · №11</span>
-          <span class="tag">Отбор корней · №14б</span>
-          <span class="tag">Финансовые задачи · №13</span>
-        </div>
-        <p style="margin-top:10px">План на две недели уже в текущих домашних заданиях — по 4–5 задач этих типов в каждом.</p>
+        <nav class="cab-tabs" id="cab-tabs" aria-label="Разделы кабинета">
+          <button class="cab-tab active" data-tab="today" type="button">Сегодня</button>
+          <button class="cab-tab" data-tab="hw" type="button">Домашка<span class="tab-badge" id="hw-badge" hidden></span></button>
+          <button class="cab-tab" data-tab="train" type="button">Тренировка</button>
+          <button class="cab-tab" data-tab="results" type="button">Результаты</button>
+        </nav>
       </div>
     </div>
 
-    <!-- ── Программа ── -->
-    <div class="cab-panel" id="cab-program" hidden>
-      <div class="subj-prog" id="prog-math">
-      <div class="grid-2">
-        <div class="card">
-          <h3>Ваш уровень: группа 80+</h3>
-          <p style="margin-top:6px"><b style="color:var(--ink)">Цель: 17–19 первичных → 80–84 тестовых.</b></p>
-          <ul>
-            <li>Часть 1 полностью, без ошибок</li>
-            <li>№14 и №16 целиком</li>
-            <li>№17 или №15 (пункт а)</li>
-            <li>Знакомство с №18а и №19</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Готовность к пробникам</h3>
-          <div class="mini-rows">
-            <div class="row"><b>№2 · дек</b><span>часть 1 целиком (12+) и №14а — цель 16+ первичных</span></div>
-            <div class="row"><b>№3 · фев</b><span>+ №14 и №16 целиком — 16+ первичных</span></div>
-            <div class="row"><b>№4 · апр</b><span>+ №17 или №15а — 18+ первичных</span></div>
-            <div class="row"><b>№5 · май</b><span>генеральный: 17–19 первичных</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
-          <h3>Ближайшие недели · группа 80+</h3>
-          <span class="small muted">полный план на год — на странице <a href="#math">Математика</a></span>
-        </div>
-        <div class="timeline">
-          <div class="tl-item hot"><b>неделя 13 · сейчас <span class="wk-now">текущая</span></b><p>Финансовые задачи: аннуитет (№13) · тригонометрические уравнения — пункт а (№14а)</p></div>
-          <div class="tl-item"><b>неделя 14 · 14–20 дек</b><p>Пробник №2 — полный вариант по времени и бланкам, разбор на втором занятии</p></div>
-          <div class="tl-item"><b>неделя 15</b><p>Отбор корней на окружности и отрезке (№14б)</p></div>
-          <div class="tl-item"><b>неделя 16</b><p>Неравенства: рациональные и показательные (№16)</p></div>
-          <div class="tl-item"><b>недели 17–19</b><p>Логарифмические неравенства и рационализация (№16) · моделирование (№17) · стереометрия (№15а)</p></div>
-        </div>
-      </div>
-      <div class="hw-note">
-        <span aria-hidden="true">→</span>
-        <p><b>Как читать программу:</b> каждую неделю — разбор с учителем и тренировка с семинаристом. Темы недели сразу попадают в домашнее задание и тренажёр.</p>
-      </div>
-      <div style="margin-top:4px"><a class="btn btn-ghost" href="https://martinidennn.github.io/tengr-ege/programma_matematika.docx" target="_blank" rel="noopener">Скачать программу по математике (docx)</a></div>
+    <div class="wrap cab-body">
+
+      <!-- ── Сегодня ── -->
+      <div class="cab-panel" id="cab-today"></div>
+
+      <!-- ── Домашка ── -->
+      <div class="cab-panel" id="cab-hw" hidden>
+        <div class="card hw-list" id="hw-list"></div>
       </div>
 
-      <div class="subj-prog" id="prog-rus" hidden>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Ваш уровень: группа 80+</h3>
-            <p style="margin-top:6px"><b style="color:var(--ink)">Цель: 42–44 первичных → 78–83 тестовых.</b></p>
-            <ul>
-              <li>Часть 1: 25–26 баллов, включая №8 и №22 полностью</li>
-              <li>Сочинение: 17–18 баллов — К1–К6 без потерь</li>
-              <li>Не более 1–2 ошибок по каждому из К7–К10</li>
-            </ul>
-            <p class="small muted" style="margin-top:8px">Сочинение стоит 22 из 50 первичных — 44% экзамена. Работаем над ним каждую неделю с четвёртой недели курса.</p>
+      <!-- ── Тренировка ── -->
+      <div class="cab-panel" id="cab-train" hidden>
+        <div id="tv-grid" class="cab-panel">
+          <div class="train-modes">
+            <button class="card mode" type="button" id="mode-mock">
+              <span class="t-kicker">на время</span>
+              <b>Мини-пробник</b>
+              <span class="t-sub" id="mode-mock-sub"></span>
+            </button>
+            <button class="card mode" type="button" id="mode-mist">
+              <span class="t-kicker">повторение</span>
+              <b>Работа над ошибками</b>
+              <span class="t-sub" id="mode-mist-sub"></span>
+            </button>
+            <button class="card mode" type="button" id="mode-form">
+              <span class="t-kicker">к зачёту</span>
+              <b>Формулы наизусть</b>
+              <span class="t-sub" id="mode-form-sub"></span>
+            </button>
           </div>
           <div class="card">
-            <h3>Готовность к пробникам</h3>
-            <div class="mini-rows">
-              <div class="row"><b>№2 · дек</b><span>часть 1: 21+ · сочинение 13+</span></div>
-              <div class="row"><b>№3 · фев</b><span>часть 1: 23+ · сочинение 15+</span></div>
-              <div class="row"><b>№4 · апр</b><span>часть 1: 25+ · сочинение 16+</span></div>
-              <div class="row"><b>№5 · май</b><span>генеральный: 42–44 первичных</span></div>
+            <div class="ov-head" style="margin-bottom:14px">
+              <h3>Задания части 1</h3>
+              <span class="small muted" id="tr-progress"></span>
+            </div>
+            <div class="tmap" id="topic-map"></div>
+          </div>
+        </div>
+
+        <div id="tv-topic" class="cab-panel" hidden>
+          <div class="tv-head">
+            <button class="linkish" type="button" data-train-back>← все задания</button>
+            <span class="small muted" id="topic-count"></span>
+          </div>
+          <h2 class="tv-title" id="topic-title"></h2>
+          <details class="card example" id="topic-example" hidden>
+            <summary>Разобранный пример</summary>
+            <div class="ex" id="topic-example-body"></div>
+          </details>
+          <div class="tr-list" id="tr-list"></div>
+        </div>
+
+        <div id="tv-mock" class="cab-panel" hidden>
+          <div class="mock-bar">
+            <b id="mock-timer">15:00</b>
+            <span id="mock-note"></span>
+            <button class="btn btn-akane" id="mock-finish" type="button">Завершить вариант</button>
+            <button class="btn btn-ghost" id="mock-exit" type="button">Выйти</button>
+          </div>
+          <div class="card" id="mock-summary" hidden></div>
+          <div class="tr-list" id="mock-list"></div>
+        </div>
+
+        <div id="tv-mist" class="cab-panel" hidden>
+          <div class="tv-head">
+            <button class="linkish" type="button" data-train-back>← все задания</button>
+            <span class="small muted" id="mist-head-note"></span>
+          </div>
+          <h2 class="tv-title">Работа над ошибками</h2>
+          <div class="tr-list" id="mist-list"></div>
+        </div>
+
+        <div id="tv-form" class="cab-panel" hidden>
+          <div class="tv-head">
+            <button class="linkish" type="button" data-train-back>← все задания</button>
+            <span class="small muted" id="fc-progress"></span>
+          </div>
+          <h2 class="tv-title">Формулы наизусть</h2>
+          <div class="card fc-box">
+            <p class="small muted">Зачёты в школе проходят в ноябре, феврале и апреле: 30 формул за 15 минут, не больше трёх ошибок.</p>
+            <div>
+              <span class="fc-meta"><span class="cat" id="fc-cat"></span></span>
+              <div class="fc-q" id="fc-q"></div>
+            </div>
+            <div class="fc-a" id="fc-a" hidden></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <button class="btn btn-akane" id="fc-show" type="button">Показать формулу</button>
+              <button class="btn btn-akane" id="fc-know" type="button" hidden>Знаю</button>
+              <button class="btn btn-ghost" id="fc-again" type="button" hidden>Ещё повторить</button>
+              <button class="linkish" id="fc-reset" type="button" style="margin-left:auto">начать заново</button>
             </div>
           </div>
         </div>
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
-            <h3>Ближайшие недели · группа 80+</h3>
-            <span class="small muted">полный план на год — на странице <a href="#russian">Русский язык</a></span>
-          </div>
-          <div class="timeline">
-            <div class="tl-item hot"><b>неделя 13 · сейчас <span class="wk-now">текущая</span></b><p>Правописание Н и НН (№15) · третье сочинение на время</p></div>
-            <div class="tl-item"><b>неделя 14 · 14–20 дек</b><p>Пробник №2 — полный вариант (210 минут, бланки), разбор на втором занятии</p></div>
-            <div class="tl-item"><b>неделя 15</b><p>Работа над ошибками · однородные члены и ССП (№16) · К2 на сложных текстах</p></div>
-            <div class="tl-item"><b>неделя 16</b><p>Обособление: причастные и деепричастные обороты (№17) · четвёртое сочинение</p></div>
-          </div>
-        </div>
-        <div><a class="btn btn-ghost" href="https://martinidennn.github.io/tengr-ege/programma_russkiy_yazyk.docx" target="_blank" rel="noopener">Скачать программу по русскому (docx)</a></div>
       </div>
 
-      <div class="subj-prog" id="prog-soc" hidden>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Ваш уровень: группа 80+</h3>
-            <p style="margin-top:6px"><b style="color:var(--ink)">Цель: 47–49 первичных → 79–83 тестовых.</b></p>
-            <ul>
-              <li>Часть 1: 26–27 баллов из 28</li>
-              <li>Часть 2: 21–22 балла — №17, 18, 19, 21, 22, 23 полностью</li>
-              <li>План (№24) на 3 балла, №25 на 4 балла</li>
-            </ul>
-            <p class="small muted" style="margin-top:8px">Часть 2 — половина экзамена (30 из 58 первичных). Каждую неделю — один письменный формат с проверкой по критериям.</p>
-          </div>
-          <div class="card">
-            <h3>Готовность к пробникам</h3>
-            <div class="mini-rows">
-              <div class="row"><b>№2 · дек</b><span>часть 1: 20+ · часть 2: 14+</span></div>
-              <div class="row"><b>№3 · фев</b><span>часть 1: 24+ · часть 2: 18+</span></div>
-              <div class="row"><b>№4 · апр</b><span>часть 1: 26+ · часть 2: 20+</span></div>
-              <div class="row"><b>№5 · май</b><span>генеральный: 47–49 первичных</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px">
-            <h3>Ближайшие недели · группа 80+</h3>
-            <span class="small muted">полный план на год — на странице <a href="#social">Обществознание</a></span>
-          </div>
-          <div class="timeline">
-            <div class="tl-item hot"><b>неделя 13 · сейчас <span class="wk-now">текущая</span></b><p>Власть, государство, формы государства, политические режимы · план по политике (№24)</p></div>
-            <div class="tl-item"><b>неделя 14 · 14–20 дек</b><p>Пробник №2 — полный вариант (210 минут), разбор на втором занятии</p></div>
-            <div class="tl-item"><b>неделя 15</b><p>Работа над ошибками · органы государственной власти РФ (№13) · задание 23 по Конституции</p></div>
-            <div class="tl-item"><b>неделя 16</b><p>Политическое участие, идеологии, партии, выборы · задание 25 по политике</p></div>
-          </div>
-        </div>
-        <div><a class="btn btn-ghost" href="https://martinidennn.github.io/tengr-ege/programma_obshchestvoznanie.docx" target="_blank" rel="noopener">Скачать программу по обществознанию (docx)</a></div>
-      </div>
+      <!-- ── Результаты ── -->
+      <div class="cab-panel" id="cab-results" hidden></div>
     </div>
 
-    <!-- ── Материалы ── -->
-    <div class="cab-panel" id="cab-materials" hidden>
-      <div id="mat-math">
-      <div class="ov-head" style="margin-bottom:2px">
-        <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Дидактика · задания №1–10</h3>
-        <a class="btn btn-ghost" href="https://martinidennn.github.io/tengr-ege/didaktika_matematika_1-10.docx" target="_blank" rel="noopener">Скачать сборник (docx)</a>
+    <!-- форма сдачи: переносится в строку выбранной домашки -->
+    <div class="hw-submit" id="hw-submit" hidden>
+      <div class="task-preview" id="task-preview"></div>
+      <div class="drop" id="drop" role="button" tabindex="0" aria-label="Загрузить фото решения">
+        Перетащите сюда фото тетради<br><span class="small" style="color:var(--ink-3)">или нажмите, чтобы выбрать · до 5 фото · JPEG, PNG</span>
       </div>
-      <p class="muted" style="max-width:70ch">По каждому номеру: разобранные примеры с полным решением, 12 тренировочных задач в тренажёре и домашний набор. Модель КИМ ЕГЭ-2027, ответы проверены.</p>
-      <div class="did-grid" id="did-grid"></div>
-      <div class="card fc-box" id="fc-box">
-        <div class="fc-meta">
-          <div>
-            <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Зачёт по формулам</h3>
-            <p class="small muted" style="margin-top:4px">Зачёты в школе — ноябрь, февраль и апрель: 30 формул за 15 минут, максимум 3 ошибки. Тренируйтесь заранее.</p>
-          </div>
-          <span class="small muted" id="fc-progress"></span>
-        </div>
-        <div>
-          <span class="cat" id="fc-cat"></span>
-          <div class="fc-q" id="fc-q"></div>
-        </div>
-        <div class="fc-a" id="fc-a" hidden></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn btn-akane" id="fc-show" type="button">Показать формулу</button>
-          <button class="btn btn-ai" id="fc-know" type="button" hidden>Знаю</button>
-          <button class="btn btn-ghost" id="fc-again" type="button" hidden>Ещё повторить</button>
-          <button class="linkish" id="fc-reset" type="button" style="margin-left:auto">сбросить прогресс</button>
-        </div>
+      <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
+      <div class="thumbs" id="thumbs"></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-akane" id="check-btn" type="button" disabled>Отправить на проверку</button>
+        <button class="btn btn-ghost" id="stop-btn" type="button" hidden>Остановить</button>
       </div>
-
-      </div>
-      <div id="mat-other" hidden>
-        <div class="card">
-          <h3 id="mat-other-title">Материалы предмета</h3>
-          <p style="margin-top:6px">Дидактические сборники по предмету готовятся к печати. Уже доступны: тренажёр по заданиям №1–5 во вкладке «Задания», программа на год (кнопка ниже) и проверка письменных работ по фото.</p>
-          <div style="margin-top:12px"><a class="btn btn-ghost" id="mat-other-doc" href="#" target="_blank" rel="noopener">Скачать программу (docx)</a></div>
-        </div>
-      </div>
-      <div class="ov-head" style="margin:26px 0 2px"><h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Записи разборов</h3></div>
-      <div class="videos">
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 13 · Производная: касательная и график</b>
-          <span class="vmeta">разбор с учителем · 52 мин · 8 дек</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 12 · Финансовые задачи: аннуитет</b>
-          <span class="vmeta">разбор с учителем · 47 мин · 1 дек</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb" aria-hidden="true"></div>
-          <b>Неделя 11 · Интеграл и первообразная</b>
-          <span class="vmeta">разбор с учителем · 49 мин · 24 ноя</span>
-        </div>
-        <div class="card video">
-          <div class="vthumb soon"><span>запись появится после разбора в четверг</span></div>
-          <b>Неделя 14 · Пробник №2: стратегия</b>
-          <span class="vmeta">четверг · 18:30</span>
-        </div>
-      </div>
+      <div class="status" id="status" hidden><span class="spinner"></span><span id="status-text">Проверяю работу…</span></div>
+      <div class="err" id="error" hidden></div>
+      <p class="small muted" id="cap-note" hidden>Проверка по фото работает, когда кабинет открыт в приложении Claude. Здесь можно открыть готовые разборы прошлых работ.</p>
     </div>
-
-    <!-- ── Задания ── -->
-    <div class="cab-panel" id="cab-tasks" hidden>
-      <div class="task-actions">
-        <div class="card">
-          <h3>Мини-пробник</h3>
-          <p>По одной задаче на каждый номер части 1, таймер — 3 минуты на задачу, разбор после завершения. Результат идёт в прогресс.</p>
-          <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">
-            <button class="btn btn-akane" id="mock-start" type="button">Начать вариант</button>
-            <span class="small muted" id="mock-hist">ещё не проходили</span>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Работа над ошибками</h3>
-          <p>Задачи, где вы ошиблись в тренажёре или мини-пробнике. Решите верно — задача уйдёт из списка.</p>
-          <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">
-            <button class="btn btn-ghost" id="mist-open" type="button">Открыть список</button>
-            <span class="small muted" id="mist-note">пока пусто — так держать</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="train-view">
-      <div class="card tr-card">
-        <div class="ov-head">
-          <h3 style="font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:600">Тренажёр · часть 1</h3>
-          <span class="small muted" id="tr-progress">решено 0 из 114</span>
-        </div>
-        <div class="tr-nums" id="tr-nums" role="tablist" aria-label="Номер задания"></div>
-        <p class="small muted" id="tr-topic" style="margin-top:2px"></p>
-      </div>
-      <div class="tr-list" id="tr-list"></div>
-      </div>
-
-      <div id="mock-view" hidden>
-        <div class="mock-bar">
-          <b id="mock-timer">30:00</b>
-          <span id="mock-note">Мини-пробник · 10 задач · ответы проверяются после завершения</span>
-          <button class="btn btn-akane" id="mock-finish" type="button">Завершить вариант</button>
-          <button class="btn btn-ghost" id="mock-exit" type="button">Выйти</button>
-        </div>
-        <div class="card" id="mock-summary" hidden></div>
-        <div class="tr-list" id="mock-list"></div>
-      </div>
-
-      <div id="mist-view" hidden>
-        <div class="card" style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap">
-          <h3 style="font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:600">Работа над ошибками</h3>
-          <span class="small muted" id="mist-head-note"></span>
-          <button class="btn btn-ghost" id="mist-back" type="button" style="margin-left:auto;padding:9px 18px;font-size:13px">← к тренажёру</button>
-        </div>
-        <div class="tr-list" id="mist-list"></div>
-      </div>
-
-      <div class="section-head" style="margin:20px 0 4px;max-width:none">
-        <h2 style="font-size:clamp(24px,3vw,36px)">Домашние задания</h2>
-      </div>
-      <div class="card hw-list">
-        <div class="hw-row">
-          <span class="d">до чт</span>
-          <div><b>№9 · Производная и касательная</b><span class="sub">16 задач + мини-тест на повторение недели</span></div>
-          <div class="st"><span class="pill bad">ждёт сдачи</span><button class="linkish" id="go-hw2" type="button">сдать фото ↓</button></div>
-        </div>
-        <div class="hw-row">
-          <span class="d">9 дек</span>
-          <div><b>№12 · Простейшие уравнения</b><span class="sub">проверено, разбор готов</span></div>
-          <div class="st"><span class="pill part">3,5 / 4</span><button class="linkish" data-open-demo type="button">открыть разбор</button></div>
-        </div>
-        <div class="hw-row">
-          <span class="d">2 дек</span>
-          <div><b>№11 · Финансовые задачи</b><span class="sub">проверено, разбор готов</span></div>
-          <div class="st"><span class="pill ok">4 / 4</span><button class="linkish" data-open-demo type="button">открыть разбор</button></div>
-        </div>
-        <div class="hw-row">
-          <span class="d">25 ноя</span>
-          <div><b>№10 · Графики функций</b><span class="sub">на проверке — разбор будет к занятию</span></div>
-          <div class="st"><span class="pill none">на проверке</span></div>
-        </div>
-      </div>
-
-      <div class="section-head" style="margin:20px 0 6px;max-width:none">
-        <h2 style="font-size:clamp(24px,3vw,36px)">Сдать работу</h2>
-        <p>Сфотографируйте решение в тетради и загрузите фото — разбор придёт сюда. Первый запуск спросит разрешение на проверку через Claude.</p>
-      </div>
-      <div class="cab-grid">
-        <div class="panel">
-          <h3><span class="num">1</span> Задание и эталон</h3>
-          <div>
-            <label for="task-select">Задание</label>
-            <select id="task-select" style="margin-top:6px"></select>
-          </div>
-          <div id="task-preview" class="task-preview"></div>
-          <div id="custom-task" hidden style="display:grid;gap:12px">
-            <div><label for="custom-cond">Условие задания</label><textarea id="custom-cond" placeholder="Например: решите уравнение …" style="margin-top:6px"></textarea></div>
-            <div><label for="custom-key">Эталонный ответ / критерии</label><textarea id="custom-key" placeholder="Правильные ответы по пунктам, баллы за каждый пункт" style="margin-top:6px"></textarea></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3><span class="num">2</span> Фото решения</h3>
-          <div class="drop" id="drop" role="button" tabindex="0" aria-label="Загрузить фото решения">
-            Перетащите сюда фото тетради<br><span class="small" style="color:var(--ink-3)">или нажмите, чтобы выбрать · до 5 фото · JPEG, PNG</span>
-          </div>
-          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
-          <div class="thumbs" id="thumbs"></div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-            <button class="btn btn-akane" id="check-btn" disabled>Проверить работу</button>
-            <button class="btn btn-ghost" id="demo-btn" type="button">Показать пример разбора</button>
-            <button class="btn btn-ghost" id="stop-btn" type="button" hidden>Остановить</button>
-          </div>
-          <div class="status" id="status" hidden><span class="spinner"></span><span id="status-text">Проверяю работу…</span></div>
-          <div class="err" id="error" hidden></div>
-          <p class="small muted" id="cap-note" hidden>В этом окне проверка через Claude недоступна — показан пример разбора. Откройте страницу в приложении Claude, чтобы проверить свою работу.</p>
-        </div>
-      </div>
-      <div class="review" id="review" hidden></div>
-    </div>
+    <div class="review" id="review" hidden></div>
   </div>
-  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
 </section>
 
 <script id="bank-rus" type="application/json">[{"id":"r1.1","task":1,"subtype":"Средство связи: противительный союз","check":"word","text":"Прочитайте текст. «Весной калмыцкая степь на две недели превращается в цветущий ковёр тюльпанов. <...> уже к началу июня трава выгорает, и равнина становится золотисто-бурой». Самостоятельно подберите противительный союз, который должен стоять на месте пропуска.","answer":"однако","answer_forms":["однако","но","зато"],"solution":["Между предложениями отношения противопоставления: сначала степь цветёт — затем выгорает.","Такие отношения передаёт противительный союз: однако, но, зато."]},{"id":"r1.2","task":1,"subtype":"Средство связи: усилительная частица","check":"word","text":"«Электронные переводчики с каждым годом становятся точнее. <...> самый совершенный из них не заменит живого знания языка». Самостоятельно подберите усилительную частицу, которая должна стоять на месте пропуска.","answer":"даже","answer_forms":["даже"],"solution":["Пропуск стоит перед словосочетанием «самый совершенный», усиливая его.","Усилительная частица «даже» подчёркивает крайний случай: даже лучший переводчик не заменит знания языка."]},{"id":"r1.3","task":1,"subtype":"Средство связи: наречие","check":"word","text":"«Кочевники не строили постоянных жилищ: несколько раз в год род переходил на новые пастбища. <...> идеальным домом для них стала разборная юрта». Самостоятельно подберите наречие, которое должно стоять на месте пропуска.","answer":"поэтому","answer_forms":["поэтому","потому","оттого"],"solution":["Второе предложение — следствие первого: образ жизни объясняет выбор жилища.","Значение следствия передаёт наречие «поэтому»."]},{"id":"r1.4","task":1,"subtype":"Средство связи: производный предлог","check":"word","text":"«<...> засушливого климата земледелие в Калмыкии невозможно без искусственного орошения». Самостоятельно подберите производный предлог, который должен стоять на месте пропуска.","answer":"вследствие","answer_forms":["вследствие","ввиду"],"solution":["Нужен предлог со значением причины, употребляемый с родительным падежом.","Производные предлоги «вследствие», «ввиду» подходят: вследствие засушливого климата…"]},{"id":"r1.5","task":1,"subtype":"Средство связи: указательное местоимение","check":"word","text":"«Верблюд неделями обходится без воды и довольствуется жёсткими колючками. <...> выносливость сделала его главным спутником кочевника». Самостоятельно подберите указательное местоимение, которое должно стоять на месте пропуска.","answer":"эта","answer_forms":["эта","такая"],"solution":["Слово на месте пропуска отсылает к содержанию первого предложения (способность обходиться без воды и еды).","Указательное местоимение «эта» (или «такая») связывает предложения."]},{"id":"r2.1","task":2,"subtype":"Лексическое значение слова","check":"digit","text":"КОРЕНЬ. 1) Подземная часть растения. 2) Часть слова. 3) Начало, источник, основа чего-либо. 4) Внутренняя часть зуба, волоса. Определите значение, в котором слово употреблено в предложении: «Корень всех разногласий — в разном понимании целей проекта». Запишите цифру.","answer":"3","solution":["В предложении речь идёт об источнике, первопричине разногласий.","Это переносное значение «начало, источник» — значение 3."]},{"id":"r2.2","task":2,"subtype":"Лексическое значение слова","check":"digit","text":"СРЕДА. 1) Третий день недели. 2) Окружение, совокупность природных и социальных условий. 3) Вещество, заполняющее пространство. Определите значение, в котором слово употреблено в предложении: «Личность формируется под влиянием среды». Запишите цифру.","answer":"2","solution":["Речь о социальном окружении человека.","Это значение 2 — «окружение, условия»."]},{"id":"r2.3","task":2,"subtype":"Лексическое значение слова","check":"digit","text":"ЯЗЫК. 1) Орган в полости рта. 2) Система словесного выражения мыслей. 3) Металлический стержень в колоколе. 4) Пленный, захваченный для получения сведений. Определите значение, в котором слово употреблено в предложении: «Разведчики вернулись под утро, взяв языка». Запишите цифру.","answer":"4","solution":["«Взять языка» — устойчивое военное выражение: захватить пленного ради сведений.","Это значение 4."]},{"id":"r2.4","task":2,"subtype":"Лексическое значение слова","check":"digit","text":"КЛАСС. 1) Степень, уровень качества, разряд. 2) Группа учеников одного года обучения. 3) Большая группа общества. 4) Комната для занятий. Определите значение, в котором слово употреблено в предложении: «Пассажиры каюты первого класса поднялись на палубу». Запишите цифру.","answer":"1","solution":["«Первый класс» каюты — это разряд, уровень комфорта.","Это значение 1."]},{"id":"r2.5","task":2,"subtype":"Лексическое значение слова","check":"digit","text":"ЗВЕЗДА. 1) Небесное тело. 2) Геометрическая фигура с остроконечными выступами. 3) Знаменитый человек. 4) Морское животное. Определите значение, в котором слово употреблено в предложении: «На погоны офицера легла третья звезда». Запишите цифру.","answer":"2","solution":["Звезда на погонах — фигура с остроконечными выступами, знак различия.","Это значение 2."]},{"id":"r3.1","task":3,"subtype":"Стилистический анализ текста","check":"digits_any","text":"«Испарение — процесс перехода жидкости в пар, происходящий со свободной поверхности жидкости при любой температуре. Скорость испарения зависит от рода жидкости, площади её поверхности и температуры». Укажите номера ВЕРНЫХ утверждений: 1) Текст относится к научному стилю речи. 2) В тексте широко используется эмоционально-оценочная лексика. 3) В тексте употреблены термины (испарение, температура). 4) Цель текста — воздействовать на чувства читателя. Запишите цифры.","answer":"13","solution":["Текст даёт точное определение и перечисляет факторы — это научный стиль (1 верно).","Используются термины (3 верно); эмоциональной лексики и воздействия на чувства нет (2 и 4 неверны)."]},{"id":"r3.2","task":3,"subtype":"Стилистический анализ текста","check":"digits_any","text":"«Кто из нас не мечтал увидеть апрельскую степь, залитую алым огнём тюльпанов? Спешите: это чудо длится всего две недели!» Укажите номера ВЕРНЫХ утверждений: 1) Текст относится к официально-деловому стилю. 2) В тексте использован риторический вопрос. 3) В тексте преобладают научные термины. 4) Восклицательное предложение и призыв служат воздействию на читателя. Запишите цифры.","answer":"24","solution":["Риторический вопрос «Кто из нас не мечтал…» — примета публицистики (2 верно).","Призыв «Спешите» и восклицание воздействуют на читателя (4 верно); это не деловой стиль, терминов нет (1, 3 неверны)."]},{"id":"r3.3","task":3,"subtype":"Стилистический анализ текста","check":"digits_any","text":"«Заявление на участие в экзамене подаётся до 1 февраля. При подаче заявления необходимо предъявить документ, удостоверяющий личность». Укажите номера ВЕРНЫХ утверждений: 1) В тексте использованы канцелярские клише (документ, удостоверяющий личность). 2) Текст относится к художественному стилю. 3) Текст носит предписывающий характер, свойственный официально-деловому стилю. 4) В тексте есть развёрнутые метафоры. Запишите цифры.","answer":"13","solution":["«Документ, удостоверяющий личность», «подаётся» — типичные клише делового стиля (1 верно).","Текст предписывает порядок действий (3 верно); образных средств нет (2, 4 неверны)."]},{"id":"r3.4","task":3,"subtype":"Стилистический анализ текста","check":"digits_any","text":"«Ночь опустилась на степь мягко, по-кошачьи; звёзды дрожали в тёмной воде арыка, и где-то далеко вздыхал верблюд». Укажите номера ВЕРНЫХ утверждений: 1) В тексте преобладают термины. 2) Использованы олицетворение и образное сравнение. 3) Текст относится к художественному стилю. 4) Цель текста — сообщить точные научные сведения. Запишите цифры.","answer":"23","solution":["«Ночь опустилась по-кошачьи», «вздыхал верблюд» — сравнение и олицетворение (2 верно).","Образность и отсутствие фактографии — приметы художественного стиля (3 верно)."]},{"id":"r3.5","task":3,"subtype":"Стилистический анализ текста","check":"digits_any","text":"«Логарифмом числа b по основанию a называется показатель степени, в которую нужно возвести a, чтобы получить b». Укажите номера ВЕРНЫХ утверждений: 1) В тексте использована разговорная лексика. 2) Формулировка отличается точностью и однозначностью. 3) Текст относится к научному стилю речи. 4) В тексте есть риторические восклицания. Запишите цифры.","answer":"23","solution":["Это строгое определение из учебника: точность и однозначность (2 верно), научный стиль (3 верно).","Разговорной лексики и восклицаний нет (1, 4 неверны)."]},{"id":"r4.1","task":4,"subtype":"Орфоэпические нормы: ударение","check":"word","text":"В одном из приведённых слов допущена ошибка в постановке ударения: НЕВЕРНО выделена буква, обозначающая ударный звук. Выпишите это слово: тОрты · бАнты · звОнит · красИвее · договОр.","answer":"звонит","solution":["Верно: звонИт — ударение во всех формах глагола «звонить» падает на окончание.","Остальные слова даны с верным ударением: тОрты, бАнты, красИвее, договОр."]},{"id":"r4.2","task":4,"subtype":"Орфоэпические нормы: ударение","check":"word","text":"Выпишите слово, в котором НЕВЕРНО выделена буква, обозначающая ударный звук: срЕдства · катАлог · начАть · киломЕтр · досУг.","answer":"каталог","solution":["Верно: каталОг — ударение на последний слог.","Остальные слова даны верно: срЕдства, начАть, киломЕтр, досУг."]},{"id":"r4.3","task":4,"subtype":"Орфоэпические нормы: ударение","check":"word","text":"Выпишите слово, в котором НЕВЕРНО выделена буква, обозначающая ударный звук: квартАл · облЕгчить · созЫв · цепОчка · Иксы.","answer":"облегчить","solution":["Верно: облегчИть — как и углубИть, усугубИть.","Остальные слова даны верно: квартАл, созЫв, цепОчка, Иксы."]},{"id":"r4.4","task":4,"subtype":"Орфоэпические нормы: ударение","check":"word","text":"Выпишите слово, в котором НЕВЕРНО выделена буква, обозначающая ударный звук: слИвовый · жАлюзи · бралА · пОнял · кУхонный.","answer":"жалюзи","solution":["Верно: жалюзИ — ударение на последний слог (заимствование из французского).","Остальные слова даны верно: слИвовый, бралА, пОнял, кУхонный."]},{"id":"r4.5","task":4,"subtype":"Орфоэпические нормы: ударение","check":"word","text":"Выпишите слово, в котором НЕВЕРНО выделена буква, обозначающая ударный звук: щАвель · тУфля · крАны · оптОвый · нАчал.","answer":"щавель","solution":["Верно: щавЕль — ударение на второй слог.","Остальные слова даны верно: тУфля, крАны, оптОвый, нАчал."]},{"id":"r5.1","task":5,"subtype":"Лексические нормы: паронимы","check":"word","text":"В одном из предложений НЕВЕРНО употреблено выделенное слово. Исправьте ошибку и запишите слово правильно. 1) Мама ОДЕЛА малыша потеплее. 2) Он ОДЕЛ пальто и вышел на мороз. 3) АДРЕСАТ получил письмо вовремя.","answer":"надел","solution":["Одеть можно кого-то (одеть ребёнка), надеть — что-то на себя.","Во втором предложении верно: НАДЕЛ пальто."]},{"id":"r5.2","task":5,"subtype":"Лексические нормы: паронимы","check":"word","text":"В одном из предложений НЕВЕРНО употреблено выделенное слово. Исправьте ошибку и запишите слово правильно. 1) За отвагу его ПРЕДСТАВИЛИ к награде. 2) Банк ПРЕДСТАВИЛ предпринимателю кредит на пять лет. 3) Гостям ПРЕДСТАВИЛИ нового директора.","answer":"предоставил","solution":["Представить — предъявить, познакомить, выдвинуть; предоставить — дать в распоряжение.","Во втором предложении верно: банк ПРЕДОСТАВИЛ кредит."]},{"id":"r5.3","task":5,"subtype":"Лексические нормы: паронимы","check":"word","text":"В одном из предложений НЕВЕРНО употреблено выделенное слово. Исправьте ошибку и запишите слово правильно. 1) Фокусник показал ЭФФЕКТНЫЙ трюк. 2) Врач подобрал самый ЭФФЕКТНЫЙ метод лечения. 3) Речь оратора была ЭФФЕКТНОЙ, но пустой.","answer":"эффективный","solution":["Эффектный — производящий впечатление; эффективный — дающий результат.","Метод лечения должен быть ЭФФЕКТИВНЫМ — результативным."]},{"id":"r5.4","task":5,"subtype":"Лексические нормы: паронимы","check":"word","text":"В одном из предложений НЕВЕРНО употреблено выделенное слово. Исправьте ошибку и запишите слово правильно. 1) АБОНЕНТ временно недоступен. 2) Я продлил АБОНЕНТ в бассейн на месяц. 3) АБОНЕНТЫ городской сети получили уведомление.","answer":"абонемент","solution":["Абонент — человек, пользователь; абонемент — документ на право пользования.","Во втором предложении верно: продлил АБОНЕМЕНТ."]},{"id":"r5.5","task":5,"subtype":"Лексические нормы: паронимы","check":"word","text":"В одном из предложений НЕВЕРНО употреблено выделенное слово. Исправьте ошибку и запишите слово правильно. 1) Этот НЕВЕЖА даже не поздоровался. 2) В вопросах астрономии он полный НЕВЕЖА. 3) Грубиян и НЕВЕЖА, он никому не уступал места.","answer":"невежда","solution":["Невежа — невоспитанный человек; невежда — несведущий, малообразованный.","Во втором предложении речь о незнании астрономии: верно НЕВЕЖДА."]}]</script>
@@ -1767,68 +1569,406 @@ function route(){
 window.addEventListener("hashchange", route);
 route();
 
-/* ── элементы и состояние кабинета (объявлены до первого updateCheckBtn) ── */
+/* ══════════ ЛИЧНЫЙ КАБИНЕТ ══════════ */
+const REG_KEY = "tengr_student", TR_KEY = "tengr_trainer", MIST_KEY = "tengr_mistakes",
+      MOCK_KEY = "tengr_minimock", FORM_KEY = "tengr_formulas", HW_KEY = "tengr_hw";
+function loadJSON(key){ try{ return JSON.parse(localStorage.getItem(key)); }catch(_){ return null; } }
+function saveJSON(key,v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(_){} }
+function el(tag, cls, text){
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+function btnEl(cls, text, onClick){ const b = el("button", cls, text); b.type = "button"; if (onClick) b.addEventListener("click", onClick); return b; }
+function fmt(x){ return String(Math.round(x*100)/100).replace(".", ","); }
+function plural(n, forms){
+  const a = Math.abs(n) % 100, b = a % 10;
+  return forms[(a > 10 && a < 20) ? 2 : b === 1 ? 0 : (b >= 2 && b <= 4) ? 1 : 2];
+}
+const toastEl = document.getElementById("toast");
+let toastTimer = null;
+function toast(msg){
+  toastEl.textContent = msg; toastEl.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ toastEl.hidden = true; }, 3800);
+}
+document.querySelectorAll("[data-toast]").forEach(b=>b.addEventListener("click", ()=>toast(b.dataset.toast)));
+
+/* ── банки задач ── */
+const DIDACTICS = JSON.parse(document.getElementById("didactics-data").textContent);
+const BANK_RUS = JSON.parse(document.getElementById("bank-rus").textContent);
+const BANK_SOC = JSON.parse(document.getElementById("bank-soc").textContent);
+const SUBJECTS = {
+  math: {name:"Математика", nums:[1,2,3,4,5,6,7,8,9,10], mockMin:30,
+    titles:{1:"Планиметрия",2:"Векторы",3:"Стереометрия",4:"Вероятность",5:"Вероятность: сложение и умножение",
+      6:"Случайные величины",7:"Простейшие уравнения",8:"Преобразования выражений",9:"Производная и интеграл",10:"Прикладные задачи"}},
+  rus: {name:"Русский язык", nums:[1,2,3,4,5], mockMin:15,
+    titles:{1:"Средства связи предложений",2:"Лексическое значение слова",3:"Стилистический анализ",4:"Ударение (орфоэпия)",5:"Паронимы"}},
+  soc: {name:"Обществознание", nums:[1,2,3,4,5], mockMin:15,
+    titles:{1:"Основы общественных наук",2:"Человек и общество: суждения",3:"Соответствие понятий",4:"Применение знаний к ситуации",5:"Экономика: суждения"}}
+};
+const TRAINS = {math:{}, rus:{}, soc:{}}, EXAMPLESS = {math:{}, rus:{}, soc:{}};
+DIDACTICS.forEach(t=>{
+  const bank = t.set === "example" ? EXAMPLESS.math : TRAINS.math;
+  (bank[t.task] = bank[t.task] || []).push(t);
+});
+BANK_RUS.forEach(t=>{ (TRAINS.rus[t.task] = TRAINS.rus[t.task] || []).push(t); });
+BANK_SOC.forEach(t=>{ (TRAINS.soc[t.task] = TRAINS.soc[t.task] || []).push(t); });
+
+/* ── демо-данные ученика по предметам ── */
+const SUBJ_DATA = {
+  math: {
+    forecast:{labels:["сен","окт","ноя"], vals:[48,54,61], goal:75},
+    next:"Следующий пробник — №2, полный формат, 14–20 декабря.",
+    lessons:[{day:"Чт",time:"18:30",type:"Разбор с учителем",topic:"Производная и касательная (№9)"},
+             {day:"Сб",time:"15:00",type:"Тренировка с семинаристом",topic:"Практикум по №9"}],
+    record:"Неделя 12 · Финансовые задачи: аннуитет · 47 мин",
+    week:[["неделя 13 · сейчас","Финансовые задачи: аннуитет (№13) · тригонометрические уравнения (№14а)",true],
+          ["неделя 14 · 14–20 дек","Пробник №2 — полный вариант по времени и бланкам"],
+          ["неделя 15","Отбор корней на окружности и отрезке (№14б)"]],
+    page:"#math", doc:"programma_matematika.docx",
+    hwStats:{streak:6, done:11, total:12, avg:87},
+    mockCols:["Пробник","Дата","Часть 1","Первичные","Тестовый","Комментарий"],
+    mocks:[["№1 · входной","15 сен","8 из 13","11","48","Стартовая точка, группа 80+"],
+           ["Тематический","20 окт","10 из 13","13","54","+6: закрыты №7 и №8"],
+           ["Тематический","24 ноя","11 из 13","15","61","+7: уверенно №1–10"],
+           ["№2 · полный","14–20 дек","—","цель 16+","—","Полный формат по времени и бланкам"]],
+    focus:["Текстовые задачи · №11","Отбор корней · №14б","Финансовые задачи · №13"]
+  },
+  rus: {
+    forecast:{labels:["сен","окт","ноя"], vals:[52,58,63], goal:80},
+    next:"Следующий пробник — №2, полный вариант с сочинением, 14–20 декабря.",
+    lessons:[{day:"Вт",time:"17:00",type:"Разбор с учителем",topic:"Н и НН (№15) · сочинение на время"},
+             {day:"Пт",time:"17:00",type:"Тренировка с семинаристом",topic:"Практикум по орфографии: №9–15"}],
+    record:"Неделя 12 · Глагол и причастие (№12) · 50 мин",
+    week:[["неделя 13 · сейчас","Правописание Н и НН (№15) · третье сочинение на время",true],
+          ["неделя 14 · 14–20 дек","Пробник №2 — полный вариант (210 минут, бланки)"],
+          ["неделя 15","Однородные члены и ССП (№16) · К2 на сложных текстах"]],
+    page:"#russian", doc:"programma_russkiy_yazyk.docx",
+    hwStats:{streak:5, done:10, total:12, avg:82},
+    mockCols:["Пробник","Дата","Часть 1","Сочинение","Первичные","Тестовый"],
+    mocks:[["№1 · входной","15 сен","19 из 28","7 из 22","26","52"],
+           ["Тематический","20 окт","21 из 28","9 из 22","30","58"],
+           ["Тематический","24 ноя","22 из 28","11 из 22","33","63"],
+           ["№2 · полный","14–20 дек","цель 21+","цель 13+","—","—"]],
+    focus:["Пунктуация в СПП · №19","Комментарий к позиции автора · К2","Паронимы · №5"]
+  },
+  soc: {
+    forecast:{labels:["сен","окт","ноя"], vals:[55,60,66], goal:82},
+    next:"Следующий пробник — №2, полный вариант, 14–20 декабря.",
+    lessons:[{day:"Ср",time:"18:00",type:"Разбор с учителем",topic:"Власть, государство, политические режимы"},
+             {day:"Сб",time:"12:00",type:"Тренировка с семинаристом",topic:"Практикум: план по политике (№24)"}],
+    record:"Неделя 12 · Федеративное устройство РФ (№13) · 45 мин",
+    week:[["неделя 13 · сейчас","Власть, государство, формы государства · план по политике (№24)",true],
+          ["неделя 14 · 14–20 дек","Пробник №2 — полный вариант (210 минут)"],
+          ["неделя 15","Органы государственной власти РФ (№13) · задание 23 по Конституции"]],
+    page:"#social", doc:"programma_obshchestvoznanie.docx",
+    hwStats:{streak:4, done:9, total:11, avg:79},
+    mockCols:["Пробник","Дата","Часть 1","Часть 2","Первичные","Тестовый"],
+    mocks:[["№1 · входной","15 сен","18 из 28","12 из 30","30","55"],
+           ["Тематический","20 окт","20 из 28","14 из 30","34","60"],
+           ["Тематический","24 ноя","22 из 28","16 из 30","38","66"],
+           ["№2 · полный","14–20 дек","цель 20+","цель 14+","—","—"]],
+    focus:["Право: суждения · №14","Сложный план · №24","Задание 25: примеры"]
+  }
+};
+
+/* ── домашние задания (демо) ── */
+const HOMEWORK = {
+  math: [
+    {id:"hw-m1", status:"todo", due:"до чт", title:"№9 · Производная и касательная", sub:"3 задачи, решение в тетради",
+     checkType:"математика",
+     cond:"1) Найдите производную функции f(x) = x³ − 4x² + 5 и вычислите f′(2).\n2) Найдите тангенс угла наклона касательной к графику y = x² − 3x в точке x₀ = 4.\n3) Точка движется по закону x(t) = t² + 6t − 1 (м). Найдите скорость в момент t = 3 с.",
+     key:"1) f′(x) = 3x² − 8x; f′(2) = 12 − 16 = −4 — 1 балл\n2) y′ = 2x − 3; y′(4) = 5 — 1 балл\n3) v = x′(t) = 2t + 6; v(3) = 12 м/с — 1 балл"},
+    {id:"hw-m3", status:"checking", due:"2 дек", title:"№10 · Прикладные задачи", sub:"на проверке, разбор будет к занятию"},
+    {id:"hw-m2", status:"done", due:"25 ноя", title:"№7 · Простейшие уравнения", sub:"проверено, разбор готов", demo:true,
+     cond:"Решите уравнения. Ответ каждого пункта запишите числом.\nа) 3^(x−2) = 27\nб) log₂(x+3) = 4\nв) √(2x+1) = 3\nг) 4/(x−1) = 2",
+     result:{
+       transcription:"а) 3^(x−2)=27  3^(x−2)=3³  x−2=3  x=5\nб) log₂(x+3)=4  x+3=8  x=5\nв) √(2x+1)=3  2x+1=9  2x=8  x=4  пров: √9=3 ✓\nг) 4/(x−1)=2  4=2(x−1)  4=2x−2  2x=6  x=3",
+       legibility:"good",
+       tasks:[
+         {task_id:"а)", student_answer:"x = 5", verdict:"correct", confidence:"high", errors:[], correct_parts:["Верно приведено к одному основанию: 27 = 3³"], points:1, max_points:1, comment:"Полное верное решение."},
+         {task_id:"б)", student_answer:"x = 5", verdict:"incorrect", confidence:"high", errors:["Строка «x+3=8»: по определению логарифма x + 3 = 2⁴ = 16"], correct_parts:["Верная схема: логарифм → показательная запись"], points:0, max_points:1, comment:"Ошибка в степени: 2⁴ = 16. Правильный ответ x = 13."},
+         {task_id:"в)", student_answer:"x = 4", verdict:"correct", confidence:"high", errors:[], correct_parts:["Сделана проверка корня"], points:1, max_points:1, comment:"Верно, с проверкой."},
+         {task_id:"г)", student_answer:"x = 3", verdict:"correct", confidence:"medium", errors:[], correct_parts:["Верно раскрыта пропорция"], points:1, max_points:1, comment:"Верно."}
+       ],
+       needs_human_review:false,
+       summary:"3 из 4 пунктов верно. Единственная ошибка — в пункте б): 2⁴ = 16, а не 8. Повторите степени двойки до 2¹⁰."
+     }}
+  ],
+  rus: [
+    {id:"hw-r1", status:"todo", due:"до вт", title:"№15 · Н и НН", sub:"5 слов, написать в тетради",
+     checkType:"орфография",
+     cond:"Перепишите, раскрывая скобки: вставьте Н или НН.\n1) кова(н,нн)ый сундук\n2) письмо написа(н,нн)о\n3) варё(н,нн)ый в кастрюле картофель\n4) ветре(н,нн)ый день\n5) купле(н,нн)ая книга",
+     key:"1) кованый — 1 балл\n2) написано — 1 балл\n3) варенный в кастрюле (есть зависимые слова) — 1 балл\n4) ветреный (исключение) — 1 балл\n5) купленная (приставка) — 1 балл\nСверять каждое слово буквально, в errors — пары «написано → правильно»."},
+    {id:"hw-r3", status:"checking", due:"3 дек", title:"Сочинение №3", sub:"проверяет эксперт по критериям К1–К10"},
+    {id:"hw-r2", status:"done", due:"26 ноя", title:"№4 · Ударение", sub:"проверено, разбор готов", demo:true,
+     cond:"Запишите слова, выделив ударную гласную заглавной буквой: торты, звонит, красивее, каталог, щавель.",
+     result:{
+       transcription:"тОрты, звонИт, красИвее, катАлог, щавЕль",
+       legibility:"good",
+       tasks:[
+         {task_id:"торты", student_answer:"тОрты", verdict:"correct", confidence:"high", errors:[], correct_parts:[], points:1, max_points:1, comment:"Верно."},
+         {task_id:"звонит", student_answer:"звонИт", verdict:"correct", confidence:"high", errors:[], correct_parts:[], points:1, max_points:1, comment:"Верно."},
+         {task_id:"красивее", student_answer:"красИвее", verdict:"correct", confidence:"high", errors:[], correct_parts:[], points:1, max_points:1, comment:"Верно."},
+         {task_id:"каталог", student_answer:"катАлог", verdict:"incorrect", confidence:"high", errors:["катАлог → каталОг"], correct_parts:[], points:0, max_points:1, comment:"Ударение падает на последний слог: каталОг."},
+         {task_id:"щавель", student_answer:"щавЕль", verdict:"correct", confidence:"high", errors:[], correct_parts:[], points:1, max_points:1, comment:"Верно."}
+       ],
+       needs_human_review:false,
+       summary:"4 из 5 верно. Ошибка в слове «каталОг» — добавьте его в личный список ударений и повторите словник ФИПИ на букву К."
+     }}
+  ],
+  soc: [
+    {id:"hw-s1", status:"todo", due:"до ср", title:"Экономика: спрос", sub:"3 вопроса, письменный ответ",
+     checkType:"проверка по смыслу",
+     cond:"1) Дайте определение понятия «спрос».\n2) Назовите два неценовых фактора спроса.\n3) Приведите пример действия закона спроса.",
+     key:"1) Спрос — желание и возможность покупателей приобрести товар по определённой цене в определённый период — 1 балл\n2) Любые два: доходы потребителей, мода и вкусы, ожидания, цены на товары-заменители или дополняющие товары, число покупателей — 1 балл\n3) Пример, где рост цены снижает величину спроса (или наоборот) — 1 балл"},
+    {id:"hw-s3", status:"checking", due:"4 дек", title:"Задание 25 по политике", sub:"проверяет эксперт по критериям 25.1–25.3"},
+    {id:"hw-s2", status:"done", due:"27 ноя", title:"Понятия: человек и общество", sub:"проверено, разбор готов", demo:true,
+     cond:"1) Дайте определение понятия «деятельность».\n2) Назовите два вида познания.\n3) Приведите пример социального института.",
+     result:{
+       transcription:"1) Деятельность — это активность человека.\n2) чувственное и рациональное\n3) семья",
+       legibility:"good",
+       tasks:[
+         {task_id:"1)", student_answer:"Деятельность — это активность человека.", verdict:"partial", confidence:"high", errors:["Нет ключевого признака: деятельность направлена на достижение цели и преобразование мира"], correct_parts:["Верно указан родовой признак — активность"], points:0.5, max_points:1, comment:"Определение неполное: без целенаправленности оно подходит и к поведению животных."},
+         {task_id:"2)", student_answer:"чувственное и рациональное", verdict:"correct", confidence:"high", errors:[], correct_parts:["Названы оба уровня познания"], points:1, max_points:1, comment:"Верно."},
+         {task_id:"3)", student_answer:"семья", verdict:"correct", confidence:"high", errors:[], correct_parts:["Семья — социальный институт"], points:1, max_points:1, comment:"Верно."}
+       ],
+       needs_human_review:false,
+       summary:"2,5 из 3. Учите определения с существенными признаками: «сознательная активность человека, направленная на достижение цели»."
+     }}
+  ]
+};
+let hwStore = loadJSON(HW_KEY) || {};
+function hwState(h){ return hwStore[h.id] ? Object.assign({}, h, hwStore[h.id]) : h; }
+function hwList(){ return (HOMEWORK[curSubj]||[]).map(hwState); }
+function hwScore(h){
+  const t = (h.result && h.result.tasks) || [];
+  const got = t.reduce((s,x)=>s+(+x.points||0),0), max = t.reduce((s,x)=>s+(+x.max_points||0),0);
+  return {got, max};
+}
+
+/* ── состояние ── */
+let curSubj = "math";
+let TRAIN = TRAINS.math, EXAMPLES = EXAMPLESS.math, TASK_TITLES = SUBJECTS.math.titles, TR_NUMS = SUBJECTS.math.nums;
+let trNum = 1;
+let trSolved = loadJSON(TR_KEY) || {};
+let trMistakes = loadJSON(MIST_KEY) || {};
+let mockHistory = loadJSON(MOCK_KEY) || [];
+function totalTasks(){ return TR_NUMS.reduce((s,n)=>s+(TRAIN[n]||[]).length,0); }
+function solvedIn(n){ return (TRAIN[n]||[]).filter(t=>trSolved[t.id]).length; }
+function solvedSubj(){ return TR_NUMS.reduce((s,n)=>s+solvedIn(n),0); }
+function subjTasks(){ const out = []; TR_NUMS.forEach(n=>(TRAIN[n]||[]).forEach(t=>out.push(t))); return out; }
+function mistakeTasks(){ return subjTasks().filter(t=>trMistakes[t.id]); }
+function subjMocks(){ return mockHistory.filter(h=>(h.subj||"math") === curSubj); }
+
+/* ── проверка ответов ── */
+function normAns(v){ return String(v).trim().toLowerCase().replace(/\s+/g,"").replace(/,/g,"."); }
+function normWord(v){ return String(v).trim().toLowerCase().replace(/ё/g,"е").replace(/[.,!;:\s]+/g," ").trim(); }
+function normDigits(v){ return String(v).replace(/[^0-9]/g,""); }
+function checkAnswer(t, v){
+  const kind = t.check || "numeric";
+  if (kind === "word"){
+    const nv = normWord(v);
+    if (!nv) return false;
+    if (normWord(t.answer) === nv) return true;
+    return Array.isArray(t.answer_forms) && t.answer_forms.some(f=>normWord(f)===nv);
+  }
+  if (kind === "digit" || kind === "digits_seq"){
+    const nv = normDigits(v);
+    return !!nv && nv === normDigits(t.answer);
+  }
+  if (kind === "digits_any"){
+    const nv = normDigits(v).split("").sort().join("");
+    return !!nv && nv === normDigits(t.answer).split("").sort().join("");
+  }
+  const nv = normAns(v);
+  if (!nv) return false;
+  if (Array.isArray(t.answer_forms) && t.answer_forms.some(f=>normAns(f)===nv)) return true;
+  const a = parseFloat(normAns(t.answer)), b = parseFloat(nv);
+  return isFinite(a) && isFinite(b) && Math.abs(a-b) < 1e-9;
+}
+function answerHint(t){
+  const kind = t.check || "numeric";
+  return kind === "word" ? "слово" : kind === "digit" ? "цифра" : (kind === "digits_any" || kind === "digits_seq") ? "цифры" : "ответ";
+}
+function inputModeFor(t){ return (t.check && t.check !== "numeric") ? (t.check === "word" ? "text" : "numeric") : "decimal"; }
+
+/* ── вкладки ── */
+const cabPanels = {today:"cab-today", hw:"cab-hw", train:"cab-train", results:"cab-results"};
+const cabTabBtns = document.querySelectorAll(".cab-tab");
+let curTab = "today";
+function showCabTab(key){
+  curTab = key;
+  for (const k in cabPanels) document.getElementById(cabPanels[k]).hidden = (k !== key);
+  cabTabBtns.forEach(b=>b.classList.toggle("active", b.dataset.tab === key));
+  if (key === "today") renderToday();
+  if (key === "results") renderResults();
+  if (key === "train" && trainView === "grid") renderTrainGrid();
+}
+cabTabBtns.forEach(b=>b.addEventListener("click", ()=>{ showCabTab(b.dataset.tab); window.scrollTo(0,0); }));
+
+/* ══════════ СЕГОДНЯ ══════════ */
+function recommendation(){
+  const mc = mistakeTasks().length;
+  if (mc) return {kicker:"продолжить", title:"Работа над ошибками",
+    text: mc+" "+plural(mc,["задача ждёт","задачи ждут","задач ждут"])+" повторения", btn:"Повторить",
+    act: ()=>{ showCabTab("train"); openMistakes(); }};
+  let pick = TR_NUMS.find(n=>{ const t=(TRAIN[n]||[]).length, d=solvedIn(n); return d>0 && d/t < .8; });
+  if (pick == null) pick = TR_NUMS.find(n=>solvedIn(n) === 0);
+  if (pick != null) return {kicker:"продолжить", title:"№"+pick+" · "+TASK_TITLES[pick],
+    text:"решено "+solvedIn(pick)+" из "+(TRAIN[pick]||[]).length, btn: solvedIn(pick) ? "Продолжить" : "Начать",
+    act: ()=>{ showCabTab("train"); openTopic(pick); }};
+  return {kicker:"проверить себя", title:"Мини-пробник", text:"все темы части 1 освоены — пройдите вариант на время",
+    btn:"Начать", act: ()=>{ showCabTab("train"); startMock(); }};
+}
+function renderToday(){
+  const box = document.getElementById("cab-today");
+  box.textContent = "";
+  const d = SUBJ_DATA[curSubj];
+  const grid = el("div","today-grid");
+
+  const l = d.lessons[0], l2 = d.lessons[1];
+  const c1 = el("div","card");
+  c1.append(el("span","t-kicker","ближайшее занятие"),
+    el("div","t-big", l.day+" · "+l.time),
+    el("div","t-sub", l.type+": "+l.topic));
+  const next = el("p","small muted", "Затем "+l2.day+" · "+l2.time+" — "+l2.type.toLowerCase());
+  const rec = btnEl("linkish","▶ Запись прошлого разбора", ()=>toast("Записи разборов появятся после подключения видеохостинга школы."));
+  c1.append(next, rec);
+
+  const todo = hwList().find(h=>h.status === "todo");
+  const c2 = el("div","card primary");
+  c2.append(el("span","t-kicker","домашнее задание"));
+  if (todo){
+    c2.append(el("div","t-big", todo.title), el("div","t-sub", "Сдать "+todo.due+" · "+todo.sub),
+      btnEl("btn btn-akane btn-sm","Сдать фото решения", ()=>{ showCabTab("hw"); openSubmit(todo.id); }));
+  } else {
+    c2.append(el("div","t-big","Всё сдано"), el("div","t-sub","Новое задание появится после ближайшего занятия."));
+  }
+
+  const r = recommendation();
+  const c3 = el("div","card");
+  c3.append(el("span","t-kicker", r.kicker), el("div","t-big", r.title), el("div","t-sub", r.text),
+    btnEl("btn btn-ghost btn-sm", r.btn, r.act));
+  grid.append(c1, c2, c3);
+
+  const row = el("div","today-row");
+  const f = d.forecast, now = f.vals[f.vals.length-1];
+  const cf = el("div","card");
+  cf.style.cssText = "display:grid;gap:12px;align-content:start";
+  const head = el("div","ov-head");
+  head.append(el("span","t-kicker","прогноз балла"), btnEl("linkish","подробнее →", ()=>showCabTab("results")));
+  const strip = el("div","fc-strip");
+  const to = el("span","to"); to.append("цель к июню ", el("b",null,String(f.goal)));
+  const track = el("div","fc-track");
+  const bar = el("i"); bar.style.width = Math.min(100, now)+"%";
+  const mark = el("s"); mark.style.left = f.goal+"%";
+  track.append(bar, mark);
+  strip.append(el("span","now",String(now)), to, track);
+  const delta = now - f.vals[0];
+  cf.append(head, strip, el("p","small muted","+"+delta+" "+plural(delta,["балл","балла","баллов"])+" с сентября. "+d.next));
+
+  const cw = el("div","card");
+  cw.style.cssText = "display:grid;gap:12px;align-content:start";
+  const wh = el("div","ov-head");
+  const all = el("a","linkish","весь план на год →"); all.href = d.page;
+  wh.append(el("span","t-kicker","программа · эта неделя"), all);
+  const tl = el("div","timeline");
+  d.week.forEach(w=>{
+    const it = el("div","tl-item"+(w[2]?" hot":""));
+    it.append(el("b",null,w[0]), el("p",null,w[1]));
+    tl.append(it);
+  });
+  cw.append(wh, tl);
+  row.append(cf, cw);
+  box.append(grid, row);
+}
+
+/* ══════════ ДОМАШКА ══════════ */
+const submitEl = document.getElementById("hw-submit");
+const reviewEl = document.getElementById("review");
 const checkBtn = document.getElementById("check-btn");
-const demoBtn = document.getElementById("demo-btn");
 const stopBtn = document.getElementById("stop-btn");
 const statusEl = document.getElementById("status");
 const statusText = document.getElementById("status-text");
 const errEl = document.getElementById("error");
 const capNote = document.getElementById("cap-note");
-let sampleFn = null, canImages = false, sampleGone = false, busy = false, ctl = null;
-let photos = [];   // {file, url}
-
-/* ── пресеты заданий ── */
-const PRESETS = [
-  {
-    id:"eq-basics",
-    name:"Математика: простейшие уравнения (№7)",
-    checkType:"математика",
-    cond:"Решите уравнения. Ответ каждого пункта запишите числом.\nа) 3^(x−2) = 27\nб) log₂(x+3) = 4\nв) √(2x+1) = 3\nг) 4/(x−1) = 2",
-    key:"а) x = 5 (3^(x−2)=3³ ⇒ x−2=3). — 1 балл\nб) x = 13 (x+3=2⁴=16). — 1 балл\nв) x = 4 (2x+1=9; проверка: √9=3). — 1 балл\nг) x = 3 (x−1=2). — 1 балл\nВсего 4 балла, по 1 за пункт. Эквивалентные верные способы решения засчитываются."
-  },
-  {
-    id:"trig-14",
-    name:"Математика, №14: тригонометрическое уравнение (а, б)",
-    checkType:"математика",
-    cond:"а) Решите уравнение 2cos²x − 5cos x + 2 = 0.\nб) Укажите корни этого уравнения, принадлежащие отрезку [−2π; −π/2].",
-    key:"а) Замена t = cos x: 2t² − 5t + 2 = 0, t = 2 (не подходит, |cos x| ≤ 1) или t = 1/2.\ncos x = 1/2 ⇒ x = ±π/3 + 2πk, k ∈ ℤ. — 1 балл (пункт а)\nб) На отрезке [−2π; −π/2] лежит единственный корень x = −5π/3. — 1 балл (пункт б)\nМаксимум 2 балла. Отбор корней должен быть показан (окружность или двойное неравенство); ответ пункта б без обоснованного отбора — пункт б не засчитывается."
-  },
-  {
-    id:"rus-orfo",
-    name:"Русский язык: орфография (Н и НН)",
-    checkType:"орфография",
-    cond:"Перепишите, раскрывая скобки: вставьте Н или НН.\n1) кова(н,нн)ый сундук\n2) письмо написа(н,нн)о\n3) варё(н,нн)ый в кастрюле картофель\n4) ветре(н,нн)ый день\n5) купле(н,нн)ая книга",
-    key:"1) кованый (отглагольное прилагательное без приставки и зависимых слов) — 1 балл\n2) написано (краткое причастие) — 1 балл\n3) варенный в кастрюле (есть зависимые слова → причастие, НН) — 1 балл\n4) ветреный (исключение) — 1 балл\n5) купленная (приставка → НН) — 1 балл\nВсего 5 баллов. Сверять каждое слово буквально, в errors — пары «написано → правильно»."
-  },
-  {
-    id:"custom",
-    name:"Своё задание…",
-    checkType:"математика",
-    cond:"", key:""
-  }
-];
-const taskSelect = document.getElementById("task-select");
 const taskPreview = document.getElementById("task-preview");
-const customBox = document.getElementById("custom-task");
-PRESETS.forEach(p=>{
-  const o = document.createElement("option");
-  o.value = p.id; o.textContent = p.name;
-  taskSelect.append(o);
-});
-function currentPreset(){ return PRESETS.find(p=>p.id===taskSelect.value); }
-function refreshTask(){
-  const p = currentPreset();
-  const custom = p.id === "custom";
-  customBox.hidden = !custom;
-  taskPreview.hidden = custom;
-  if (!custom) taskPreview.textContent = p.cond;
-  updateCheckBtn();
-}
-taskSelect.addEventListener("change", refreshTask);
-refreshTask();
+let sampleFn = null, canImages = false, sampleGone = false, busy = false, ctl = null;
+let photos = [];
+let openHw = null, openMode = null;   // id и режим ("submit" | "review")
 
-/* ── загрузка фото ── */
+function parkPanels(){
+  submitEl.hidden = true; reviewEl.hidden = true;
+  document.getElementById("cab-dash").append(submitEl, reviewEl);
+}
+function renderHw(){
+  parkPanels();
+  const listEl = document.getElementById("hw-list");
+  listEl.textContent = "";
+  const order = {todo:0, checking:1, done:2};
+  const list = hwList().sort((a,b)=>order[a.status]-order[b.status]);
+  list.forEach(h=>{
+    const item = el("div","hw-item"); item.dataset.id = h.id;
+    const row = el("div","hw-row");
+    const info = el("div"); info.append(el("b",null,h.title), el("span","sub",h.sub));
+    const st = el("div","st");
+    if (h.status === "todo"){
+      st.append(el("span","pill bad","ждёт сдачи"),
+        btnEl("btn btn-akane btn-sm","Сдать фото", ()=>openSubmit(h.id)));
+    } else if (h.status === "checking"){
+      st.append(el("span","pill none","на проверке"));
+    } else {
+      const sc = hwScore(h);
+      st.append(el("span","pill "+(sc.max && sc.got/sc.max >= .8 ? "ok" : "part"), fmt(sc.got)+" / "+fmt(sc.max)),
+        btnEl("linkish","открыть разбор", ()=>openReview(h.id)));
+    }
+    row.append(el("span","d",h.due), info, st);
+    item.append(row, el("div","hw-slot"));
+    listEl.append(item);
+  });
+  const todoN = list.filter(h=>h.status === "todo").length;
+  const badge = document.getElementById("hw-badge");
+  badge.hidden = !todoN; badge.textContent = todoN;
+  if (openHw){
+    const keep = openHw, mode = openMode;
+    openHw = null;
+    if (mode === "review") openReview(keep, true); else if (mode === "submit") openSubmit(keep);
+  }
+}
+function slotFor(id){ const it = document.querySelector('.hw-item[data-id="'+id+'"]'); return it ? it.querySelector(".hw-slot") : null; }
+function markOpen(id){ document.querySelectorAll(".hw-item").forEach(i=>i.classList.toggle("open", i.dataset.id === id)); }
+function openSubmit(id){
+  if (openHw === id && openMode === "submit"){ openHw = null; openMode = null; parkPanels(); markOpen(null); return; }
+  const h = hwList().find(x=>x.id === id);
+  const slot = slotFor(id);
+  if (!h || !slot) return;
+  parkPanels();
+  photos.forEach(p=>URL.revokeObjectURL(p.url)); photos = []; renderThumbs();
+  openHw = id; openMode = "submit";
+  taskPreview.textContent = h.cond;
+  errEl.hidden = true;
+  capNote.hidden = !sampleGone;
+  slot.append(submitEl, reviewEl);
+  submitEl.hidden = false;
+  markOpen(id);
+  updateCheckBtn();
+  slot.closest(".hw-item").scrollIntoView({behavior:"smooth", block:"start"});
+}
+function openReview(id, withPhotos){
+  if (!withPhotos && openHw === id && openMode === "review"){ openHw = null; openMode = null; parkPanels(); markOpen(null); return; }
+  const h = hwList().find(x=>x.id === id);
+  const slot = slotFor(id);
+  if (!h || !h.result || !slot) return;
+  parkPanels();
+  openHw = id; openMode = "review";
+  slot.append(reviewEl);
+  renderReview(h.result, h.cond, !!h.demo, !!withPhotos);
+  markOpen(id);
+}
+
+/* фото */
 const drop = document.getElementById("drop");
 const fileInput = document.getElementById("file-input");
 const thumbs = document.getElementById("thumbs");
@@ -1843,10 +1983,10 @@ function addFiles(list){
 function renderThumbs(){
   thumbs.textContent = "";
   photos.forEach((p,i)=>{
-    const d = document.createElement("div"); d.className = "thumb";
-    const img = document.createElement("img"); img.src = p.url; img.alt = "Фото "+(i+1);
-    const b = document.createElement("button"); b.textContent = "✕"; b.setAttribute("aria-label","Убрать фото "+(i+1));
-    b.addEventListener("click", ()=>{ URL.revokeObjectURL(p.url); photos.splice(i,1); renderThumbs(); });
+    const d = el("div","thumb");
+    const img = el("img"); img.src = p.url; img.alt = "Фото "+(i+1);
+    const b = btnEl(null,"✕", ()=>{ URL.revokeObjectURL(p.url); photos.splice(i,1); renderThumbs(); });
+    b.setAttribute("aria-label","Убрать фото "+(i+1));
     d.append(img,b); thumbs.append(d);
   });
   updateCheckBtn();
@@ -1857,19 +1997,13 @@ fileInput.addEventListener("change", ()=>{ addFiles(fileInput.files); fileInput.
 ["dragover","dragenter"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.add("over");}));
 ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.remove("over");}));
 drop.addEventListener("drop", e=>addFiles(e.dataTransfer.files));
-
-/* ── возможность sample ── */
 function updateCheckBtn(){
-  const p = currentPreset();
-  const hasTask = p.id !== "custom" || (document.getElementById("custom-cond").value.trim() && document.getElementById("custom-key").value.trim());
-  checkBtn.disabled = busy || sampleGone || !canImages || photos.length===0 || !hasTask;
+  checkBtn.disabled = busy || sampleGone || !canImages || !photos.length || !openHw || openMode !== "submit";
 }
-document.getElementById("custom-cond").addEventListener("input", updateCheckBtn);
-document.getElementById("custom-key").addEventListener("input", updateCheckBtn);
 
 (async ()=>{
   try{
-    await 0; // дать скрипту доинициализироваться: catch использует DEMO_RESULT
+    await 0;
     if (!window.claude || typeof window.claude.use !== "function") throw 0;
     sampleFn = await window.claude.use("sample");
     if (!sampleFn) throw 0;
@@ -1879,15 +2013,13 @@ document.getElementById("custom-key").addEventListener("input", updateCheckBtn);
     if (!canImages) throw 0;
   }catch(_){
     sampleGone = true;
-    capNote.hidden = false;
-    renderReview(DEMO_RESULT, DEMO_TASK, true);
+    if (openMode === "submit") capNote.hidden = false;
   }
   updateCheckBtn();
 })();
 
-/* ── промпт проверки (по методике homework-pilot) ── */
-function buildPrompt(p, cond, key){
-  return `Ты проверяешь домашнее задание по фотографии тетради ученика старших классов. Работа на русском языке. Тип проверки: ${p.checkType}.
+function buildPrompt(checkType, cond, key){
+  return `Ты проверяешь домашнее задание по фотографии тетради ученика старших классов. Работа на русском языке. Тип проверки: ${checkType}.
 
 Сначала транскрибируй рукописный текст на фото БУКВАЛЬНО: не исправляй ошибки, не додумывай слова по смыслу, нечитаемое обозначай [?], зачёркнутое пропускай. Эталонный ответ используй ТОЛЬКО для вынесения вердикта, никогда для «дочитывания» неразборчивых мест.
 
@@ -1895,6 +2027,7 @@ function buildPrompt(p, cond, key){
 
 Математика: сравнивай итоговый ответ и ход решения. Эквивалентные формы (0.5 и 1/2) считай верными. Проверяй обоснованность каждого перехода: верный ответ с неверным или пропущенным ключевым шагом полного балла не получает. Ошибка в ходе при верном ответе = partial с комментарием.
 Орфография: сверяй каждое слово с эталоном буквально. В errors перечисляй пары «написано → правильно». Если буква в спорном слове читается неоднозначно, ставь confidence low и не гадай ни в пользу ученика, ни против него.
+Проверка по смыслу: оценивай содержание по критериям эталона, а не дословное совпадение; своими словами верно = correct, неполно = partial.
 
 Баллы: за каждый пункт указан максимум в эталоне (если нет — 1 балл за пункт). correct — полный балл; partial — часть балла пропорционально сделанному, в comment объясни, за что снято; incorrect и unreadable — 0. Если пункт не найден в работе, напиши это в comment. В errors указывай, ГДЕ ошибка (шаг, строка) и в чём она. В correct_parts — что сделано верно.
 
@@ -1907,35 +2040,34 @@ ${cond}
 ${key}
 
 Проверь работу на фото и ответь ТОЛЬКО одним JSON-объектом без пояснений до и после, в точности такой структуры:
-{"transcription": "весь текст работы буквально", "legibility": "good|medium|poor", "tasks": [{"task_id": "а)", "student_answer": "ответ ученика буквально", "verdict": "correct|incorrect|partial|unreadable", "confidence": "high|medium|low", "errors": ["строка/шаг → в чём ошибка"], "correct_parts": ["что верно"], "points": 1, "max_points": 1, "comment": "пояснение вердикта"}], "needs_human_review": false, "summary": "общий разбор работы, 2–5 предложений"}`;
+{"transcription": "весь текст работы буквально", "legibility": "good|medium|poor", "tasks": [{"task_id": "1)", "student_answer": "ответ ученика буквально", "verdict": "correct|incorrect|partial|unreadable", "confidence": "high|medium|low", "errors": ["строка/шаг → в чём ошибка"], "correct_parts": ["что верно"], "points": 1, "max_points": 1, "comment": "пояснение вердикта"}], "needs_human_review": false, "summary": "общий разбор работы, 2–5 предложений"}`;
 }
-
-/* ── проверка ── */
 checkBtn.addEventListener("click", async ()=>{
-  const p = currentPreset();
-  const cond = p.id==="custom" ? document.getElementById("custom-cond").value.trim() : p.cond;
-  const key  = p.id==="custom" ? document.getElementById("custom-key").value.trim()  : p.key;
+  const h = hwList().find(x=>x.id === openHw);
+  if (!h || !sampleFn) return;
   busy = true; updateCheckBtn();
   errEl.hidden = true; statusEl.hidden = false; stopBtn.hidden = false;
   statusText.textContent = "Проверяю работу… первый запуск может занять до минуты";
-  document.getElementById("review").hidden = true;
   ctl = new AbortController();
   try{
-    const result = await sampleFn.json(buildPrompt(p, cond, key), {
-      images: photos.map(x=>x.file),
-      modelTier: "default",
-      cache: false,
-      signal: ctl.signal,
+    const result = await sampleFn.json(buildPrompt(h.checkType, h.cond, h.key), {
+      images: photos.map(x=>x.file), modelTier: "default", cache: false, signal: ctl.signal,
       onText: ()=>{ statusText.textContent = "Составляю разбор…"; }
     });
-    if (!result || !Array.isArray(result.tasks)) throw {code:"invalid_json", message:"bad shape"};
-    renderReview(result, cond, false);
+    if (!result || !Array.isArray(result.tasks)) throw {code:"invalid_json"};
+    const d = new Date();
+    hwStore[h.id] = {status:"done", result, demo:false, sub:"проверено "+d.getDate()+"."+String(d.getMonth()+1).padStart(2,"0")+", разбор готов"};
+    saveJSON(HW_KEY, hwStore);
+    openHw = h.id; openMode = "review";
+    busy = false; statusEl.hidden = true; stopBtn.hidden = true;
+    renderHw();
+    openReview(h.id, true);
+    return;
   }catch(e){
     const code = e && e.code;
-    if (code === "cancelled"){ /* остановлено учеником */ }
-    else if (code === "not_granted" || code === "sampling_disabled" || code === "images_unavailable" || code === "not_declared" || code === "capability_disabled"){
+    if (code === "cancelled"){ /* остановлено */ }
+    else if (["not_granted","sampling_disabled","images_unavailable","not_declared","capability_disabled"].includes(code)){
       sampleGone = true; capNote.hidden = false;
-      renderReview(DEMO_RESULT, DEMO_TASK, true);
     }
     else showErr(code);
   }finally{
@@ -1947,59 +2079,26 @@ checkBtn.addEventListener("click", async ()=>{
 stopBtn.addEventListener("click", ()=>{ if(ctl) ctl.abort(); });
 function showErr(code){
   const map = {
-    rate_limited: "Слишком много проверок подряд — подождите пару минут и попробуйте снова.",
-    image_rejected: "Фото не подошло: слишком большое или неподдерживаемый формат. Попробуйте другое фото (JPEG/PNG).",
-    invalid_json: "Разбор не собрался с первого раза. Нажмите «Проверить работу» ещё раз.",
-    refused: "Claude отказался проверять этот материал. Попробуйте другое фото или задание.",
-    prompt_too_large: "Слишком длинное условие или эталон — сократите текст задания.",
-    session_expired: "Сессия истекла — войдите в Claude заново и обновите страницу."
+    rate_limited: "Слишком много проверок подряд. Подождите пару минут и попробуйте снова.",
+    image_rejected: "Фото не подошло: слишком большое или неподдерживаемый формат. Попробуйте другое фото (JPEG или PNG).",
+    invalid_json: "Разбор не собрался с первого раза. Нажмите «Отправить на проверку» ещё раз.",
+    refused: "Проверка отклонила этот материал. Попробуйте другое фото.",
+    session_expired: "Сессия истекла. Войдите в Claude заново и обновите страницу."
   };
   errEl.textContent = map[code] || "Не получилось связаться с проверкой. Попробуйте ещё раз чуть позже.";
   errEl.hidden = false;
 }
 
-/* ── демо-данные (пример разбора) ── */
-const DEMO_TASK = PRESETS[0].cond;
-const DEMO_RESULT = {
-  transcription: "Домашняя работа\nа) 3^(x−2)=27  3^(x−2)=3³  x−2=3  x=5\nб) log₂(x+3)=4  x+3=8  x=5\nв) √(2x+1)=3  2x+1=9  2x=8  x=4  пров: √9=3 ✓\nг) 4/(x−1)=2  4=2(x−1)  4=2x−2  2x=6  x=3",
-  legibility: "good",
-  tasks: [
-    {task_id:"а)", student_answer:"x = 5", verdict:"correct", confidence:"high",
-     errors:[], correct_parts:["Верно приведено к одному основанию: 27 = 3³","Верно решено уравнение показателей: x − 2 = 3"],
-     points:1, max_points:1, comment:"Полное верное решение с обоснованным переходом."},
-    {task_id:"б)", student_answer:"x = 5", verdict:"incorrect", confidence:"high",
-     errors:["Строка «x+3=8»: по определению логарифма должно быть x + 3 = 2⁴ = 16, а не 8"],
-     correct_parts:["Верно применена сама схема: логарифм → показательная запись"],
-     points:0, max_points:1, comment:"Ошибка в вычислении степени: 2⁴ = 16. Правильный ответ x = 13."},
-    {task_id:"в)", student_answer:"x = 4", verdict:"correct", confidence:"high",
-     errors:[], correct_parts:["Верно возведено в квадрат","Сделана проверка корня — отлично"],
-     points:1, max_points:1, comment:"Верно, с проверкой. Так и оформляем иррациональные уравнения."},
-    {task_id:"г)", student_answer:"x = 3", verdict:"correct", confidence:"medium",
-     errors:[], correct_parts:["Верно раскрыта пропорция и решено линейное уравнение"],
-     points:1, max_points:1, comment:"Верно. Цифра 6 в строке «2x=6» читается неоднозначно, но ответ записан ясно."}
-  ],
-  needs_human_review: false,
-  summary: "Хорошая работа: 3 из 4 пунктов решены верно, есть проверка корня в иррациональном уравнении. Единственная ошибка — в пункте б): 2⁴ = 16, а не 8. Повторите степени двойки до 2¹⁰ — это входит в зачёт по устному счёту."
-};
-demoBtn.addEventListener("click", ()=>renderReview(DEMO_RESULT, DEMO_TASK, true));
-
-/* ── рендер разбора ── */
+/* разбор */
 const VERDICT = {correct:["Верно","ok"], partial:["Частично","part"], incorrect:["Неверно","bad"], unreadable:["Не прочитано","none"]};
 const CONF = {high:"прочитано уверенно", medium:"прочитано с небольшими сомнениями", low:"прочитано с сомнениями — нужна проверка учителем"};
 const LEG = {good:"хорошая", medium:"средняя", poor:"плохая"};
-function el(tag, cls, text){
-  const n = document.createElement(tag);
-  if (cls) n.className = cls;
-  if (text != null) n.textContent = text;
-  return n;
-}
-function fmt(x){ return String(Math.round(x*100)/100).replace(".", ","); }
 function ringColor(pct){
   const s = getComputedStyle(document.documentElement);
   return pct >= .8 ? s.getPropertyValue("--ai") : pct >= .5 ? s.getPropertyValue("--karekusa") : s.getPropertyValue("--akane");
 }
-function renderReview(r, cond, isDemo){
-  const box = document.getElementById("review");
+function renderReview(r, cond, isDemo, showPhotos){
+  const box = reviewEl;
   box.textContent = "";
   const tasks = Array.isArray(r.tasks) ? r.tasks : [];
   const total = tasks.reduce((s,t)=>s+(+t.points||0),0);
@@ -2007,12 +2106,6 @@ function renderReview(r, cond, isDemo){
   const pct = totalMax ? total/totalMax : 0;
   const counts = {correct:0,partial:0,incorrect:0,unreadable:0};
   tasks.forEach(t=>{ if(counts[t.verdict]!=null) counts[t.verdict]++; });
-
-  const head = el("div");
-  head.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap";
-  head.append(el("h2",null,"Разбор работы"));
-  if (isDemo) head.append(el("span","demo-badge","пример разбора"));
-  box.append(head);
 
   const score = el("div","card score-card");
   const ring = el("div","ring");
@@ -2031,33 +2124,24 @@ function renderReview(r, cond, isDemo){
   vs.append(el("span","pill bad","Неверно: "+counts.incorrect));
   if (counts.unreadable) vs.append(el("span","pill none","Не прочитано: "+counts.unreadable));
   meta.append(vs);
-  meta.append(el("div","small muted","Разборчивость почерка: "+(LEG[r.legibility]||r.legibility||"—")));
+  meta.append(el("div","small muted","Разборчивость почерка: "+(LEG[r.legibility]||r.legibility||"—")+(isDemo ? " · пример разбора" : "")));
   score.append(ring, meta);
   box.append(score);
 
   if (r.needs_human_review){
     const warn = el("div","hw-note");
-    warn.append(el("b",null,"⚠ Часть работы прочитана с сомнениями."),
+    warn.append(el("b",null,"Часть работы прочитана с сомнениями."),
       el("span",null," Преподаватель сверит отмеченные пункты с фото на занятии."));
     box.append(warn);
   }
-  const taskCard = el("div","card");
-  taskCard.append(el("h3",null,"Задание"));
-  const condP = el("p"); condP.style.whiteSpace = "pre-wrap"; condP.textContent = cond;
-  taskCard.append(condP);
-  box.append(taskCard);
-
   tasks.forEach(t=>{
     const [label, cls] = VERDICT[t.verdict] || [t.verdict, "none"];
     const c = el("div","card task-card "+cls);
     const h = el("div","task-head");
     const left = el("div");
-    left.append(el("h3",null,String(t.task_id||"")));
-    left.append(el("div","conf", CONF[t.confidence]||t.confidence||""));
-    const right = el("div");
-    right.style.textAlign = "right";
-    right.append(el("span","pill "+cls,label));
-    right.append(el("div","pts", fmt(+t.points||0)+" / "+fmt(+t.max_points||0)));
+    left.append(el("h3",null,String(t.task_id||"")), el("div","conf", CONF[t.confidence]||t.confidence||""));
+    const right = el("div"); right.style.textAlign = "right";
+    right.append(el("span","pill "+cls,label), el("div","pts", fmt(+t.points||0)+" / "+fmt(+t.max_points||0)));
     h.append(left,right); c.append(h);
     const ans = String(t.student_answer||"").trim();
     if (ans && ans !== "—" && ans !== "-") c.append(el("div","written",ans));
@@ -2070,169 +2154,70 @@ function renderReview(r, cond, isDemo){
     if (t.comment) c.append(el("p","comment",String(t.comment)));
     box.append(c);
   });
-
   const sum = el("div","card summary-card");
-  sum.append(el("h3",null,"Общий комментарий"));
-  sum.append(el("p",null,String(r.summary||"")));
+  sum.append(el("h3",null,"Общий комментарий"), el("p",null,String(r.summary||"")));
   box.append(sum);
 
-  if (!isDemo && photos.length){
-    const ph = el("div","card");
-    ph.append(el("h3",null,"Фото работы"));
+  const more = el("div","card");
+  const det = el("details");
+  const s = el("summary",null,"Условие и распознанный текст");
+  s.style.cssText = "cursor:pointer;font-weight:700;color:var(--ai-ink);font-family:var(--sans)";
+  det.append(s);
+  const condP = el("p"); condP.style.cssText = "white-space:pre-wrap;margin-top:10px"; condP.textContent = cond || "";
+  det.append(condP);
+  if (showPhotos && photos.length){
     const g = el("div","thumbs"); g.style.marginTop = "10px";
     photos.forEach((p,i)=>{
-      const d = el("div","thumb"); d.style.width = "140px"; d.style.height = "140px";
+      const d = el("div","thumb"); d.style.width = "120px"; d.style.height = "120px";
       const img = el("img"); img.src = p.url; img.alt = "Фото "+(i+1);
       d.append(img); g.append(d);
     });
-    ph.append(g); box.append(ph);
+    det.append(g);
   }
-  if (r.transcription){
-    const tr = el("div","card");
-    const det = el("details");
-    const s = el("summary",null,"Что распознано на фото (полный текст)");
-    s.style.cssText = "cursor:pointer;font-weight:700;color:var(--ai-ink)";
-    det.append(s);
-    const pre = el("pre","tr",String(r.transcription).trim());
-    det.append(pre); tr.append(det); box.append(tr);
-  }
+  if (r.transcription) det.append(el("pre","tr",String(r.transcription).trim()));
+  more.append(det);
+  box.append(more);
   box.hidden = false;
-  box.scrollIntoView({behavior:"smooth", block:"start"});
 }
 
-/* ── ЛК: регистрация ── */
-const REG_KEY = "tengr_student", TR_KEY = "tengr_trainer";
-function loadJSON(key){ try{ return JSON.parse(localStorage.getItem(key)); }catch(_){ return null; } }
-function saveJSON(key,v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(_){} }
-const regEl = document.getElementById("cab-reg");
-const dashEl = document.getElementById("cab-dash");
-function initCab(){
-  const st = loadJSON(REG_KEY);
-  regEl.hidden = !!st;
-  dashEl.hidden = !st;
-  if (st){
-    const h = new Date().getHours();
-    const g = h<5 ? "Доброй ночи" : h<12 ? "Доброе утро" : h<18 ? "Добрый день" : "Добрый вечер";
-    document.getElementById("cab-greet").textContent = g + ", " + st.name;
-    document.getElementById("cab-sub-goal").textContent = st.goal || "80+";
-    document.getElementById("cab-sub-grade").textContent = (st.grade || "11") + " класс";
-  }
+/* ══════════ ТРЕНИРОВКА ══════════ */
+const trainViews = {grid:"tv-grid", topic:"tv-topic", mock:"tv-mock", mist:"tv-mist", form:"tv-form"};
+let trainView = "grid";
+function showTrainView(key){
+  trainView = key;
+  for (const k in trainViews) document.getElementById(trainViews[k]).hidden = (k !== key);
+  if (key !== "mock") stopMockTimer();
+  if (key === "grid") renderTrainGrid();
+  window.scrollTo(0,0);
 }
-document.getElementById("reg-form").addEventListener("submit", e=>{
-  e.preventDefault();
-  const nameEl = document.getElementById("reg-name");
-  const name = nameEl.value.trim();
-  if (!name){ nameEl.focus(); return; }
-  saveJSON(REG_KEY, {name, grade: document.getElementById("reg-grade").value, goal: document.getElementById("reg-goal").value});
-  initCab(); showCabTab("progress"); window.scrollTo(0,0);
-});
-document.getElementById("reg-demo").addEventListener("click", ()=>{
-  saveJSON(REG_KEY, {name:"Алдар", grade:"11", goal:"80+"});
-  initCab(); showCabTab("progress"); window.scrollTo(0,0);
-});
-document.getElementById("cab-logout").addEventListener("click", ()=>{
-  try{ localStorage.removeItem(REG_KEY); }catch(_){}
-  initCab(); window.scrollTo(0,0);
-});
-
-/* ── вкладки ЛК ── */
-const cabPanels = {
-  progress: document.getElementById("cab-progress"),
-  program: document.getElementById("cab-program"),
-  materials: document.getElementById("cab-materials"),
-  tasks: document.getElementById("cab-tasks")
-};
-const cabTabBtns = document.querySelectorAll(".cab-tab");
-function showCabTab(key){
-  for (const k in cabPanels) cabPanels[k].hidden = (k !== key);
-  cabTabBtns.forEach(b=>b.classList.toggle("active", b.dataset.tab === key));
-}
-cabTabBtns.forEach(b=>b.addEventListener("click", ()=>showCabTab(b.dataset.tab)));
-document.querySelectorAll("[data-goto-tab]").forEach(b=>b.addEventListener("click", ()=>showCabTab(b.dataset.gotoTab)));
-document.getElementById("go-hw2").addEventListener("click", ()=>{
-  document.querySelector("#cab-tasks .cab-grid").scrollIntoView({behavior:"smooth", block:"start"});
-});
-document.querySelectorAll("[data-open-demo]").forEach(btn=>btn.addEventListener("click", ()=>{
-  renderReview(DEMO_RESULT, DEMO_TASK, true);
-}));
-
-/* ── тренажёр ── */
-const DIDACTICS = JSON.parse(document.getElementById("didactics-data").textContent);
-const BANK_RUS = JSON.parse(document.getElementById("bank-rus").textContent);
-const BANK_SOC = JSON.parse(document.getElementById("bank-soc").textContent);
-const SUBJECTS = {
-  math: {name:"Математика", nums:[1,2,3,4,5,6,7,8,9,10], mockMin:30,
-    titles:{1:"Планиметрия",2:"Векторы",3:"Стереометрия",4:"Вероятность",5:"Вероятность: сложение и умножение",
-      6:"Случайные величины",7:"Простейшие уравнения",8:"Преобразования выражений",9:"Производная и интеграл",10:"Прикладные задачи"}},
-  rus: {name:"Русский язык", nums:[1,2,3,4,5], mockMin:15,
-    titles:{1:"Средства связи предложений",2:"Лексическое значение слова",3:"Стилистический анализ",4:"Ударение (орфоэпия)",5:"Паронимы"}},
-  soc: {name:"Обществознание", nums:[1,2,3,4,5], mockMin:15,
-    titles:{1:"Основы общественных наук",2:"Человек и общество: суждения",3:"Соответствие понятий",4:"Применение знаний к ситуации",5:"Экономика: суждения"}}
-};
-const TRAINS = {math:{}, rus:{}, soc:{}}, EXAMPLESS = {math:{}, rus:{}, soc:{}};
-DIDACTICS.forEach(t=>{
-  const bank = t.set === "example" ? EXAMPLESS.math : TRAINS.math;   // train + homework — в тренажёр
-  (bank[t.task] = bank[t.task] || []).push(t);
-});
-BANK_RUS.forEach(t=>{ (TRAINS.rus[t.task] = TRAINS.rus[t.task] || []).push(t); });
-BANK_SOC.forEach(t=>{ (TRAINS.soc[t.task] = TRAINS.soc[t.task] || []).push(t); });
-let curSubj = "math";
-let TRAIN = TRAINS.math, EXAMPLES = EXAMPLESS.math, TASK_TITLES = SUBJECTS.math.titles, TR_NUMS = SUBJECTS.math.nums;
-let trNum = 1;
-let trSolved = loadJSON(TR_KEY) || {};
-function totalTasks(){ return TR_NUMS.reduce((sum,n)=>sum+(TRAIN[n]||[]).length,0); }
-function solvedSubj(){ return TR_NUMS.reduce((sum,n)=>sum+solvedIn(n),0); }
-function solvedIn(n){ return (TRAIN[n]||[]).filter(t=>trSolved[t.id]).length; }
-function solvedAll(){ return Object.keys(trSolved).length; }
-function normAns(v){ return String(v).trim().toLowerCase().replace(/\s+/g,"").replace(/,/g,"."); }
-function normWord(v){ return String(v).trim().toLowerCase().replace(/ё/g,"е").replace(/[.,!;:\s]+/g," ").trim(); }
-function normDigits(v){ return String(v).replace(/[^0-9]/g,""); }
-function checkAnswer(t, v){
-  const kind = t.check || "numeric";
-  if (kind === "word"){
-    const nv = normWord(v);
-    if (!nv) return false;
-    if (normWord(t.answer) === nv) return true;
-    return Array.isArray(t.answer_forms) && t.answer_forms.some(f=>normWord(f)===nv);
-  }
-  if (kind === "digit" || kind === "digits_seq"){
-    const nv = normDigits(v);
-    return !!nv && nv === normDigits(t.answer);
-  }
-  if (kind === "digits_any"){
-    const nv = normDigits(v).split("").sort().join("");
-    const na = normDigits(t.answer).split("").sort().join("");
-    return !!nv && nv === na;
-  }
-  const nv = normAns(v);
-  if (!nv) return false;
-  if (Array.isArray(t.answer_forms) && t.answer_forms.some(f=>normAns(f)===nv)) return true;
-  const a = parseFloat(normAns(t.answer)), b = parseFloat(nv);
-  return isFinite(a) && isFinite(b) && Math.abs(a-b) < 1e-9;
-}
-function answerHint(t){
-  const kind = t.check || "numeric";
-  return kind === "word" ? "слово" : kind === "digit" ? "цифра" : (kind === "digits_any" || kind === "digits_seq") ? "цифры" : "Ответ";
-}
-const trNumsEl = document.getElementById("tr-nums");
-function renderTrNums(){
-  trNumsEl.textContent = "";
+document.querySelectorAll("[data-train-back]").forEach(b=>b.addEventListener("click", ()=>showTrainView("grid")));
+function renderTrainGrid(){
+  document.getElementById("tr-progress").textContent = "решено "+solvedSubj()+" из "+totalTasks();
+  const mapEl = document.getElementById("topic-map");
+  mapEl.textContent = "";
   TR_NUMS.forEach(n=>{
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "tr-num" + (n===trNum ? " active" : "");
-    b.innerHTML = "№"+n+'<span class="done">'+solvedIn(n)+"/"+(TRAIN[n]||[]).length+"</span>";
-    b.setAttribute("aria-label", "Задание "+n+": "+(TASK_TITLES[n]||""));
-    b.addEventListener("click", ()=>{ trNum = n; renderTrainer(); });
-    trNumsEl.append(b);
+    const total = (TRAIN[n]||[]).length, done = solvedIn(n);
+    const pct = total ? done/total : 0;
+    const cell = btnEl("tmap-cell" + (pct >= .8 ? " done" : done > 0 ? " work" : ""), null, ()=>openTopic(n));
+    const st = pct >= .8 ? "освоено" : done > 0 ? "в работе" : "не начато";
+    cell.innerHTML = '<span class="tn">№'+n+'</span><span class="tt"></span>'+
+      '<span class="meter"><i style="width:'+Math.round(pct*100)+'%"></i></span>'+
+      '<span class="ts">'+st+" · "+done+"/"+total+'</span>';
+    cell.querySelector(".tt").textContent = TASK_TITLES[n]||"";
+    mapEl.append(cell);
   });
-  document.getElementById("tr-progress").textContent = SUBJECTS[curSubj].name+" · решено "+solvedSubj()+" из "+totalTasks();
-  document.getElementById("tr-topic").textContent =
-    "№"+trNum+" · "+(TASK_TITLES[trNum]||"")+" — "+(TRAIN[trNum]||[]).length+" задач, от простых к сложным. Решайте в любом порядке, прогресс сохраняется.";
-  const tot = document.getElementById("tr-total");
-  if (tot) tot.innerHTML = solvedAll()+' <small>задач решено</small>';
-  if (typeof updateSelfPrep === "function" && window.__corReady) updateSelfPrep();
+  const m = subjMocks();
+  document.getElementById("mode-mock-sub").textContent =
+    TR_NUMS.length+" задач за "+SUBJECTS[curSubj].mockMin+" минут" + (m.length ? " · последний: "+m[m.length-1].score+" из "+m[m.length-1].total : "");
+  const mc = mistakeTasks().length;
+  document.getElementById("mode-mist-sub").textContent = mc ? mc+" "+plural(mc,["задача","задачи","задач"])+" к повторению" : "ошибок пока нет";
+  document.getElementById("mode-form").hidden = curSubj !== "math";
+  document.getElementById("mode-form-sub").textContent = "знаю "+(FORMULAS.length - fcQueue().length)+" из "+FORMULAS.length;
 }
+document.getElementById("mode-mock").addEventListener("click", ()=>startMock());
+document.getElementById("mode-mist").addEventListener("click", ()=>openMistakes());
+document.getElementById("mode-form").addEventListener("click", ()=>{ renderFormula(false); showTrainView("form"); });
+
 function buildSolution(t){
   const ol = el("ol"); ol.hidden = true;
   (t.solution||[]).forEach(step=>ol.append(el("li",null,step)));
@@ -2245,21 +2230,18 @@ function buildTrItem(t, i, opts){
   const c = el("div","card tr-item"+(solved?" ok":""));
   const head = el("div","tr-item-head");
   const pill = el("span","pill "+(solved?"ok":"none"), solved?"решено":"не решено");
-  head.append(el("span","ti-n",String(i+1)), el("b",null,t.subtype), pill);
+  head.append(el("span","ti-n",String(i+1)), el("b",null,(opts.showNum ? "№"+t.task+" · " : "")+t.subtype), pill);
   c.append(head, el("p","tr-text",t.text));
   const form = el("form","tr-form");
   const inp = document.createElement("input");
-  inp.type = "text";
-  inp.inputMode = (t.check && t.check !== "numeric") ? (t.check === "word" ? "text" : "numeric") : "decimal";
-  inp.placeholder = answerHint(t);
+  inp.type = "text"; inp.inputMode = inputModeFor(t); inp.placeholder = answerHint(t);
   inp.autocomplete = "off"; inp.setAttribute("aria-label","Ответ к задаче "+(i+1));
-  const btn = el("button","btn btn-akane","Проверить"); btn.type = "submit";
+  const btn = el("button","btn btn-akane btn-sm","Проверить"); btn.type = "submit";
   form.append(inp, btn);
   const res = el("div","tr-res"); res.hidden = true;
   const sol = el("div","tr-sol"); sol.hidden = !solved;
-  const solBtn = el("button","linkish","показать решение"); solBtn.type = "button";
   const steps = buildSolution(t);
-  solBtn.addEventListener("click", ()=>{
+  const solBtn = btnEl("linkish","показать решение", ()=>{
     steps.hidden = !steps.hidden;
     solBtn.textContent = steps.hidden ? "показать решение" : "скрыть решение";
   });
@@ -2280,119 +2262,55 @@ function buildTrItem(t, i, opts){
       delete trMistakes[t.id]; saveJSON(MIST_KEY, trMistakes);
       c.classList.add("ok"); pill.className = "pill ok"; pill.textContent = "решено";
       inp.disabled = true; btn.disabled = true;
-      renderTrNums();
       if (opts.onSolve) opts.onSolve();
     } else {
-      res.textContent = "Пока неверно — проверьте вычисления или откройте решение.";
-      if (!trMistakes[t.id]){ trMistakes[t.id] = 1; saveJSON(MIST_KEY, trMistakes); renderTrNums(); }
+      res.textContent = "Пока неверно. Проверьте вычисления или откройте решение.";
+      if (!trMistakes[t.id]){ trMistakes[t.id] = 1; saveJSON(MIST_KEY, trMistakes); }
     }
     sol.hidden = false;
   });
   c.append(form, res, sol);
   return c;
 }
-function renderTrainer(){
-  renderTrNums();
+function updateTopicCount(){
+  document.getElementById("topic-count").textContent = "решено "+solvedIn(trNum)+" из "+(TRAIN[trNum]||[]).length;
+}
+function openTopic(n){
+  trNum = n;
+  document.getElementById("topic-title").textContent = "№"+n+" · "+(TASK_TITLES[n]||"");
+  updateTopicCount();
+  const ex = (EXAMPLES[n]||[])[0];
+  const exEl = document.getElementById("topic-example");
+  exEl.hidden = !ex; exEl.open = false;
+  if (ex){
+    const body = document.getElementById("topic-example-body");
+    body.textContent = "";
+    const ol = el("ol");
+    (ex.solution||[]).forEach(stp=>ol.append(el("li",null,stp)));
+    const ans = el("p"); ans.append(el("b",null,"Ответ: "+ex.answer));
+    body.append(el("p",null,ex.text), ol, ans);
+  }
   const listEl = document.getElementById("tr-list");
   listEl.textContent = "";
-  (TRAIN[trNum]||[]).forEach((t,i)=>listEl.append(buildTrItem(t,i)));
-}
-renderTrainer();
-
-/* ── материалы: дидактика ── */
-const didGrid = document.getElementById("did-grid");
-for (let n=1; n<=10; n++){
-  const ex = (EXAMPLES[n]||[])[0];
-  const card = document.createElement("div"); card.className = "card did-card";
-  const head = document.createElement("div");
-  head.style.cssText = "display:flex;gap:14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap";
-  const left = document.createElement("div");
-  const num = document.createElement("div"); num.className = "n"; num.textContent = "№"+n;
-  const title = document.createElement("b"); title.textContent = TASK_TITLES[n]||"";
-  left.append(num, title);
-  const btn = document.createElement("button"); btn.type="button"; btn.className = "linkish"; btn.textContent = "тренироваться →";
-  btn.addEventListener("click", ()=>{ trNum = n; renderTrainer(); showCabTab("tasks"); window.scrollTo(0,0); });
-  head.append(left, btn);
-  const counts = document.createElement("div"); counts.className = "counts";
-  counts.textContent = (EXAMPLES[n]||[]).length + " разобранных примера · " + (TRAIN[n]||[]).length + " задач в тренажёре";
-  card.append(head, counts);
-  if (ex){
-    const det = document.createElement("details");
-    const sum = document.createElement("summary"); sum.textContent = "разобранный пример";
-    const exDiv = document.createElement("div"); exDiv.className = "ex";
-    const p = document.createElement("p"); p.textContent = ex.text;
-    const ol = document.createElement("ol");
-    (ex.solution||[]).forEach(stp=>{ const li=document.createElement("li"); li.textContent=stp; ol.append(li); });
-    const ans = document.createElement("p"); ans.innerHTML = "<b>Ответ: "+ex.answer+"</b>";
-    exDiv.append(p, ol, ans);
-    det.append(sum, exDiv);
-    card.append(det);
-  }
-  didGrid.append(card);
-}
-
-/* ── учебное ядро: ошибки, мини-пробник, карта тем, формулы ── */
-const MIST_KEY = "tengr_mistakes", MOCK_KEY = "tengr_minimock", FORM_KEY = "tengr_formulas";
-var trMistakes = loadJSON(MIST_KEY) || {};
-let mockHistory = loadJSON(MOCK_KEY) || [];
-
-/* виды вкладки «Задания» */
-const taskViews = {train: document.getElementById("train-view"), mock: document.getElementById("mock-view"), mist: document.getElementById("mist-view")};
-function showTaskView(key){
-  for (const k in taskViews) taskViews[k].hidden = (k !== key);
-  if (key !== "mock") stopMockTimer();
-}
-document.getElementById("mist-open").addEventListener("click", ()=>{ renderMistakes(); showTaskView("mist"); });
-document.getElementById("mist-back").addEventListener("click", ()=>showTaskView("train"));
-
-/* карта тем */
-const topicMapEl = document.getElementById("topic-map");
-function renderTopicMap(){
-  topicMapEl.textContent = "";
-  TR_NUMS.forEach(n=>{
-    const total = (TRAIN[n]||[]).length, done = solvedIn(n);
-    const pct = total ? done/total : 0;
-    const cell = document.createElement("button");
-    cell.type = "button";
-    cell.className = "tmap-cell" + (pct >= .8 ? " done" : done > 0 ? " work" : "");
-    const st = pct >= .8 ? "освоена" : done > 0 ? "в работе" : "не начата";
-    cell.innerHTML = '<span class="tn">№'+n+'</span><span class="tt">'+(TASK_TITLES[n]||"")+'</span>'+
-      '<span class="meter"><i style="width:'+Math.round(pct*100)+'%"></i></span>'+
-      '<span class="ts">'+st+" · "+done+"/"+total+'</span>';
-    cell.addEventListener("click", ()=>{ trNum = n; renderTrainer(); showCabTab("tasks"); showTaskView("train"); window.scrollTo(0,0); });
-    topicMapEl.append(cell);
-  });
-}
-
-/* сводка самоподготовки */
-function mistakeTasks(){ return DIDACTICS.filter(t=>trMistakes[t.id]); }
-function updateSelfPrep(){
-  const mc = mistakeTasks().length;
-  document.getElementById("mist-count").textContent = mc + (mc===1 ? " задача" : mc>=2&&mc<=4 ? " задачи" : " задач");
-  document.getElementById("mist-note").textContent = mc ? mc+" задач ждут повторения" : "пока пусто — так держать";
-  const last = mockHistory[mockHistory.length-1];
-  document.getElementById("mm-last").textContent = last ? last.score+" из "+last.total+" · "+last.date : "—";
-  document.getElementById("mock-hist").textContent = mockHistory.length
-    ? "попыток: "+mockHistory.length+" · лучшая: "+Math.max.apply(null,mockHistory.map(h=>h.score))+" из 10"
-    : "ещё не проходили";
-  renderTopicMap();
+  (TRAIN[n]||[]).forEach((t,i)=>listEl.append(buildTrItem(t, i, {onSolve: updateTopicCount})));
+  showTrainView("topic");
 }
 
 /* работа над ошибками */
+function openMistakes(){ renderMistakes(); showTrainView("mist"); }
 function renderMistakes(){
   const list = mistakeTasks();
   const box = document.getElementById("mist-list");
   box.textContent = "";
   document.getElementById("mist-head-note").textContent = list.length
-    ? list.length+" задач · решите верно, и задача уйдёт из списка"
-    : "";
+    ? list.length+" "+plural(list.length,["задача","задачи","задач"])+" · решите верно, и задача уйдёт из списка" : "";
   if (!list.length){
     const done = el("div","card");
-    done.append(el("h3",null,"Здесь пусто"), el("p",null,"Ошибок к повторению нет. Появятся — соберём их сюда автоматически."));
+    done.append(el("h3",null,"Здесь пусто"), el("p",null,"Задачи, в которых вы ошибётесь в тренировке или мини-пробнике, соберутся здесь автоматически."));
     box.append(done);
     return;
   }
-  list.forEach((t,i)=>box.append(buildTrItem(t, i, {retry:true, onSolve: ()=>{ renderMistakes(); }})));
+  list.forEach((t,i)=>box.append(buildTrItem(t, i, {retry:true, showNum:true, onSolve: ()=>setTimeout(renderMistakes, 900)})));
 }
 
 /* мини-пробник */
@@ -2416,33 +2334,27 @@ function startMock(){
   mockListEl.textContent = "";
   document.getElementById("mock-summary").hidden = true;
   document.getElementById("mock-finish").hidden = false;
-  document.getElementById("mock-note").textContent = SUBJECTS[curSubj].name+" · "+TR_NUMS.length+" задач · ответы проверяются после завершения";
+  document.getElementById("mock-note").textContent = SUBJECTS[curSubj].name+" · "+mockTasks.length+" задач · ответы проверяются после завершения";
   mockTasks.forEach((t,i)=>{
     const c = el("div","card tr-item");
     const head = el("div","tr-item-head");
     head.append(el("span","ti-n",String(i+1)), el("b",null,"№"+t.task+" · "+t.subtype));
     const inp = document.createElement("input");
-    inp.type = "text";
-    inp.inputMode = (t.check && t.check !== "numeric") ? (t.check === "word" ? "text" : "numeric") : "decimal";
-    inp.placeholder = answerHint(t);
+    inp.type = "text"; inp.inputMode = inputModeFor(t); inp.placeholder = answerHint(t);
     inp.autocomplete = "off"; inp.className = "mock-inp"; inp.setAttribute("aria-label","Ответ к задаче "+(i+1));
     const form = el("div","tr-form"); form.append(inp);
     c.append(head, el("p","tr-text",t.text), form);
     mockListEl.append(c);
   });
+  showTrainView("mock");
   mockDeadline = Date.now() + SUBJECTS[curSubj].mockMin*60*1000;
-  stopMockTimer();
   const tick = ()=>{
     const left = Math.max(0, mockDeadline - Date.now());
-    const m = Math.floor(left/60000), sec = Math.floor(left%60000/1000);
-    mockTimerEl.textContent = m + ":" + String(sec).padStart(2,"0");
+    mockTimerEl.textContent = Math.floor(left/60000) + ":" + String(Math.floor(left%60000/1000)).padStart(2,"0");
     if (left <= 0) finishMock();
   };
   tick();
   mockTimerId = setInterval(tick, 1000);
-  showTaskView("mock");
-  showCabTab("tasks");
-  window.scrollTo(0,0);
 }
 function finishMock(){
   if (mockDone) return;
@@ -2452,30 +2364,24 @@ function finishMock(){
   let score = 0;
   mockTasks.forEach((t,i)=>{
     const ok = checkAnswer(t, inputs[i].value);
-    if (ok){
-      score++;
-      if (!trSolved[t.id]){ trSolved[t.id] = 1; }
-      delete trMistakes[t.id];
-    } else {
-      trMistakes[t.id] = 1;
-    }
+    if (ok){ score++; trSolved[t.id] = 1; delete trMistakes[t.id]; }
+    else trMistakes[t.id] = 1;
     const c = inputs[i].closest(".tr-item");
     c.classList.add(ok ? "ok" : "bad");
     inputs[i].disabled = true;
     const res = el("div","tr-res "+(ok?"ok":"bad"),
       ok ? "Верно · ответ: "+t.answer
-         : (normAns(inputs[i].value) ? "Неверно" : "Без ответа")+" · правильный ответ: "+t.answer+" · задача добавлена в работу над ошибками");
+         : (inputs[i].value.trim() ? "Неверно" : "Без ответа")+" · правильный ответ: "+t.answer+" · задача добавлена в работу над ошибками");
     const sol = el("div","tr-sol");
-    const sb = el("button","linkish","показать решение"); sb.type = "button";
     const steps = buildSolution(t);
-    sb.addEventListener("click", ()=>{ steps.hidden = !steps.hidden; sb.textContent = steps.hidden ? "показать решение" : "скрыть решение"; });
+    const sb = btnEl("linkish","показать решение", ()=>{ steps.hidden = !steps.hidden; sb.textContent = steps.hidden ? "показать решение" : "скрыть решение"; });
     sol.append(sb, steps);
     c.append(res, sol);
   });
   saveJSON(TR_KEY, trSolved);
   saveJSON(MIST_KEY, trMistakes);
   const d = new Date();
-  mockHistory.push({date: String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0"), score, total: mockTasks.length});
+  mockHistory.push({subj:curSubj, date: String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0"), score, total: mockTasks.length});
   saveJSON(MOCK_KEY, mockHistory);
   document.getElementById("mock-finish").hidden = true;
   mockTimerEl.textContent = "—";
@@ -2486,20 +2392,16 @@ function finishMock(){
   const big = el("div","big-num", String(score));
   big.append(el("small",null," из "+mockTasks.length));
   const txt = el("div");
-  txt.append(el("h3",null, score >= mockTasks.length*0.8 ? "Отличный результат" : score >= mockTasks.length*0.5 ? "Хорошая база — разберите ошибки" : "Разберите ошибки и попробуйте снова"),
-    el("p","small muted","Неверные задачи уже в работе над ошибками. Результат сохранён в прогресс."));
-  const again = el("button","btn btn-ghost","Пройти ещё раз"); again.type = "button";
-  again.addEventListener("click", startMock);
-  wrap.append(big, txt, again);
+  txt.append(el("h3",null, score >= mockTasks.length*0.8 ? "Отличный результат" : score >= mockTasks.length*0.5 ? "Хорошая база, разберите ошибки" : "Разберите ошибки и попробуйте снова"),
+    el("p","small muted","Неверные задачи уже в работе над ошибками. Результат сохранён в разделе «Результаты»."));
+  wrap.append(big, txt, btnEl("btn btn-ghost btn-sm","Пройти ещё раз", startMock));
   sum.append(wrap);
-  renderTrNums();
-  sum.scrollIntoView({behavior:"smooth", block:"start"});
+  window.scrollTo(0,0);
 }
-document.getElementById("mock-start").addEventListener("click", startMock);
 document.getElementById("mock-finish").addEventListener("click", finishMock);
-document.getElementById("mock-exit").addEventListener("click", ()=>{ stopMockTimer(); showTaskView("train"); });
+document.getElementById("mock-exit").addEventListener("click", ()=>showTrainView("grid"));
 
-/* зачёт по формулам */
+/* формулы */
 const FORMULAS = [
 ["Алгебра","Квадрат суммы и разности","(a ± b)² = a² ± 2ab + b²"],
 ["Алгебра","Разность квадратов","a² − b² = (a − b)(a + b)"],
@@ -2533,19 +2435,18 @@ const FORMULAS = [
 ["Вероятность","Формула Бернулли","Pₙ(k) = Cₙᵏ · pᵏ · qⁿ⁻ᵏ,  q = 1 − p"],
 ["Вероятность","Мат. ожидание и дисперсия","M(X) = Σ xᵢpᵢ;  D(X) = M(X²) − (M(X))²;  σ = √D"],
 ["Финансовая математика","Коэффициент роста и аннуитет","k = 1 + r/100;  S·kⁿ = x·(kⁿ⁻¹ + … + k + 1);  переплата = сумма платежей − кредит"]
-];
+];;
 let fcKnown = loadJSON(FORM_KEY) || {};
 let fcIdx = 0;
 function fcQueue(){ const q=[]; FORMULAS.forEach((f,i)=>{ if(!fcKnown[i]) q.push(i); }); return q; }
 function renderFormula(reveal){
   const q = fcQueue();
-  const known = FORMULAS.length - q.length;
-  document.getElementById("fc-progress").textContent = "знаю "+known+" из "+FORMULAS.length;
+  document.getElementById("fc-progress").textContent = "знаю "+(FORMULAS.length - q.length)+" из "+FORMULAS.length;
   const showBtn = document.getElementById("fc-show"), knowBtn = document.getElementById("fc-know"),
         againBtn = document.getElementById("fc-again"), aEl = document.getElementById("fc-a");
   if (!q.length){
     document.getElementById("fc-cat").textContent = "";
-    document.getElementById("fc-q").textContent = "Все формулы отмечены как «знаю». Отличная готовность к зачёту!";
+    document.getElementById("fc-q").textContent = "Все формулы отмечены как «знаю». Вы готовы к зачёту.";
     aEl.hidden = true; showBtn.hidden = true; knowBtn.hidden = true; againBtn.hidden = true;
     return;
   }
@@ -2554,60 +2455,166 @@ function renderFormula(reveal){
   document.getElementById("fc-cat").textContent = f[0];
   document.getElementById("fc-q").textContent = f[1];
   aEl.textContent = f[2];
-  aEl.hidden = !reveal;
-  showBtn.hidden = !!reveal;
-  knowBtn.hidden = !reveal;
-  againBtn.hidden = !reveal;
+  aEl.hidden = !reveal; showBtn.hidden = !!reveal; knowBtn.hidden = !reveal; againBtn.hidden = !reveal;
 }
 document.getElementById("fc-show").addEventListener("click", ()=>renderFormula(true));
 document.getElementById("fc-know").addEventListener("click", ()=>{
   const q = fcQueue(); if (!q.length) return;
-  fcKnown[q[fcIdx]] = 1; saveJSON(FORM_KEY, fcKnown);
-  renderFormula(false);
+  fcKnown[q[fcIdx]] = 1; saveJSON(FORM_KEY, fcKnown); renderFormula(false);
 });
 document.getElementById("fc-again").addEventListener("click", ()=>{
-  const q = fcQueue(); if (q.length) fcIdx = (fcIdx + 1) % q.length;
-  renderFormula(false);
+  const q = fcQueue(); if (q.length) fcIdx = (fcIdx + 1) % q.length; renderFormula(false);
 });
 document.getElementById("fc-reset").addEventListener("click", ()=>{
-  fcKnown = {}; fcIdx = 0;
-  try{ localStorage.removeItem(FORM_KEY); }catch(_){}
-  renderFormula(false);
+  fcKnown = {}; fcIdx = 0; try{ localStorage.removeItem(FORM_KEY); }catch(_){} renderFormula(false);
 });
-renderFormula(false);
 
-/* ── переключение предмета ── */
+/* ══════════ РЕЗУЛЬТАТЫ ══════════ */
+function forecastSVG(f){
+  const y = v => 190 - (v-40)*3.2;            // шкала 40–90
+  const xs = f.vals.map((_,i)=>70 + i*120);
+  const gx = 520, last = f.vals.length-1;
+  let s = '<svg viewBox="0 0 560 214" role="img" aria-label="Динамика балла: '+
+    f.labels.map((l,i)=>l+" "+f.vals[i]).join(", ")+"; цель "+f.goal+'">';
+  s += '<g stroke="var(--line)" stroke-width="1">';
+  [40,50,60,70,80,90].forEach(v=>{ s += '<line x1="42" y1="'+y(v)+'" x2="540" y2="'+y(v)+'"/>'; });
+  s += '</g><g fill="var(--ink-3)" font-size="11" font-family="PT Sans, sans-serif">';
+  [40,50,60,70,80,90].forEach(v=>{ s += '<text x="34" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>'; });
+  s += '</g><g fill="var(--ink-2)" font-size="11" text-anchor="middle" font-family="PT Sans, sans-serif">';
+  f.labels.forEach((l,i)=>{ s += '<text x="'+xs[i]+'" y="210">'+l+'</text>'; });
+  s += '<text x="'+gx+'" y="210">июн</text></g>';
+  s += '<polyline points="'+xs.map((x,i)=>x+","+y(f.vals[i])).join(" ")+'" fill="none" stroke="var(--ai)" stroke-width="2.5" stroke-linecap="round"/>';
+  s += '<line x1="'+xs[last]+'" y1="'+y(f.vals[last])+'" x2="'+gx+'" y2="'+y(f.goal)+'" stroke="var(--akane)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>';
+  f.vals.forEach((v,i)=>{
+    s += '<circle cx="'+xs[i]+'" cy="'+y(v)+'" r="'+(i===last?6:5)+'" fill="var(--ai)" stroke="var(--surface)" stroke-width="2"><title>'+f.labels[i]+': '+v+'</title></circle>';
+    s += '<text x="'+xs[i]+'" y="'+(y(v)-12)+'" text-anchor="middle" font-size="'+(i===last?13:12)+'" font-weight="700" fill="'+(i===last?"var(--ink)":"var(--ink-2)")+'" font-family="PT Sans, sans-serif">'+v+'</text>';
+  });
+  s += '<circle cx="'+gx+'" cy="'+y(f.goal)+'" r="6" fill="var(--surface)" stroke="var(--akane)" stroke-width="2.5"><title>Цель: '+f.goal+'</title></circle>';
+  s += '<text x="'+gx+'" y="'+(y(f.goal)-12)+'" text-anchor="middle" font-size="12" font-weight="700" fill="var(--akane-ink)" font-family="PT Sans, sans-serif">цель '+f.goal+'</text>';
+  return s + '</svg>';
+}
+function renderResults(){
+  const box = document.getElementById("cab-results");
+  box.textContent = "";
+  const d = SUBJ_DATA[curSubj], f = d.forecast, now = f.vals[f.vals.length-1];
+
+  const cf = el("div","card ov-forecast");
+  cf.style.cssText = "display:grid;gap:12px";
+  const head = el("div","ov-head");
+  head.append(el("h3",null,"Прогноз балла · "+SUBJECTS[curSubj].name), el("span","small muted","обновляется после каждого пробника"));
+  const sc = el("div","ov-score");
+  sc.append(el("span","now",String(now)), el("span","arrow","→"), el("span","goal","цель к июню — "+f.goal));
+  const cw = el("div","chartwrap"); cw.innerHTML = forecastSVG(f);
+  cf.append(head, sc, cw, el("p","small muted", d.next));
+
+  const grid = el("div","res-grid");
+  const s = d.hwStats;
+  const ch = el("div","card");
+  const bn = el("div","big-num", String(s.streak)); bn.append(el("small",null," "+plural(s.streak,["неделя","недели","недель"])+" без пропусков"));
+  const meter = el("div","meter"); const mi = el("i"); mi.style.width = Math.round(s.done/s.total*100)+"%"; meter.append(mi);
+  ch.append(el("h3",null,"Домашние работы"), bn, el("p",null,"Сдано "+s.done+" из "+s.total+" · средний результат "+s.avg+"%"), meter);
+
+  const ct = el("div","card");
+  const solved = solvedSubj(), tot = totalTasks();
+  const bt = el("div","big-num", String(solved)); bt.append(el("small",null," из "+tot+" задач"));
+  const m = subjMocks();
+  const mockLine = m.length
+    ? "Мини-пробников: "+m.length+" · лучший "+Math.max.apply(null,m.map(h=>h.score))+" из "+m[m.length-1].total+" · последний "+m[m.length-1].score+" ("+m[m.length-1].date+")"
+    : "Мини-пробников пока нет.";
+  ct.append(el("h3",null,"Тренировка"), bt, el("p",null,mockLine));
+  grid.append(ch, ct);
+
+  const tw = el("div","table-wrap");
+  const tb = el("table"), thead = el("thead"), trh = el("tr");
+  d.mockCols.forEach(c=>trh.append(el("th",null,c)));
+  thead.append(trh);
+  const tbody = el("tbody");
+  d.mocks.forEach(r=>{
+    const tr = el("tr");
+    r.forEach((c,i)=>{ const td = el("td"); if (i===0 || i===r.length-1 && curSubj!=="math" || i===4 && curSubj==="math") td.append(el("b",null,c)); else td.textContent = c; tr.append(td); });
+    tbody.append(tr);
+  });
+  tb.append(thead, tbody); tw.append(tb);
+
+  const cfoc = el("div","card");
+  const tags = el("div","tags"); tags.style.marginTop = "8px";
+  d.focus.forEach(x=>tags.append(el("span","tag",x)));
+  cfoc.append(el("h3",null,"Что подтянуть к следующему пробнику"), tags);
+
+  box.append(cf, grid, tw, cfoc);
+}
+
+/* ══════════ РЕГИСТРАЦИЯ, ПРЕДМЕТЫ ══════════ */
+const regEl = document.getElementById("cab-reg");
+const dashEl = document.getElementById("cab-dash");
+function studentSubjects(st){
+  const list = (st && Array.isArray(st.subjects) ? st.subjects : ["math","rus","soc"]).filter(k=>SUBJECTS[k]);
+  return list.length ? list : ["math"];
+}
+function renderSubjPick(st){
+  const pick = document.getElementById("subj-pick");
+  pick.textContent = "";
+  const list = studentSubjects(st);
+  pick.hidden = list.length < 2;
+  list.forEach(k=>{
+    const b = btnEl("sp"+(k===curSubj?" active":""), SUBJECTS[k].name, ()=>setSubject(k));
+    pick.append(b);
+  });
+}
+function renderHeader(){
+  const st = loadJSON(REG_KEY);
+  if (!st) return;
+  const h = new Date().getHours();
+  const g = h<5 ? "Доброй ночи" : h<12 ? "Доброе утро" : h<18 ? "Добрый день" : "Добрый вечер";
+  document.getElementById("cab-greet").textContent = g + ", " + st.name;
+  document.getElementById("cab-sub").textContent = SUBJECTS[curSubj].name+" · группа "+(st.goal || "80+")+" · "+(st.grade || "11")+" класс";
+  renderSubjPick(st);
+}
 function setSubject(key){
   if (!SUBJECTS[key]) key = "math";
   curSubj = key;
   TRAIN = TRAINS[key]; EXAMPLES = EXAMPLESS[key];
   TASK_TITLES = SUBJECTS[key].titles; TR_NUMS = SUBJECTS[key].nums;
   trNum = TR_NUMS[0];
-  document.querySelectorAll(".sp[data-subj]").forEach(b=>b.classList.toggle("active", b.dataset.subj === key));
-  document.getElementById("prog-math").hidden = key !== "math";
-  document.getElementById("prog-rus").hidden = key !== "rus";
-  document.getElementById("prog-soc").hidden = key !== "soc";
-  document.getElementById("mat-math").hidden = key !== "math";
-  const other = document.getElementById("mat-other");
-  other.hidden = key === "math";
-  if (key !== "math"){
-    document.getElementById("mat-other-title").textContent = "Материалы · "+SUBJECTS[key].name;
-    document.getElementById("mat-other-doc").href = key === "rus"
-      ? "https://martinidennn.github.io/tengr-ege/programma_russkiy_yazyk.docx"
-      : "https://martinidennn.github.io/tengr-ege/programma_obshchestvoznanie.docx";
-  }
-  showTaskView("train");
-  renderTrainer();
+  openHw = null; openMode = null;
   const st = loadJSON(REG_KEY);
   if (st && st.subj !== key){ st.subj = key; saveJSON(REG_KEY, st); }
+  renderHeader();
+  renderHw();
+  showTrainView("grid");
+  showCabTab(curTab);
 }
-document.querySelectorAll(".sp[data-subj]").forEach(b=>b.addEventListener("click", ()=>setSubject(b.dataset.subj)));
-
-window.__corReady = true;
-updateSelfPrep();
+function initCab(){
+  const st = loadJSON(REG_KEY);
+  regEl.hidden = !!st;
+  dashEl.hidden = !st;
+  if (!st) return;
+  const list = studentSubjects(st);
+  setSubject(list.includes(st.subj) ? st.subj : list[0]);
+}
+document.getElementById("reg-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const nameEl = document.getElementById("reg-name");
+  const name = nameEl.value.trim();
+  if (!name){ nameEl.focus(); return; }
+  const subjects = [...document.querySelectorAll('input[name="reg-subj"]:checked')].map(i=>i.value);
+  const err = document.getElementById("reg-subj-err");
+  err.hidden = subjects.length > 0;
+  if (!subjects.length) return;
+  saveJSON(REG_KEY, {name, grade: document.getElementById("reg-grade").value, goal: document.getElementById("reg-goal").value, subjects, subj: subjects[0]});
+  curTab = "today";
+  initCab(); window.scrollTo(0,0);
+});
+document.getElementById("reg-demo").addEventListener("click", ()=>{
+  saveJSON(REG_KEY, {name:"Алдар", grade:"11", goal:"80+", subjects:["math","rus","soc"], subj:"math"});
+  curTab = "today";
+  initCab(); window.scrollTo(0,0);
+});
+document.getElementById("cab-logout").addEventListener("click", ()=>{
+  try{ localStorage.removeItem(REG_KEY); }catch(_){}
+  initCab(); window.scrollTo(0,0);
+});
 initCab();
-const _st0 = loadJSON(REG_KEY);
-if (_st0 && _st0.subj && _st0.subj !== "math") setSubject(_st0.subj);
 
 </script>
 
